@@ -1,0 +1,57 @@
+{
+  "skill_name": "company-model",
+  "evals": [
+    {
+      "id": "large-refactor-no-company-change",
+      "prompt": "$company-model Reconcile COMPANY.md after a 10,000-line refactor that moved modules, replaced state management, and preserved all user behavior, pricing, onboarding, delivery, and customer evidence.",
+      "expected_output": "No COMPANY.md edit. Report company context unchanged because implementation structure changed without changing a company contract.",
+      "assertions": [
+        "Does not use line count as strategic importance",
+        "Separates implementation structure from company meaning",
+        "Leaves COMPANY.md unchanged",
+        "Does not update timestamps or rephrase stable prose",
+        "Reports the exact unchanged status",
+        "Does not create a decision or assumption log"
+      ]
+    },
+    {
+      "id": "self-serve-changes-delivery",
+      "prompt": "$company-model Reconcile COMPANY.md after verified production onboarding changed from two weeks of founder implementation to customer self-serve setup completed in twenty minutes. Five new customers used it successfully. Pricing and buyer are unchanged.",
+      "expected_output": "A minimal update to delivery and potentially commercial mechanics, grounded in verified behavior and customer use, while preserving unchanged buyer, pricing, and expansion claims.",
+      "assertions": [
+        "Updates delivery rather than rewriting the entire company",
+        "Uses production behavior and customer use as evidence",
+        "Does not infer a new buyer or pricing model",
+        "Names the specific contract changed",
+        "Preserves uncertainty about acquisition or scale if unsupported",
+        "Makes the smallest defensible diff"
+      ]
+    },
+    {
+      "id": "speculative-enterprise-feature",
+      "prompt": "$company-model Reconcile COMPANY.md after an engineer added enterprise RBAC because it may be useful later. No enterprise buyer, sale, request, or founder decision exists.",
+      "expected_output": "No company-model change. The capability may be reported as a possible implication, but it must not redefine the buyer, motion, or company category.",
+      "assertions": [
+        "Treats RBAC as capability evidence only",
+        "Does not declare an enterprise customer",
+        "Does not declare an enterprise sales motion",
+        "Does not treat implementation authorship as authority",
+        "Leaves COMPANY.md unchanged",
+        "Reports the unsupported implication without laundering it into truth"
+      ]
+    },
+    {
+      "id": "outcome-pricing-decision",
+      "prompt": "$company-model The authorized company owners decided to replace seat pricing with payment per completed case after three paid pilots showed buyers budget against completed cases. Reconcile COMPANY.md.",
+      "expected_output": "Update the commercial contract and any directly affected value or responsibility language, citing the authorized decision and pilot evidence while preserving remaining economic uncertainty.",
+      "assertions": [
+        "Recognizes explicit authorized direction as a decision",
+        "Uses pilot buying behavior as evidence",
+        "Updates pricing unit",
+        "Checks whether value or responsibility language must also change",
+        "Does not claim proven unit economics without data",
+        "Reports remaining uncertainty"
+      ]
+    }
+  ]
+}

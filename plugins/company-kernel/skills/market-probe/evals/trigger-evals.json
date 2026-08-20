@@ -1,0 +1,34 @@
+{
+  "skill_name": "market-probe",
+  "policy": "explicit-only",
+  "cases": [
+    {
+      "prompt": "$market-probe Resolve whether the same buyer owns this adjacent budget.",
+      "should_activate": true
+    },
+    {
+      "prompt": "Use market-probe to test this current willingness-to-pay assumption.",
+      "should_activate": true
+    },
+    {
+      "prompt": "Tell me the size of the AI market.",
+      "should_activate": false
+    },
+    {
+      "prompt": "Brainstorm competitors.",
+      "should_activate": false
+    },
+    {
+      "prompt": "Explain inbound versus outbound.",
+      "should_activate": false
+    },
+    {
+      "prompt": "Review this pull request.",
+      "should_activate": false
+    },
+    {
+      "prompt": "Write a customer interview script.",
+      "should_activate": false
+    }
+  ]
+}

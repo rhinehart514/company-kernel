@@ -1,0 +1,6 @@
+interface:
+  display_name: "Opportunity Evaluate"
+  short_description: "Decide whether an opportunity belongs"
+  default_prompt: "Use $opportunity-evaluate to decide whether this concrete opportunity should be pursued, probed, deferred, declined, or treated as a separate company."
+policy:
+  allow_implicit_invocation: false

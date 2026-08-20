@@ -1,0 +1,40 @@
+{
+  "name": "company-kernel",
+  "version": "0.1.0",
+  "description": "A headless company-state kernel for humans and agents.",
+  "author": {
+    "name": "Jacob Rhinehart",
+    "url": "https://github.com/rhinehart514"
+  },
+  "homepage": "https://github.com/rhinehart514/company-kernel",
+  "repository": "https://github.com/rhinehart514/company-kernel",
+  "license": "MIT",
+  "keywords": [
+    "company",
+    "strategy",
+    "market",
+    "product",
+    "agents",
+    "context",
+    "operating-system"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Company Kernel",
+    "shortDescription": "Keep company context explicit and current",
+    "longDescription": "Create and reconcile a project-local company model, evaluate concrete opportunities, and resolve market unknowns without installing strategy bureaucracy.",
+    "developerName": "Jacob Rhinehart",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/rhinehart514/company-kernel",
+    "defaultPrompt": [
+      "Use $company-model to create or reconcile the shared company model.",
+      "Use $opportunity-evaluate to decide whether this opportunity belongs in the company.",
+      "Use $market-probe to resolve this company-shaping market unknown."
+    ]
+  }
+}

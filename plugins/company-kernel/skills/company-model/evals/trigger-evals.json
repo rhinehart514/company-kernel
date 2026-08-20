@@ -1,0 +1,34 @@
+{
+  "skill_name": "company-model",
+  "policy": "explicit-only",
+  "cases": [
+    {
+      "prompt": "$company-model Initialize the shared company model.",
+      "should_activate": true
+    },
+    {
+      "prompt": "Use company-model to reconcile COMPANY.md after this pricing change.",
+      "should_activate": true
+    },
+    {
+      "prompt": "Fix the failing unit test.",
+      "should_activate": false
+    },
+    {
+      "prompt": "What is product-market fit?",
+      "should_activate": false
+    },
+    {
+      "prompt": "Summarize this customer call.",
+      "should_activate": false
+    },
+    {
+      "prompt": "Update the feature roadmap.",
+      "should_activate": false
+    },
+    {
+      "prompt": "Refactor this React component.",
+      "should_activate": false
+    }
+  ]
+}

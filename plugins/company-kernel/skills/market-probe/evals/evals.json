@@ -1,0 +1,57 @@
+{
+  "skill_name": "market-probe",
+  "evals": [
+    {
+      "id": "same-buyer-budget-control",
+      "prompt": "$market-probe Determine whether directors of customer support at mid-market SaaS companies commonly control budget for customer-renewal operations, or whether a different buyer usually owns it. This determines whether our adjacent renewal workflow can use the current sales motion.",
+      "expected_output": "A narrow, current evidence synthesis separating organization examples from general inference, identifying likely buyer variation, and stating whether the existing sales motion is supported, weakened, or still unproven.",
+      "assertions": [
+        "Keeps the question focused on buyer and budget control",
+        "Uses current organizational or first-party evidence",
+        "Does not generalize from one company",
+        "Separates observed role ownership from inference",
+        "Connects the finding to sales-motion reuse",
+        "Identifies a direct buyer interview or deal test if desk evidence is insufficient"
+      ]
+    },
+    {
+      "id": "competitor-feature-not-demand",
+      "prompt": "$market-probe Five competitors now advertise autonomous invoice approval. Determine whether this proves finance teams want to remove human approval from the workflow.",
+      "expected_output": "The finding should reject competitor availability as proof of demand, look for adoption, buyer language, controls, pricing, case studies, or regulatory evidence, and preserve uncertainty where actual behavior is unavailable.",
+      "assertions": [
+        "Treats competitor launches as supply evidence only",
+        "Looks for customer behavior or control requirements",
+        "Does not declare demand from feature prevalence",
+        "Separates autonomous execution from supervised approval",
+        "States the company responsibility implication",
+        "Ends with an appropriate market action if behavior remains unknown"
+      ]
+    },
+    {
+      "id": "pricing-unit-current-evidence",
+      "prompt": "$market-probe Determine whether current vendors in commercial pest monitoring price primarily by device, location, service visit, or managed outcome. We need to choose the unit for a hardware-enabled evidence service.",
+      "expected_output": "A current first-party pricing and packaging comparison that distinguishes advertised units from negotiated enterprise pricing, identifies the dominant observable patterns, and states what remains unproven about willingness to pay for managed outcomes.",
+      "assertions": [
+        "Uses current first-party pricing or packaging where available",
+        "Distinguishes device, location, visit, and outcome units",
+        "Does not invent hidden enterprise prices",
+        "Separates category convention from customer preference",
+        "Connects the finding to the commercial contract",
+        "Names a pricing test if managed-outcome evidence is missing"
+      ]
+    },
+    {
+      "id": "desk-research-limit",
+      "prompt": "$market-probe Determine whether small law firms will grant an agent authority to send client-facing case updates without approval. Public sources discuss AI adoption but do not reveal actual permission behavior.",
+      "expected_output": "An honest insufficient-evidence verdict after relevant current evidence, with the unknown narrowed and a direct, reversible pilot or interview protocol identified as the next market action.",
+      "assertions": [
+        "Does not infer operational permission from general AI adoption",
+        "Distinguishes interest from granted authority",
+        "Recognizes privacy, ethics, and trust constraints",
+        "Stops desk research when it cannot answer behavior",
+        "Returns insufficient evidence rather than a fabricated conclusion",
+        "Defines a bounded direct market action"
+      ]
+    }
+  ]
+}
