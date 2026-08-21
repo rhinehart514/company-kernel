@@ -1,38 +1,34 @@
 [
   {
-    "prompt": "Initialize this repository so agents understand the product, market, current direction, and what matters now.",
+    "prompt": "Initialize this repository so agents understand what the product is, what it owns, and what matters now.",
     "should_trigger": true
   },
   {
-    "prompt": "Our pricing, onboarding, and target customer changed this week. Refresh the project context.",
+    "prompt": "Our pricing, onboarding, and target customer changed. Refresh the project context.",
     "should_trigger": true
   },
   {
-    "prompt": "Audit whether PROJECT.md still matches the product we are actually shipping. Do not edit anything.",
+    "prompt": "Audit whether PROJECT.md still matches the product we ship. Do not edit.",
     "should_trigger": true
   },
   {
-    "prompt": "We have AGENTS.md, CLAUDE.md, and scattered strategy docs. Reorganize the durable project context without replacing existing rules.",
+    "prompt": "The project context is repetitive and hard to read. Merge and rewrite it around current truth.",
     "should_trigger": true
   },
   {
-    "prompt": "Fix the failing authentication unit test.",
+    "prompt": "Build the shared system above my projects and clean up global skills.",
     "should_trigger": false
   },
   {
-    "prompt": "Add a loading spinner to the dashboard.",
+    "prompt": "Research whether browser agents can reliably operate this portal.",
     "should_trigger": false
   },
   {
-    "prompt": "Rewrite this README paragraph.",
+    "prompt": "Fix the failing unit test.",
     "should_trigger": false
   },
   {
-    "prompt": "Explain what an AGENTS.md file is.",
-    "should_trigger": false
-  },
-  {
-    "prompt": "Audit my global skills, tools, and system instructions, build a thin system layer, then initialize this project.",
+    "prompt": "Add a loading spinner.",
     "should_trigger": false
   }
 ]

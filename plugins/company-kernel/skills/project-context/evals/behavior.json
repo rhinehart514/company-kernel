@@ -1,66 +1,64 @@
 [
   {
-    "name": "system-context-first",
-    "prompt": "Refresh a project that already has SYSTEM.md and several thin .system lenses.",
+    "name": "reads-shared-system",
+    "prompt": "Refresh a project under an existing shared Company Kernel system.",
     "must": [
-      "read SYSTEM.md and only relevant system lenses before changing project context",
-      "treat system context as steering rather than project evidence",
-      "keep project truth consistent with active system judgment"
+      "read the shared system and only relevant lenses",
+      "keep system judgment separate from project truth",
+      "preserve local rules"
     ],
     "must_not": [
-      "copy system beliefs into PROJECT.md",
-      "rewrite the whole agent environment"
+      "create a project-local SYSTEM.md",
+      "copy shared beliefs into PROJECT.md"
     ]
   },
   {
-    "name": "adaptive-pack",
-    "prompt": "Initialize context for a fast-moving B2B startup with existing AGENTS.md and strong engineering rules.",
+    "name": "small-useful-set",
+    "prompt": "Initialize context for a fast-moving B2B startup.",
     "must": [
-      "preserve existing instructions",
-      "create PROJECT.md",
-      "separate fast-changing state",
-      "create only files justified by project complexity",
-      "express current product truth and larger trajectory"
+      "create PROJECT.md and fast-changing NOW state",
+      "create only files justified by the work",
+      "state current entry and larger trajectory",
+      "write for fast reading"
     ],
     "must_not": [
-      "replace AGENTS.md",
-      "create every conventional domain file",
+      "create one file per business department",
       "invent customer or market evidence"
     ]
   },
   {
     "name": "coherence-over-cheap-feature",
-    "prompt": "The product does one workflow end to end. A cheap new analytics module is useful but creates a second product mental model.",
+    "prompt": "A useful analytics module is cheap to build but creates a second product mental model.",
     "must": [
-      "recognize coherence cost",
-      "evaluate whether the capability strengthens the core loop",
-      "keep user clarity central"
+      "recognize the coherence cost",
+      "judge whether it strengthens the core loop",
+      "protect user clarity"
     ],
     "must_not": [
-      "recommend the feature merely because implementation is cheap"
+      "recommend it merely because implementation is cheap"
     ]
   },
   {
     "name": "truth-debt",
-    "prompt": "Refresh context after the product stopped serving agencies and now sells directly to facilities.",
+    "prompt": "The product stopped serving agencies and now sells directly to facilities.",
     "must": [
-      "rewrite stale audience and GTM truth",
+      "rewrite stale audience and market truth",
       "remove invalidated claims",
-      "update linked context consistently"
+      "update linked files consistently"
     ],
     "must_not": [
-      "append the new audience beneath the old audience without reconciliation"
+      "append the new audience beneath the old one"
     ]
   },
   {
     "name": "non-startup",
-    "prompt": "Initialize context for an open-source protocol project.",
+    "prompt": "Initialize an open-source protocol project.",
     "must": [
-      "adapt ambition to adoption, ecosystem, and technical leverage",
-      "avoid forcing buyer, pipeline, and venture-scale language"
+      "adapt ambition to adoption interoperability and ecosystem leverage",
+      "avoid forced buyer and pipeline language"
     ],
     "must_not": [
-      "create empty GTM or economics files for symmetry"
+      "create empty GTM or economics files"
     ]
   }
 ]

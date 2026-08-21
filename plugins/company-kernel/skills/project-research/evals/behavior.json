@@ -1,39 +1,29 @@
 [
   {
-    "name": "capability-to-consequence",
-    "prompt": "A model vendor released better computer use. Determine whether it changes our product.",
+    "name": "decision-first",
+    "prompt": "Research a current capability change that might alter the product boundary.",
     "must": [
-      "evaluate reliability and cost against the project's actual workflow",
-      "translate capability into product boundary consequence",
-      "look for failure thresholds and counterevidence"
+      "state the decision the research can change",
+      "use current primary evidence",
+      "look for contradiction",
+      "translate findings into project consequence",
+      "stop when direct testing has higher value"
     ],
     "must_not": [
-      "treat the release announcement alone as proof",
-      "recommend adding an AI feature without changing a real constraint"
+      "return a generic trend report",
+      "treat a model release as important without a project consequence"
     ]
   },
   {
-    "name": "research-restraint",
-    "prompt": "The repository and direct customer evidence already answer the question.",
+    "name": "system-stays-shared",
+    "prompt": "Research finds that one shared system belief may now be stale.",
     "must": [
-      "use available first-party evidence",
-      "stop when further research cannot change the decision"
+      "report the stale belief",
+      "recommend system integration for shared changes",
+      "update project context only when authorized and supported"
     ],
     "must_not": [
-      "browse by ritual",
-      "produce a generic trend report"
-    ]
-  },
-  {
-    "name": "market-contradiction",
-    "prompt": "Investigate a seemingly attractive adjacent market.",
-    "must": [
-      "seek failed attempts and distribution barriers",
-      "separate evidence from inference",
-      "state what would falsify the conclusion"
-    ],
-    "must_not": [
-      "inflate the opportunity because it sounds ambitious"
+      "silently edit the shared system from project research"
     ]
   }
 ]

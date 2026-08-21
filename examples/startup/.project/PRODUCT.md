@@ -1,33 +1,27 @@
 # Product
 
-**Purpose:** Preserve one clear product while the operating capability expands.
-
 **As of:** 2026-08-21
 
-## Product truth
+## Truth
 
 Relay completes vendor security reviews and returns defensible proof.
 
-## User mental model
+## User loop
 
-Connect evidence, send the request, resolve exceptions, receive the completed review.
+Connect evidence → send the request → resolve exceptions → receive the completed review.
 
-## Core surface
+## Surface
 
-A work queue organized by review, evidence, exception, and proof. Internal agent steps remain hidden unless they affect trust or require judgment.
+The product opens on work, not analytics: review, evidence, exception, and proof. Internal agent steps stay hidden unless they affect trust or require judgment.
 
 ## Authority
 
-Relay may retrieve approved evidence, map controls, draft responses, and submit internal work for review. It may not create policy, accept contractual commitments, or represent unsupported controls as true.
+Relay may retrieve approved evidence, map controls, draft responses, and prepare work for submission. It may not create policy, accept contractual commitments, or present unsupported controls as true.
 
-## Negative identity
+## Not this
 
-Not a compliance dashboard.
+Not a compliance dashboard. Not a policy suite. Not an open-ended AI assistant.
 
-Not a policy-writing suite.
+## Product pressure
 
-Not an open-ended AI assistant.
-
-## Coherence pressure
-
-New compliance capabilities belong only when they improve review completion, proof, or the maintained assurance context that powers the next review.
+A new capability belongs only when it improves review completion, proof, or the maintained assurance context that powers the next review.

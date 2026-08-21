@@ -2,30 +2,26 @@
 
 **As of:** YYYY-MM-DD
 
-## Current objective
+## Objective
 
-The most important thing that must become true now.
+The one result that matters now.
 
 ## Momentum
 
-What is becoming more true, easier, faster, or more credible.
+What is becoming more true.
 
-## Active bets
+## Bets
 
-The risks currently being taken and what would validate or kill them.
+What the project is choosing under uncertainty.
 
 ## Constraints
 
-What is materially limiting progress.
-
-## Decisions in motion
-
-Choices that are unresolved or newly made.
+What currently limits movement.
 
 ## Contradictions
 
-Where reality and the current project model disagree.
+What does not fit the current model.
 
-## Next evidence
+## Next proof
 
-The next observation, shipment, sale, experiment, or result that can change judgment.
+The smallest credible action that can change the decision.

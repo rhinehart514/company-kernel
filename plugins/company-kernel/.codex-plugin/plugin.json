@@ -1,7 +1,7 @@
 {
   "name": "company-kernel",
-  "version": "0.3.0",
-  "description": "Compile a thin agent system and current project context for ambitious startups and fast-moving projects.",
+  "version": "0.4.0",
+  "description": "Build a shared agent system above projects, then keep each project current.",
   "author": {
     "name": "Jacob Rhinehart",
     "url": "https://github.com/rhinehart514"
@@ -22,8 +22,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Company Kernel",
-    "shortDescription": "Compile the agent system around the project",
-    "longDescription": "Inspect existing instructions, skills, tools, repository state, and evidence; build a thin 1-10 line system layer; reconcile capabilities; then create or refresh adaptive project context without replacing stronger local rules.",
+    "shortDescription": "Build the system once, keep projects current",
+    "longDescription": "Inspect existing rules, skills, tools, and evidence; build a thin shared system above projects; clean up capability routing; then create or refresh the current project model.",
     "developerName": "Jacob Rhinehart",
     "category": "Productivity",
     "capabilities": [
@@ -33,9 +33,9 @@
     ],
     "websiteURL": "https://github.com/rhinehart514/company-kernel",
     "defaultPrompt": [
-      "Use $system-integrate for first installation, system-context compilation, skill cleanup, or a full agent-environment audit.",
-      "Use $project-context when project truth changes after integration.",
-      "Use $project-research to resolve a project-shaping uncertainty with current evidence."
+      "Use $system-integrate for first setup, shared-system changes, skill cleanup, or a full environment recompile.",
+      "Use $project-context when one project's truth changes.",
+      "Use $project-research to resolve one project-shaping uncertainty."
     ]
   }
 }

@@ -1,22 +1,18 @@
 [
   {
-    "prompt": "Integrate Company Kernel into this startup. Audit my existing AGENTS files, global skills, tools, and project docs; build thin system context first, then compile the project.",
+    "prompt": "Build the shared Company Kernel system above my projects, clean up my installed skill routing, then initialize this repository.",
     "should_trigger": true
   },
   {
-    "prompt": "I upgraded models and have 24 overlapping skills. Reassess the whole agent environment for this repository and clean it up without deleting global work silently.",
+    "prompt": "I upgraded models and now have overlapping global rules and 24 skills. Recompile the shared system without deleting unrelated global work.",
     "should_trigger": true
   },
   {
-    "prompt": "Build a 2026 frontier system layer in 1-10 line files, reconcile the skills already on this machine, and then initialize PROJECT.md.",
+    "prompt": "Audit my system context, tools, and skills across projects. Show the calls but do not edit yet.",
     "should_trigger": true
   },
   {
-    "prompt": "Audit whether our system prompts, project instructions, MCP tools, and local skills are coherent for this company. Do not edit yet.",
-    "should_trigger": true
-  },
-  {
-    "prompt": "Create a project-local capability for repeated account-signal research only if my current model, tools, and skills do not already cover it, then refresh the project model.",
+    "prompt": "Create a readable 1-10 line system, keep only useful lenses, then build PROJECT.md for this startup.",
     "should_trigger": true
   },
   {
@@ -32,11 +28,7 @@
     "should_trigger": false
   },
   {
-    "prompt": "Rewrite the homepage hero copy.",
-    "should_trigger": false
-  },
-  {
-    "prompt": "Install one PDF extraction skill.",
+    "prompt": "Rewrite the homepage hero.",
     "should_trigger": false
   }
 ]

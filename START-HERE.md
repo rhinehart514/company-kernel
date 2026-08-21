@@ -1,8 +1,8 @@
 # Start here
 
-Company Kernel has one job: make the agent environment materially better for the project that exists now without replacing the rest of your setup.
+Company Kernel builds one shared system above your projects, then keeps each project current beneath it.
 
-## 1. Install the skills
+## 1. Install
 
 Codex:
 
@@ -17,58 +17,35 @@ Any Agent Skills-compatible client:
 python3 scripts/install.py --user
 ```
 
-Project-local installation:
+## 2. Run the first integration
 
-```sh
-python3 scripts/install.py --project .
-```
-
-## 2. Run the integration
-
-Open the target project and run:
+Open a real project and run:
 
 ```text
-$system-integrate Integrate this project. Inspect the existing system instructions, installed skills, available tools, repository, and current context. Compile a 1-10 line SYSTEM.md, preserve stronger local rules, rationalize the capability set, then initialize or refresh PROJECT.md and only the supporting context this project needs. Do not stop at an audit.
+$system-integrate Build or reconcile the shared Company Kernel system above my projects.
+Inspect my existing global rules, installed skills, and available tools.
+Keep stronger rules. Write a readable 1-10 line SYSTEM.md and only useful lenses
+under ~/.company-kernel, create a clear capability map, then initialize this repository
+with PROJECT.md and .project/NOW.md. Do not delete or rewrite unrelated global work.
 ```
 
-The agent should inspect before asking you to inventory the company or machine.
+The agent should inspect the machine and repository before asking you to describe what is already visible.
 
-## 3. Expect a transformation
+## 3. Review the result
 
-A normal first run should leave:
+Look at four things:
 
-```text
-SYSTEM.md
-.system/*        optional thin lenses
-PROJECT.md
-.project/NOW.md
-```
+1. **System:** Does `~/.company-kernel/SYSTEM.md` contain distinctive judgment rather than slogans?
+2. **Project:** Can a new teammate explain the project after reading `PROJECT.md`?
+3. **Capabilities:** Is it clearer which skills and tools own which jobs?
+4. **Trajectory:** Does the current entry visibly earn a much larger coherent outcome?
 
-It may also create several files or capabilities around one important concern and none around another. It should not create a complete departmental template set merely to prove it owns a keyboard.
+Correct wrong truth immediately. Elegant wrong context only helps the agent fail faster.
 
-The final report should show:
+## 4. Keep moving
 
-- the exact compiled system context
-- the current product or project truth
-- context created, rewritten, merged, or removed
-- skills and tools kept, routed, combined, retired, exposed, built, or still missing
-- the sharpest product-coherence problem
-- the most consequential frontier unlock
-- the largest remaining uncertainty and next proof
+Use `$project-context` when the project changes.
 
-## 4. Review four things
+Use `$project-research` when one uncertainty can change a decision.
 
-1. **System:** Are `SYSTEM.md` and any thin lenses distinctive, project-specific, and worth loading repeatedly?
-2. **Product truth:** Could a new teammate understand what this is in one sentence?
-3. **Capabilities:** Are relevant skills and tools easier to invoke without stacking overlapping ones?
-4. **Trajectory:** Does winning the current wedge visibly unlock a much larger coherent project?
-
-Correct bad truth immediately. Polished wrong context is an extremely efficient sabotage mechanism.
-
-## 5. Keep operating normally
-
-Use `$project-context` when the company or project model changes.
-
-Use `$project-research` when a bounded uncertainty can change a decision.
-
-Use `$system-integrate` again only after a meaningful change to the model, instruction layers, skills, tools, project-level system context, or company direction.
+Use `$system-integrate` again only when the shared rules, skills, tools, model capability, or operating beliefs change materially.

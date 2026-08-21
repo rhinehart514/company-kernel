@@ -2,15 +2,15 @@
 
 **As of:** 2026-08-21
 
-## Current objective
+## Objective
 
-Complete five real security reviews with less than thirty minutes of customer intervention per review.
+Complete five live security reviews with less than thirty minutes of customer intervention per review.
 
 ## Momentum
 
-Evidence extraction is reliable. Two design partners have supplied completed historical reviews. Response consistency improved after the shared control map shipped.
+Evidence extraction is reliable. Two design partners supplied completed reviews. Response consistency improved after the shared control map shipped.
 
-## Active bets
+## Bets
 
 Buyers will trust completed work when every answer links to source evidence and exceptions are explicit.
 
@@ -18,16 +18,12 @@ The first wedge is revenue-blocking reviews, not compliance program management.
 
 ## Constraints
 
-Permissioning for company evidence is still manual. Legal and security owners disagree about which commitments require approval.
+Evidence permissioning is still manual. Legal and security owners disagree about which commitments require approval.
 
-## Decisions in motion
+## Contradiction
 
-Whether to price per completed review or as standing assurance capacity.
+Users ask for a dashboard, but observed use centers on submitted reviews, evidence requests, and exception resolution.
 
-## Contradictions
+## Next proof
 
-Users ask for a dashboard, but observed usage centers on submitted reviews, evidence requests, and exception resolution.
-
-## Next evidence
-
-Complete two live buyer reviews and measure intervention time, unsupported claims, approval cycle, and whether proof reduces follow-up.
+Complete two live buyer reviews. Measure intervention time, unsupported claims, approval cycle, and whether proof reduces follow-up.

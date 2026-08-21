@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Install Company Kernel skills without touching project instructions or context."""
+"""Install Company Kernel skills without changing system or project context."""
 
 from __future__ import annotations
 
@@ -50,18 +50,9 @@ def parse_args() -> argparse.Namespace:
     scope = parser.add_mutually_exclusive_group()
     scope.add_argument("--user", action="store_true", help="Install for the current user")
     scope.add_argument("--project", metavar="PATH", help="Install inside one project")
-    parser.add_argument(
-        "--client",
-        choices=sorted(CLIENT_PATHS),
-        default="agents",
-        help="Choose the client's conventional skills directory",
-    )
+    parser.add_argument("--client", choices=sorted(CLIENT_PATHS), default="agents")
     parser.add_argument("--target", help="Install into an explicit skills directory")
-    parser.add_argument(
-        "--skill",
-        action="append",
-        help="Install only this skill; repeat for several (default: all)",
-    )
+    parser.add_argument("--skill", action="append", help="Install only this skill; repeat for several")
     parser.add_argument("--force", action="store_true", help="Replace changed installed skills")
     parser.add_argument("--dry-run", action="store_true", help="Show changes without writing")
     return parser.parse_args()
@@ -90,30 +81,22 @@ def main() -> int:
         print(f"available: {', '.join(sorted(available))}", file=sys.stderr)
         return 2
 
-    dest_root = destination_root(args)
-    print(f"Company Kernel skills → {dest_root}")
+    destination = destination_root(args)
+    print(f"Company Kernel skills -> {destination}")
     try:
         for name in selected:
-            state = copy_skill(
-                available[name],
-                dest_root / name,
-                force=args.force,
-                dry_run=args.dry_run,
-            )
+            state = copy_skill(available[name], destination / name, args.force, args.dry_run)
             print(f"- {name}: {state}")
     except FileExistsError as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 1
 
     if not args.dry_run:
-        print()
-        print("Next:")
+        print("\nNext:\n")
         print(
-            "$system-integrate Integrate this project. Inspect existing system "
-            "instructions, installed skills, available tools, and repository state; "
-            "compile SYSTEM.md and only the thin linked lenses this project earns; "
-            "preserve stronger local rules; rationalize capabilities; then initialize "
-            "or refresh the project context."
+            "$system-integrate Build or reconcile the shared Company Kernel system "
+            "above my projects, inspect existing rules, skills, and tools, then "
+            "initialize this repository. Do not delete unrelated global work."
         )
     return 0
 

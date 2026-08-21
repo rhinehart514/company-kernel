@@ -1,34 +1,26 @@
 [
   {
-    "prompt": "Research whether current browser-agent reliability lets us own onboarding instead of selling a copilot.",
+    "prompt": "Determine whether current browser agents can reliably own this workflow and whether that changes our product boundary.",
     "should_trigger": true
   },
   {
-    "prompt": "Determine whether new regulation changes who can approve this product and update context if it does.",
+    "prompt": "Research whether the same buyer controls budget for the adjacent workflow. Update project context if the answer changes it.",
     "should_trigger": true
   },
   {
-    "prompt": "Resolve whether the buyer for our current wedge also controls the adjacent workflow budget.",
+    "prompt": "Find evidence for and against outcome-based pricing in this market before we choose a model.",
     "should_trigger": true
   },
   {
-    "prompt": "Research competitor pricing because it may change packaging and sales motion.",
-    "should_trigger": true
-  },
-  {
-    "prompt": "What is the capital of France?",
+    "prompt": "Summarize the latest AI news.",
     "should_trigger": false
   },
   {
-    "prompt": "Summarize this article I pasted.",
+    "prompt": "Initialize PROJECT.md.",
     "should_trigger": false
   },
   {
-    "prompt": "Fix the CSS grid.",
-    "should_trigger": false
-  },
-  {
-    "prompt": "Find a funny name for this server.",
+    "prompt": "Clean up all installed skills.",
     "should_trigger": false
   }
 ]

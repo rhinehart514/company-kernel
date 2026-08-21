@@ -1,17 +1,15 @@
 # Repository rules
 
-This repository steers already-capable models. Prefer removing instructions to explaining common sense.
+Steer capable models with the least context that materially improves judgment.
 
-The flagship flow inspects the existing agent environment, compiles a project-local `SYSTEM.md` of one to ten high-information lines, then compiles current project context.
+The shared system sits above projects. `PROJECT.md` and `.project/*` contain project truth, never system doctrine.
 
-Keep the portable core host-agnostic. Put client-specific metadata in adapters, not in shared skill judgment.
+Write for fast reading. Lead with the call. Use exact nouns, short sections, and plain sentences. Delete setup and repetition.
 
-Beliefs and taste belong in thin system context. Verbs belong in skills. Current project truth belongs in `PROJECT.md` and linked `.project/*` files.
+Do not create one file or skill per department. Create as many or as few as the actual work earns.
 
-Do not replace a user's existing instruction system. Integrate minimally and preserve stronger local rules.
+Keep the core portable. Put client-specific behavior in adapters or metadata.
 
-Do not create one skill or context file per conventional domain. Several capabilities may serve one important concern and entire functions may need none.
-
-Every persistent instruction, skill, script, and context file must earn its cost through a repeated job, representative failure, clear safety boundary, or meaningful routing improvement.
+Preserve stronger user and project rules. Never rewrite shared global work without explicit authority.
 
 Run `python3 scripts/validate.py` before committing.

@@ -1,6 +1,6 @@
 interface:
   display_name: "System Integrate"
-  short_description: "Compile the agent environment around this project"
-  default_prompt: "Use $system-integrate to inspect this agent environment, compile a 1-10 line SYSTEM.md plus only the thin linked lenses this project earns, rationalize existing capabilities, and then create or refresh the project's current context."
+  short_description: "Build the shared system, then the project"
+  default_prompt: "Use $system-integrate to build or reconcile the shared Company Kernel system above projects, clean up capability routing, and then initialize the active repository."
 policy:
   allow_implicit_invocation: false

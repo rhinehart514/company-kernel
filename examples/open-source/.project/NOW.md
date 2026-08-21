@@ -2,7 +2,7 @@
 
 **As of:** 2026-08-21
 
-## Current objective
+## Objective
 
 Get two independent coding clients and three repositories to exchange a valid evidence package.
 
@@ -10,20 +10,20 @@ Get two independent coding clients and three repositories to exchange a valid ev
 
 The schema is stable enough for prototypes. One maintainer has integrated the verifier into CI.
 
-## Active bets
+## Bets
 
 Interoperability pain is stronger around evidence and handoff than around shared agent prompts.
 
 A minimal protocol plus strong reference tools will outperform an early governance body.
 
-## Constraints
+## Constraint
 
 No shared vocabulary exists for confidence, unresolved risk, or test provenance across clients.
 
-## Decisions in motion
+## Decision
 
-Whether to standardize human approval events in version one.
+Whether version one should standardize human approval events.
 
-## Next evidence
+## Next proof
 
-Complete a cross-client change exchange and document every field that failed to carry useful meaning.
+Complete a cross-client change exchange and record every field that fails to carry useful meaning.

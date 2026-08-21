@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Validate a target project's thin SYSTEM.md and linked .system lenses."""
+"""Validate shared Company Kernel system context."""
 
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 from pathlib import Path
 
@@ -12,101 +13,62 @@ LINK_RE = re.compile(r"\]\(([^)#]+)(?:#[^)]+)?\)")
 
 
 def steering_lines(path: Path) -> list[str]:
-    lines: list[str] = []
-    for raw in path.read_text(encoding="utf-8").splitlines():
-        text = raw.strip()
-        if not text or text.startswith("#") or text.startswith("<!--"):
-            continue
-        lines.append(text)
-    return lines
+    return [line.strip() for line in path.read_text(encoding="utf-8").splitlines() if line.strip() and not line.lstrip().startswith("#")]
 
 
-def local_links(path: Path) -> list[str]:
-    links: list[str] = []
-    for link in LINK_RE.findall(path.read_text(encoding="utf-8")):
-        if "://" in link or link.startswith(("mailto:", "#")):
-            continue
-        links.append(link)
-    return links
+def links(path: Path) -> list[str]:
+    return [link for link in LINK_RE.findall(path.read_text(encoding="utf-8")) if "://" not in link and not link.startswith(("#", "mailto:"))]
 
 
-def validate(root: Path) -> dict[str, object]:
-    system = root / "SYSTEM.md"
+def validate(home: Path) -> dict[str, object]:
     errors: list[str] = []
-    records: list[dict[str, object]] = []
-
+    system = home / "SYSTEM.md"
+    index = home / "LENSES.md"
+    lens_dir = home / "lenses"
     if not system.is_file():
-        return {
-            "root": str(root),
-            "files": [],
-            "errors": ["SYSTEM.md is required."],
-            "ok": False,
-        }
-
-    lens_dir = root / ".system"
-    lenses = sorted(path for path in lens_dir.rglob("*.md") if path.is_file()) if lens_dir.is_dir() else []
-    files = [system, *lenses]
-
-    system_links = {
-        (system.parent / link).resolve()
-        for link in local_links(system)
-        if link.startswith(".system/")
-    }
-
-    for path in files:
-        relative = path.relative_to(root).as_posix()
-        lines = steering_lines(path)
-        if not 1 <= len(lines) <= 10:
-            errors.append(
-                f"{relative}: expected 1-10 non-empty steering lines excluding headings; found {len(lines)}"
-            )
+        errors.append("SYSTEM.md is required")
+    if not index.is_file():
+        errors.append("LENSES.md is required")
+    lenses = sorted(lens_dir.glob("*.md")) if lens_dir.is_dir() else []
+    active = [path for path in [system, *lenses] if path.is_file()]
+    records = []
+    for path in active:
+        count = len(steering_lines(path))
+        if not 1 <= count <= 10:
+            errors.append(f"{path.relative_to(home)}: expected 1-10 steering lines, found {count}")
         text = path.read_text(encoding="utf-8")
         if "TODO" in text or "TBD" in text:
-            errors.append(f"{relative}: contains TODO/TBD placeholder")
-        broken: list[str] = []
-        for link in local_links(path):
-            target = (path.parent / link).resolve()
-            if not target.exists():
-                broken.append(link)
-                errors.append(f"{relative}: broken link {link}")
-        records.append({
-            "path": relative,
-            "steering_lines": len(lines),
-            "broken_links": broken,
-        })
-
-    for lens in lenses:
-        if lens.resolve() not in system_links:
-            errors.append(
-                f"{lens.relative_to(root).as_posix()}: lens is not linked from SYSTEM.md"
-            )
-
-    for linked in system_links:
-        if lens_dir.resolve() not in linked.parents:
-            errors.append(f"SYSTEM.md: linked system lens escapes .system: {linked}")
-
-    return {"root": str(root), "files": records, "errors": errors, "ok": not errors}
+            errors.append(f"{path.relative_to(home)}: contains TODO/TBD")
+        records.append({"path": path.relative_to(home).as_posix(), "steering_lines": count})
+    if system.is_file() and "LENSES.md" not in links(system):
+        errors.append("SYSTEM.md must link to LENSES.md")
+    if index.is_file():
+        indexed = {(index.parent / link).resolve() for link in links(index) if link.startswith("lenses/")}
+        for lens in lenses:
+            if lens.resolve() not in indexed:
+                errors.append(f"{lens.relative_to(home)}: not linked from LENSES.md")
+        for target in indexed:
+            if not target.is_file():
+                errors.append(f"LENSES.md: broken lens link {target}")
+    return {"system_home": str(home), "files": records, "errors": errors, "ok": not errors}
 
 
 def main() -> int:
+    default_home = Path(os.environ.get("COMPANY_KERNEL_HOME", Path.home() / ".company-kernel"))
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--root", default=".")
+    parser.add_argument("--system-home", default=str(default_home))
     parser.add_argument("--json", action="store_true")
     args = parser.parse_args()
-
-    root = Path(args.root).expanduser().resolve()
-    if not root.is_dir():
-        parser.error(f"not a directory: {root}")
-
-    result = validate(root)
+    home = Path(args.system_home).expanduser().resolve()
+    result = validate(home)
     if args.json:
         print(json.dumps(result, indent=2))
     elif result["ok"]:
-        print("OK: thin system context is valid")
+        print("OK: shared system context is valid")
         for item in result["files"]:
             print(f"- {item['path']}: {item['steering_lines']} steering lines")
     else:
-        print("FAIL: system context validation")
+        print("FAIL: shared system context")
         for error in result["errors"]:
             print(f"- {error}")
     return 0 if result["ok"] else 1

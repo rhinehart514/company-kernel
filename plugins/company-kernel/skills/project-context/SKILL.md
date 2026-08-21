@@ -1,154 +1,82 @@
 ---
 name: project-context
-description: Use this skill to create, audit, reorganize, or refresh durable context for a startup or project after the agent environment is already integrated, especially when the repository is moving quickly, product or market direction changed, or agents lack a coherent current model. Read SYSTEM.md when present, preserve stronger local instructions, and create the smallest adaptive set of PROJECT.md plus linked project context files. Use $system-integrate instead when rules, skills, tools, or the project-level system context also need recompilation. Do not use for routine implementation, bug fixes, or ordinary documentation.
+description: Create, audit, restructure, or refresh one project under the shared system. Use when project truth changes. Preserve local rules and write only the project files the repository needs. Do not use for routine implementation or whole-machine cleanup.
 license: MIT
 metadata:
   author: Jacob Rhinehart
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
-# Project Context
+# Project context
 
-Keep the project model that a capable agent needs now.
-
-This skill owns project compilation. It does not own the entire agent environment, replace local rules, or turn every uncertainty into a research program.
+Keep one project true and legible as it moves.
 
 ## Modes
 
-Infer the mode from the request:
+- **initialize:** create the first project model
+- **refresh:** rewrite stale truth after a material change
+- **audit:** make calls without editing
+- **restructure:** split, merge, rename, or remove context that no longer reads well
 
-- **initialize:** create the first coherent project context when full environment integration is unnecessary
-- **refresh:** reconcile existing context against current reality and rewrite stale truth
-- **audit:** diagnose context quality without editing unless asked
-- **restructure:** split, merge, rename, or remove context files when their current shape is hurting use
+## Read the shared system
 
-## Read upstream context
+Locate the system from the active instruction route, `COMPANY_KERNEL_HOME`, or `~/.company-kernel`.
 
-Read `SYSTEM.md` when it exists, then only the linked `.system/*.md` lenses relevant to the task. Treat them as the project's thin judgment layer and do not duplicate their lines in project facts.
+Read `SYSTEM.md`, then only the lenses relevant to this project and task. The system shapes judgment. It does not provide project facts.
 
-If `SYSTEM.md` is absent and the task also involves instruction layers, installed skills, tools, or full first-run integration, use `$system-integrate` instead.
+If the shared system itself is stale or missing, report it and use `$system-integrate`. Do not create a project-local `SYSTEM.md`.
 
-Read [references/frontier.md](references/frontier.md) on every run.
+Read [context shape](references/context.md), [evidence](references/evidence.md), [project types](references/project-types.md), and [writing](references/writing.md).
 
-Read [references/context-shape.md](references/context-shape.md) before creating or restructuring files.
+## Inspect the project
 
-For a user-facing product, read [references/product-coherence.md](references/product-coherence.md).
-
-For a commercial project or active market motion, read [references/market-power.md](references/market-power.md).
-
-Read [references/project-types.md](references/project-types.md) when the project is not clearly a venture startup.
-
-Read [references/evidence.md](references/evidence.md) when claims are uncertain, current external facts matter, or research may be required.
-
-## Begin with the project
-
-Inspect before asking the user to inventory it.
-
-If shell access is available, run:
+Run the scanner when shell access exists:
 
 ```sh
-python3 scripts/scan_context.py --root .
+python3 scripts/scan_context.py --root . --json
 ```
 
-Resolve the path relative to this skill directory, or use equivalent repository inspection when the script is unavailable.
+Read applicable instructions, repository behavior, recent changes, product surfaces, tests, docs, existing context, and first-party evidence.
 
-Find and respect existing instruction sources and project context.
+Do not ask the user to inventory what the repository already shows. Code is evidence of capability, not complete company truth.
 
-Read the repository, recent changes, product surfaces, tests, examples, and available first-party evidence that can materially improve the model.
-
-Do not mistake code for complete company truth. Do not ignore code when prose disagrees with what the product actually does.
-
-## Compile the model
+## Build the model
 
 Establish only what current evidence supports:
 
-- the simplest accurate project or product truth
-- what must become true
-- why this is possible or important now
-- actors, users, buyers, operators, systems, or other participants
+- the simplest accurate project truth
+- the outcome and why now
+- actors, users, buyers, operators, systems, or beneficiaries
 - the core loop that creates and proves value
-- the current responsibility and authority boundary
-- the entry wedge
-- the larger trajectory unlocked by winning it
+- the responsibility and authority boundary
+- the entry wedge and larger trajectory
 - what the project refuses to become
-- current evidence, contradiction, and uncertainty
-- momentum, constraints, bets, and the present objective
+- current evidence, contradiction, uncertainty, and momentum
 - what compounds through use or operation
 
-For a startup, hold the current wedge and destination company at the same time. Do not blur them into vague positioning.
+For a startup, keep the current entry and destination company distinct.
 
-For another project type, pursue the largest coherent consequence supported by its purpose rather than forcing venture language onto it.
+For another project type, pursue the largest coherent consequence supported by its purpose.
 
-## Choose the context set
+## Write the smallest useful set
 
-Always optimize for use, not completeness.
-
-A moving integrated project normally has:
+Start with:
 
 ```text
-SYSTEM.md
-.system/          optional thin lenses
 PROJECT.md
 .project/NOW.md
 ```
 
-This skill normally writes `PROJECT.md` and `.project/*`. It may flag `SYSTEM.md` as stale, but should not rewrite the system layer unless the user explicitly includes it or invokes `$system-integrate`.
+Add a file only when its content changes at a different speed, belongs to a different authority, or has become too large to stay useful.
 
-Create additional linked Markdown files only when cadence, authority, audience, ownership, risk, or real size justifies the split.
+Several files may cover one important concern. Entire conventional functions may need none.
 
-There is no required one-file-per-domain set. Several files may cover one important concern. Entire conventional functions may need no file.
+Use [PROJECT.seed.md](assets/PROJECT.seed.md) and [NOW.seed.md](assets/NOW.seed.md) as shapes, not forms.
 
-Keep `PROJECT.md` short enough to load for consequential work. It should route to supporting context rather than absorb everything.
-
-Do not create empty placeholders, speculative roadmaps, generic doctrine, or a second task tracker.
-
-Use the seeds in [assets/PROJECT.seed.md](assets/PROJECT.seed.md) and [assets/NOW.seed.md](assets/NOW.seed.md) as starting shapes, not mandatory forms.
-
-## Preserve truth quality
-
-Distinguish:
-
-- authorized direction
-- observed evidence
-- inference
-- active bet
-- unknown
-
-Add dates or provenance to dynamic claims when staleness would matter.
-
-Search or use connected evidence when a current fact could materially change the project model. Do not research by ritual. Use `$project-research` when a bounded uncertainty deserves a dedicated pass.
-
-Rewrite invalidated truth. Do not append a newer contradiction beneath an older claim and call that memory.
-
-Delete context that no longer improves decisions.
-
-## Integrate carefully
-
-Do not overwrite an existing instruction system.
-
-Only modify an instruction file when the request explicitly asks to integrate or route project context.
-
-Use the narrow route in [assets/ROUTE.md](assets/ROUTE.md), adapted to the host and existing file. If no `SYSTEM.md` exists, omit that clause rather than create a broken route.
+Rewrite invalidated truth. Delete dead context. Keep uncertainty visible. Add dates or provenance when freshness matters.
 
 ## Finish
 
-Verify that:
+Check that a capable new agent can explain the project, the product remains simpler than its machinery, product and GTM make the same promise, the current objective is current, and the entry visibly earns the trajectory.
 
-- a new capable agent can understand the project quickly
-- `SYSTEM.md`, linked `.system` lenses, and project truth do not contradict each other
-- the user-facing product remains simpler than the internal machinery
-- GTM, product, onboarding, delivery, and proof describe the same promise
-- the current objective is actually current
-- the entry wedge visibly connects to a larger coherent trajectory
-- uncertainty remains visible
-- every created file earns its existence
-- links resolve
-- existing rules remain intact
-
-Report:
-
-1. what was created, changed, merged, or removed
-2. the current project truth in one sentence
-3. the most consequential remaining unknowns
-4. any stale system line or instruction conflict the user should resolve
-5. the next natural prompt for operating the project
+Report the project truth, calls made, files changed, remaining unknowns, and next proof.

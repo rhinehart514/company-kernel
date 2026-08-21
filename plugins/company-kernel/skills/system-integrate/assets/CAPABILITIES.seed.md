@@ -1,25 +1,20 @@
 # Capabilities
 
-**Purpose:** Route the capabilities this project actually needs without stacking overlapping skills or confusing missing access with missing judgment.
-
 **As of:** YYYY-MM-DD
 
 ## Use
 
-- `$skill-name`: the repeated job it owns and when it should activate
+- `$skill-name`: the repeated job it owns
+- `tool or source`: the access it provides
 
 ## Do not stack
 
-- Prefer `$stronger-skill` over `$overlapping-skill` for this project because their jobs overlap here.
+- Prefer one capability over another for this job because their triggers overlap here.
 
 ## Built here
 
-- `path/to/capability`: why the base model, existing skills, and tools were insufficient
-
-## Available tools and evidence
-
-- Capability or source: what it makes possible
+- `path`: the repeated gap it closes
 
 ## Missing access
 
-- Evidence or action the agent cannot currently reach and why it matters
+- Evidence or action the system cannot currently reach and why it matters

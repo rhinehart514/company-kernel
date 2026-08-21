@@ -1,31 +1,15 @@
 # Project types
 
-Do not make every project cosplay as a venture startup.
+Do not force startup language onto every project.
 
-## Venture startup
+A startup may optimize for market power, distribution, economics, and category expansion.
 
-Look for market power, economic ownership, compounding distribution, responsibility expansion, and a credible path from wedge to a much larger company.
+An open-source project may optimize for adoption, interoperability, contributors, and becoming infrastructure.
 
-## Open source
+A research project may optimize for knowledge, experimental resolution, reproducibility, and downstream capability.
 
-Look for adoption, contributor leverage, ecosystem position, technical trust, standards influence, and becoming useful infrastructure.
+A civic project may optimize for public usefulness, access, trust, and institutional durability.
 
-## Research
+An internal system may optimize for removed coordination, cycle time, decision quality, and reliable operations.
 
-Look for a consequential unknown, experimental resolution, reproducibility, knowledge gain, and downstream capability.
-
-## Civic or public project
-
-Look for public usefulness, access, trust, accountable authority, institutional durability, and evidence of real use.
-
-## Internal system
-
-Look for removed coordination, reduced cycle time, better decisions, clearer ownership, lower failure cost, and durable organizational context.
-
-## Service or operations project
-
-Look for completed outcomes, bounded responsibility, quality, throughput, exceptions, proof, trust, and where software can improve the economics without disguising labor.
-
-The shared ambition is not market domination.
-
-It is the largest coherent consequence supported by the project's purpose and reality.
+In every case, pursue the largest coherent consequence supported by the project's purpose and evidence.

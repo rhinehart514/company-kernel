@@ -32,8 +32,7 @@ Why someone chooses this now, and what winning the current entry unlocks.
 
 What this is not and what should remain outside it.
 
-## Context map
+## Context
 
-- [System](SYSTEM.md): project-specific beliefs, taste, and judgment, when present
-- [Now](.project/NOW.md): current objective, momentum, bets, and constraints
+- [Now](.project/NOW.md)
 - Add only the supporting files this project needs

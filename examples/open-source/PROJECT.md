@@ -10,7 +10,7 @@ Any agent or repository can exchange a change, its intent, verification evidence
 
 ## Why now
 
-Multiple coding agents can produce large changes, but their context, test evidence, and review assumptions remain trapped in vendor-specific sessions.
+Coding agents can produce large changes, but their context, test evidence, and review assumptions remain trapped in vendor-specific sessions.
 
 ## Actors
 
@@ -32,8 +32,7 @@ The entry is portable evidence for agent-created pull requests. Adoption can est
 
 Patchline is a protocol and implementation, not another agent orchestration product.
 
-## Context map
+## Context
 
-- [System](SYSTEM.md): project-specific beliefs, taste, and judgment
-- [Now](.project/NOW.md): current adoption and technical objective
-- [Adoption](.project/ADOPTION.md): ecosystem strategy and proof
+- [Now](.project/NOW.md)
+- [Adoption](.project/ADOPTION.md)

@@ -1,77 +1,47 @@
 # Evaluation
 
-Company Kernel is intentionally thin. Evals determine whether the thin steering changes behavior enough to earn persistence.
+Thin steering only matters when it changes behavior.
 
-## Three surfaces
+## Test three things
 
-### Trigger behavior
+### Routing
 
-Does the correct skill activate?
+Does the right skill run?
 
-Important negative cases matter:
+Routine code changes should not trigger system integration. A project refresh should not reorganize the machine. One research question should not rebuild the project.
 
-- routine implementation should not invoke project compilation
-- ordinary project refresh should not invoke full system integration
-- one bounded research question should not invoke environment cleanup
+### System behavior
 
-### Environment behavior
+Does the integrator:
 
-Does `$system-integrate`:
-
-- inspect before editing
-- preserve stronger instructions
-- keep global mutation behind explicit authority
-- distinguish a skill gap from an access or script gap
-- reuse capabilities before creating new ones
-- allow several capabilities around one concern
-- compile system context before project context
-- keep each new system file to one through ten steering lines
+- keep the system above projects
+- preserve stronger global and project rules
+- keep each active system file to one through ten lines
+- use existing capability before building more
+- distinguish missing access from missing judgment
+- avoid one file or skill per department
 
 ### Project judgment
 
 Does the result:
 
-- keep the product clear as capability expands
-- preserve entry wedge and destination trajectory separately
-- expose contradiction and truth debt
-- connect product, GTM, onboarding, delivery, and proof
+- make the product easier to explain
+- keep the entry and larger trajectory distinct
+- expose contradiction and stale truth
+- align product, GTM, onboarding, delivery, and proof
 - adapt ambition to non-startup projects
-- avoid invented evidence
+- preserve uncertainty instead of inventing evidence
 
-## Included fixtures
+## Check state, not prose
 
-Each skill contains:
+Inspect the files read, files changed, tool calls, routes, skills, links, and final project state.
 
-```text
-evals/triggers.json
-evals/behavior.json
-```
+A polished report cannot rescue a bad environment.
 
-Trigger cases test positive and negative routing.
+## Keep the loop small
 
-Behavior cases state required and forbidden properties without prescribing exact prose.
-
-## Evaluate state, not performance theater
-
-The final answer is not enough.
-
-Inspect:
-
-- which files were read
-- which files were changed
-- whether active instructions were preserved
-- whether global changes were withheld
-- whether system files meet the line limit
-- whether links resolve
-- whether a created skill has clear boundaries
-- whether project truth changed only when evidence supported it
-
-## Lightweight loop
-
-1. Add a case from an observed failure.
-2. Run the same task with and without the changed context.
-3. Compare files, tool use, decisions, and final state.
-4. Keep the instruction only if behavior materially improves.
-5. Delete scaffolding when newer models perform equally well without it.
-
-The evaluation system should remain smaller than the behavior it evaluates. This has historically been a difficult sentence for software teams.
+1. Add a case from a real failure.
+2. Run the task with and without the changed context.
+3. Compare decisions and resulting state.
+4. Keep only what materially helps.
+5. Delete scaffolding when newer models no longer need it.
