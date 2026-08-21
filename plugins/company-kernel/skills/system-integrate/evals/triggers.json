@@ -1,0 +1,42 @@
+[
+  {
+    "prompt": "Integrate Company Kernel into this startup. Audit my existing AGENTS files, global skills, tools, and project docs; build thin system context first, then compile the project.",
+    "should_trigger": true
+  },
+  {
+    "prompt": "I upgraded models and have 24 overlapping skills. Reassess the whole agent environment for this repository and clean it up without deleting global work silently.",
+    "should_trigger": true
+  },
+  {
+    "prompt": "Build a 2026 frontier system layer in 1-10 line files, reconcile the skills already on this machine, and then initialize PROJECT.md.",
+    "should_trigger": true
+  },
+  {
+    "prompt": "Audit whether our system prompts, project instructions, MCP tools, and local skills are coherent for this company. Do not edit yet.",
+    "should_trigger": true
+  },
+  {
+    "prompt": "Create a project-local capability for repeated account-signal research only if my current model, tools, and skills do not already cover it, then refresh the project model.",
+    "should_trigger": true
+  },
+  {
+    "prompt": "Refresh PROJECT.md because our target customer changed.",
+    "should_trigger": false
+  },
+  {
+    "prompt": "Research whether a new regulation changes our buyer.",
+    "should_trigger": false
+  },
+  {
+    "prompt": "Fix the failing authentication test.",
+    "should_trigger": false
+  },
+  {
+    "prompt": "Rewrite the homepage hero copy.",
+    "should_trigger": false
+  },
+  {
+    "prompt": "Install one PDF extraction skill.",
+    "should_trigger": false
+  }
+]

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Install Company Kernel skills without touching project instructions."""
+"""Install Company Kernel skills without touching project instructions or context."""
 
 from __future__ import annotations
 
@@ -109,9 +109,11 @@ def main() -> int:
         print()
         print("Next:")
         print(
-            "$project-context Initialize this project. Inspect existing rules, "
-            "preserve them, and create the smallest context set that makes the "
-            "project clear and current."
+            "$system-integrate Integrate this project. Inspect existing system "
+            "instructions, installed skills, available tools, and repository state; "
+            "compile SYSTEM.md and only the thin linked lenses this project earns; "
+            "preserve stronger local rules; rationalize capabilities; then initialize "
+            "or refresh the project context."
         )
     return 0
 

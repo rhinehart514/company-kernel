@@ -1,7 +1,7 @@
 {
   "name": "company-kernel",
-  "version": "0.2.0",
-  "description": "Adaptive project context for ambitious startups and fast-moving projects.",
+  "version": "0.3.0",
+  "description": "Compile a thin agent system and current project context for ambitious startups and fast-moving projects.",
   "author": {
     "name": "Jacob Rhinehart",
     "url": "https://github.com/rhinehart514"
@@ -12,6 +12,7 @@
   "keywords": [
     "context-engineering",
     "agent-skills",
+    "system-context",
     "startup",
     "product",
     "gtm",
@@ -21,8 +22,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Company Kernel",
-    "shortDescription": "Compile clear, current project context",
-    "longDescription": "Inspect existing rules, repository state, evidence, and current reality; then create or refresh the smallest adaptive set of project context files that keeps an ambitious project coherent.",
+    "shortDescription": "Compile the agent system around the project",
+    "longDescription": "Inspect existing instructions, skills, tools, repository state, and evidence; build a thin 1-10 line system layer; reconcile capabilities; then create or refresh adaptive project context without replacing stronger local rules.",
     "developerName": "Jacob Rhinehart",
     "category": "Productivity",
     "capabilities": [
@@ -32,7 +33,8 @@
     ],
     "websiteURL": "https://github.com/rhinehart514/company-kernel",
     "defaultPrompt": [
-      "Use $project-context to initialize, audit, or refresh the current project context.",
+      "Use $system-integrate for first installation, system-context compilation, skill cleanup, or a full agent-environment audit.",
+      "Use $project-context when project truth changes after integration.",
       "Use $project-research to resolve a project-shaping uncertainty with current evidence."
     ]
   }

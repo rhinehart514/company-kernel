@@ -1,141 +1,161 @@
 # Architecture
 
-## The layers
-
-Company Kernel separates five things that are routinely mixed together:
+Company Kernel compiles two different kinds of context around an existing agent environment.
 
 ```text
-PRIORS
-Distinctive beliefs and taste.
-
-SKILLS
-Repeatable verbs for compiling and researching context.
-
+EXISTING ENVIRONMENT
+instructions + skills + tools + model capability
+        ↓
+SYSTEM CONTEXT
+thin persistent steering
+        ↓
 PROJECT CONTEXT
-Current truth for one project.
-
-HOST INSTRUCTIONS
-The user's existing rules, permissions, conventions, and tool policy.
-
+current project truth and state
+        ↓
 REALITY
-Repository state, users, market evidence, operations, analytics, and external change.
+repository + users + market + operations + evidence
 ```
 
-The portable system has soft authority over judgment. It has no right to erase stronger local rules.
+## Existing environment
 
-## Why multiple files
+The environment already has authority, capability, and history:
 
-A moving project contains truths that change at different speeds.
+- global and project instruction files
+- user and repository skills
+- plugins and scripts
+- tools and connected systems
+- model-specific behavior
+- repository conventions and tests
 
-One giant file becomes stale because durable identity, current objective, technical detail, market evidence, and active bets are edited for different reasons. One file per business function is not better; it imports an org chart the project may not have.
+Company Kernel inspects this environment before adding anything. It has no default right to replace global work.
 
-Company Kernel splits context when one of four boundaries is real:
+## System context
 
-- **cadence:** durable truth versus fast-moving state
-- **authority:** authorized direction versus evidence, inference, or personal preference
-- **audience:** context every agent needs versus context only one class of work needs
-- **size:** a concern has become too large to remain legible inside the root file
+System context answers:
 
-A fast-moving project normally gets `PROJECT.md` and `.project/NOW.md`. Everything else must earn existence.
+> What should shape judgment across consequential work in this project?
 
-## `PROJECT.md`
-
-The root file is a compressed model and route, not a business plan.
-
-It usually carries:
-
-- the simplest accurate product or project truth
-- what must become true
-- why this is possible or important now
-- the actors and user mental model
-- the core value loop
-- current responsibility and boundary
-- entry wedge and larger trajectory
-- links to supporting project context
-- an `as of` date
-
-It should remain short enough that consequential work can load it cheaply.
-
-## `.project/NOW.md`
-
-`NOW.md` is deliberately disposable.
-
-It carries:
-
-- the current objective
-- momentum
-- active bets
-- constraints
-- decisions in motion
-- contradictions
-- the next evidence that matters
-
-It is rewritten, not archived. Git already has a hobby.
-
-## Additional context
-
-The skill can create any additional Markdown files that improve judgment. Examples include `PRODUCT.md`, `MARKET.md`, `DELIVERY.md`, `ECONOMICS.md`, `EVIDENCE.md`, or project-specific names.
-
-The rule is not one file per domain. A product with several genuinely distinct surfaces may need `PRODUCT.md`, `USER-LOOP.md`, and `AGENT-AUTHORITY.md`. A research project may need no market file at all.
-
-## The project compiler
-
-`$project-context` is a compiler in the loose but useful sense:
+The preferred shape is:
 
 ```text
-existing instructions
-repository and product
-recent changes
-available company evidence
-current external reality
-founder direction
-        ↓
-inspect, reconcile, judge, compress
-        ↓
-PROJECT.md + linked adaptive context
+SYSTEM.md
+.system/
+  ...only the thin lenses this project needs
 ```
 
-It should not merely document the company a founder described. It should notice where current capabilities, market structure, evidence, or product behavior imply a different boundary.
+Every newly created system file contains one to ten non-empty steering lines, excluding its title.
 
-It must also resist founder and model fantasy by preserving contradiction and uncertainty.
+System context carries beliefs, taste, judgment, authority, and negative identity. It does not carry current market facts, feature state, tasks, or procedures.
 
-## Persistent steering
+Several lenses may cover one important concern. A project is not required to have `STRATEGY.md`, `PRODUCT.md`, `GTM.md`, or any other symmetrical set.
 
-The skills carry a small frontier lens:
+Examples:
 
-- intelligence and software production are increasingly abundant
-- judgment, coherence, trust, distribution, attention, and reality remain scarce
-- the current product should be easy to understand even when the destination company is enormous
-- cheap implementation removes a natural governor on feature sprawl
-- company and product boundaries inherited from expensive intelligence deserve reconsideration
-- strong evidence can kill attractive beliefs
-- context itself accumulates debt
+```text
+.system/PRODUCT-COHERENCE.md
+.system/OUTCOME-OWNERSHIP.md
+.system/GTM-ENGINEERING.md
+.system/PROOF.md
+.system/AGENT-AUTHORITY.md
+```
 
-These are priors, not compulsory conclusions.
+## Project context
 
-## Tool use
+Project context answers:
 
-The skills are tool-agnostic. They use the host's repository access, browser, search, connectors, code execution, or other capabilities when those materially improve the project model.
+> What is true about this project now?
 
-The research obligation is framed around evidence, not a ritual number of calls or sources.
+A moving project normally starts with:
 
-One capable agent is the default. Parallel work is useful only when the research divides into independent, high-value streams.
+```text
+PROJECT.md
+.project/NOW.md
+```
 
-## Updates
+`PROJECT.md` is durable compression and routing. It normally carries the project truth, desired outcome, why now, actors, core loop, responsibility boundary, entry wedge, negative identity, trajectory, and links to supporting context.
 
-Context is refreshed after a material project-model change, not after every implementation change.
+`.project/NOW.md` carries the current objective, momentum, bets, constraints, contradictions, decisions in motion, and next evidence.
 
-Material changes include:
+Additional files split around real differences in:
 
-- product truth
-- user or buyer
-- responsibility boundary
-- current wedge
-- market motion
-- pricing or economics
-- delivery model
-- accumulating advantage
-- major evidence or contradiction
-- current objective
+- cadence
+- authority
+- audience
+- ownership
+- risk
+- size
 
-A large diff may change none of these. A one-line pricing decision may change several.
+The project may need several product files, several market files, and no strategy file. Context follows the actual model of the project rather than an assumed organization chart.
+
+## Capability environment
+
+Skills, tools, scripts, and context solve different problems:
+
+```text
+system lens      persistent judgment or taste
+skill            repeated capability or workflow
+project context  current truth
+connector/tool   access or external action
+script           deterministic operation
+model            ambiguous reasoning and synthesis
+```
+
+The integrator evaluates existing skills as keep, route, merge, rewrite, disable, or create.
+
+It does not infer redundancy from names. Two design skills may be complementary. Two differently named skills may be exact duplicates.
+
+New project-local capabilities are preferred before promoting something to user scope.
+
+## Compilation order
+
+The flagship integration runs in this order:
+
+1. inventory instructions, skills, tools, context, repository, and evidence
+2. establish mutation authority
+3. compile or reconcile thin system context
+4. reconcile instructions and capabilities
+5. compile or refresh project context beneath the system layer
+6. validate links, line limits, current truth, and instruction preservation
+7. report the transformation and withheld changes
+
+The order matters. Project context should be built inside the judgment environment that will later use it.
+
+## Context routing
+
+The closest appropriate instruction source may receive one narrow route:
+
+```text
+For consequential work, read SYSTEM.md and PROJECT.md, then only the linked
+.system and .project files relevant to the task.
+```
+
+The route does not paste the system or project model into `AGENTS.md`. Existing repository instructions continue to own implementation conventions and permissions.
+
+## Mutation boundaries
+
+When integration was explicitly requested, Company Kernel may create or update project-local:
+
+- system context
+- project context
+- routing instructions
+- skills
+- scripts
+- eval fixtures
+
+User-level skills, global instructions, shared plugins, and tool configuration remain read-only unless broader authority was explicit.
+
+Disabling is preferred to deleting until a replacement has been proven.
+
+## Recompilation
+
+Use `$project-context` when the project model changes.
+
+Use `$system-integrate` when the environment changes materially:
+
+- a new model removes old scaffolding needs
+- skills are added, duplicated, or no longer useful
+- tools or connected evidence change
+- instruction precedence becomes confusing
+- the project now needs different persistent judgment
+
+System and project context are rewritten rather than accumulated. Git stores history. Current context stores current truth.

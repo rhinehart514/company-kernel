@@ -34,5 +34,6 @@ Patchline is a protocol and implementation, not another agent orchestration prod
 
 ## Context map
 
+- [System](SYSTEM.md): project-specific beliefs, taste, and judgment
 - [Now](.project/NOW.md): current adoption and technical objective
 - [Adoption](.project/ADOPTION.md): ecosystem strategy and proof

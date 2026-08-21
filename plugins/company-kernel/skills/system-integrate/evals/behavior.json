@@ -1,0 +1,97 @@
+[
+  {
+    "name": "system-first-project-second",
+    "prompt": "Integrate the kernel into a fast-moving startup that has no system context and scattered project docs.",
+    "must": [
+      "inventory existing instructions skills tools and project evidence before editing",
+      "create or reconcile a thin system layer before compiling project context",
+      "keep each newly created system file to 1-10 steering lines excluding its title",
+      "then create or refresh PROJECT.md and fast-changing project state",
+      "preserve a clear current wedge and larger structural trajectory"
+    ],
+    "must_not": [
+      "create one file per conventional department",
+      "put current project facts into system context",
+      "replace existing repository rules"
+    ]
+  },
+  {
+    "name": "existing-rich-environment",
+    "prompt": "The user already has strong global instructions, 20 global skills, project-local skills, and several MCP tools.",
+    "must": [
+      "treat global content as read-only without explicit authority",
+      "inspect skill descriptions and actual boundaries rather than names alone",
+      "identify underused existing capability before proposing new skills",
+      "distinguish active host tools from configuration files merely present on disk",
+      "leave a concrete transformation report"
+    ],
+    "must_not": [
+      "silently delete or rewrite user-level skills",
+      "install duplicate company-kernel variants of capabilities that already exist"
+    ]
+  },
+  {
+    "name": "multiple-capabilities-same-domain",
+    "prompt": "A startup needs account discovery, trigger sensing, live demo generation, and enterprise procurement support.",
+    "must": [
+      "allow several distinct GTM capabilities when their triggers and outputs differ",
+      "avoid forcing one generic GTM skill",
+      "build only repeated gaps not already handled by the model tools or installed skills"
+    ],
+    "must_not": [
+      "enforce one skill per business function",
+      "merge capabilities merely because they all relate to GTM"
+    ]
+  },
+  {
+    "name": "access-not-skill",
+    "prompt": "Agents repeatedly make bad product decisions because they cannot access product analytics or support history.",
+    "must": [
+      "identify missing evidence access as the primary gap",
+      "avoid solving the problem with another strategy or product skill",
+      "state the tool connector or evidence surface that would change decisions"
+    ],
+    "must_not": [
+      "pretend instructions can replace unavailable data"
+    ]
+  },
+  {
+    "name": "skill-creation-earned",
+    "prompt": "The project repeatedly converts public trigger events into account-specific demos and no current skill owns the workflow.",
+    "must": [
+      "verify the job is repeated and current capabilities are insufficient",
+      "create a project-local skill with clear positive and negative triggers",
+      "put deterministic collection or formatting in scripts where useful",
+      "include trigger and behavior cases before recommending promotion to user scope"
+    ],
+    "must_not": [
+      "create a global skill by default",
+      "copy the entire system worldview into the new skill"
+    ]
+  },
+  {
+    "name": "coherence-finding",
+    "prompt": "Homepage sells an autonomous operator, onboarding configures a toolkit, and the app opens on an analytics dashboard.",
+    "must": [
+      "surface the conflicting product models",
+      "preserve one customer-facing product truth across system and project context",
+      "distinguish product coherence from implementation completeness",
+      "identify which surfaces expose internal machinery"
+    ],
+    "must_not": [
+      "treat the conflict as a copywriting problem only"
+    ]
+  },
+  {
+    "name": "non-startup-project",
+    "prompt": "Integrate the environment for an open-source protocol project with contributor and ecosystem goals.",
+    "must": [
+      "adapt system lenses to adoption maintainability and technical leverage",
+      "avoid forcing buyer pipeline and venture-scale language",
+      "still pursue the largest coherent consequence supported by the project"
+    ],
+    "must_not": [
+      "create startup GTM files for symmetry"
+    ]
+  }
+]

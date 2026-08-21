@@ -13,18 +13,21 @@ Create or split files when at least one is true:
 
 Do not split merely because a familiar department name exists.
 
-## The minimum moving-project set
+## The integrated moving-project set
 
 ```text
+SYSTEM.md
 PROJECT.md
 .project/NOW.md
 ```
+
+`SYSTEM.md` is one to ten lines of project-specific judgment. `$system-integrate` normally owns it.
 
 `PROJECT.md` is durable compression and routing.
 
 `.project/NOW.md` is current momentum and can be rewritten aggressively.
 
-A simple or slow project may need only `PROJECT.md`. A moving startup normally benefits from both.
+A project-only setup may omit `SYSTEM.md`. A simple or slow project may need only `PROJECT.md`.
 
 ## Additional files
 
@@ -36,6 +39,7 @@ Choose names that match the project's actual model. Examples are not requirement
 .project/USER-LOOP.md
 .project/AGENT-AUTHORITY.md
 .project/MARKET.md
+.project/ACCOUNT-SIGNALS.md
 .project/SALES-MOTION.md
 .project/DISTRIBUTION.md
 .project/DELIVERY.md
@@ -44,6 +48,7 @@ Choose names that match the project's actual model. Examples are not requirement
 .project/ADOPTION.md
 .project/POLICY.md
 .project/RESEARCH.md
+.project/CAPABILITIES.md
 ```
 
 Several files may cover one complex concern. Conventional domains with little durable context should have no file.
@@ -63,7 +68,7 @@ Several files may cover one complex concern. Conventional domains with little du
 - negative identity
 - context map
 
-It should not contain every feature, task, research artifact, campaign, or implementation detail.
+It should not contain every feature, task, research artifact, campaign, implementation detail, or the system beliefs already in `SYSTEM.md`.
 
 ## Supporting-file standard
 

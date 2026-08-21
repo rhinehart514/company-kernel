@@ -34,6 +34,7 @@ Relay is an operator for customer assurance, not a generic GRC dashboard or a ch
 
 ## Context map
 
+- [System](SYSTEM.md): project-specific beliefs, taste, and judgment
 - [Now](.project/NOW.md): objective, momentum, bets, and constraints
 - [Product](.project/PRODUCT.md): user loop, authority, and coherence
 - [Market](.project/MARKET.md): entry, proof, distribution, and expansion

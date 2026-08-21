@@ -1,89 +1,126 @@
 # Company Kernel
 
-**Give a capable agent the project it is actually operating.**
+**Compile the agent environment around the project you are actually building.**
 
-Company Kernel is a portable context system for ambitious startups and fast-moving projects. It helps an agent inspect the repository, existing rules, current evidence, and outside reality, then build the smallest set of project context files that keeps the work coherent.
+Company Kernel is a portable context system for ambitious startups and fast-moving projects. It inspects the rules, skills, tools, repository, and project context already present; writes a tiny project-specific system layer; then compiles the smallest current project model and capability set that makes frontier models materially better at operating it.
 
-It does not replace your `AGENTS.md`, install a synthetic management team, or force every project into one giant company document. Humanity has produced enough blank strategy templates.
+It does not replace your existing `AGENTS.md`, install one synthetic executive per department, or assume every missing capability can be solved with another prompt file. Human civilization remains safe from at least that particular folder tree.
 
 [Start here](START-HERE.md)
 
-## The experience
+## The first run
 
 Run one skill:
 
 ```text
-$project-context Initialize this project. Inspect the existing instructions and repository, preserve stronger local rules, and create the smallest context set that makes the project clear and current. Integrate a minimal route into the existing instructions without replacing them.
+$system-integrate Integrate this project. Inspect the existing system instructions, installed skills, available tools, repository, and current context. Compile a 1-10 line SYSTEM.md, preserve stronger local rules, rationalize the capability set, then initialize or refresh PROJECT.md and only the supporting context this project needs. Do not stop at an audit.
 ```
 
-For a moving startup, the result usually begins with:
+A moving startup will usually end up with:
 
 ```text
+SYSTEM.md
+.system/          optional thin lenses
 PROJECT.md
 .project/
   NOW.md
-  ...only the additional context this project needs
+  ...only the additional context and capability routing this project earns
 ```
 
-`PROJECT.md` is the compressed project truth and map.
+### `SYSTEM.md` and optional `.system/*`
 
-`.project/NOW.md` carries the fast-changing objective, momentum, bets, constraints, and next evidence.
+`SYSTEM.md` contains one to ten project-specific lines of beliefs, taste, and judgment. A recurring specialized judgment may earn its own one-to-ten-line `.system/<LENS>.md`; several may cover one important concern and entire conventional domains may need none.
 
-Additional files are created only when a real separation of cadence, authority, or complexity improves the model. They can be named for the project rather than copied from an org chart:
+It translates the current frontier into this project: what inherited constraint should be questioned, what the product must remain, what scarce factors matter, how the wedge connects to the larger company, and how existing capabilities should be used without being stacked into sludge.
+
+It is additive project context, not a replacement hidden system prompt.
+
+When one recurring judgment deserves selective loading, Kernel may add a `.system/<LENS>.md` file. Every lens is also limited to 1-10 lines, and `SYSTEM.md` links to it. A startup may need product-coherence, market-power, and GTM-engineering lenses while needing no generic strategy file. Another project may need none.
+
+### `PROJECT.md`
+
+The compressed current truth and context map.
+
+### `.project/NOW.md`
+
+The fast-changing objective, momentum, bets, constraints, contradictions, and next evidence.
+
+### Adaptive supporting context
+
+Additional files exist only when a real boundary of cadence, authority, audience, risk, or size improves the work:
 
 ```text
 .project/
   PRODUCT.md
   PRODUCT-SURFACES.md
+  USER-LOOP.md
   MARKET.md
+  ACCOUNT-SIGNALS.md
   SALES-MOTION.md
+  DISTRIBUTION.md
   DELIVERY.md
+  AGENT-AUTHORITY.md
   ECONOMICS.md
   EVIDENCE.md
-  ADOPTION.md
-  POLICY.md
+  CAPABILITIES.md
 ```
 
-There may be several files around one concern and none around another. The system does not reward symmetry.
+There may be several files and several skills around one important concern, and none around another. The system does not reward symmetry.
 
-## What it is optimizing for
+## The capability pass
 
-The project should become more ambitious while becoming easier for a user to understand.
+`$system-integrate` also inspects what the environment can already do.
 
-The current wedge should be clear without capping the destination company.
+For relevant skills, tools, scripts, and connected evidence, it decides whether to:
 
-Product capability should expand without turning the product into a pile of surfaces.
+- keep them
+- route them more clearly
+- combine genuine duplicates
+- retire obsolete scaffolding
+- expose an available but underused tool or source
+- build a missing project-local skill, script, adapter, or context surface
+- leave a capability explicitly missing when access or reliability does not exist
 
-GTM, onboarding, product behavior, delivery, and customer proof should describe the same company.
+It distinguishes missing judgment from missing data, missing access, deterministic work, and one-time work. A new skill has to beat the current model and the existing environment, not merely possess a plausible folder name.
 
-Project context should be rewritten as reality changes, not accumulated into a museum of expired beliefs.
+Global skills, instructions, tools, authentication, and permissions are not destructively changed without explicit authority.
 
-Existing repository rules remain authoritative for implementation.
+## What it optimizes for
+
+The project becomes more ambitious while becoming easier for the user to understand.
+
+The current wedge remains clear without capping the destination company.
+
+Product capability expands without turning into a pile of surfaces.
+
+GTM, onboarding, product behavior, delivery, and proof describe the same responsibility.
+
+Project context is rewritten as reality changes rather than accumulated into a museum of expired beliefs.
+
+Better models should require less persistent steering over time.
 
 ## Included skills
 
-### `$project-context`
+### `$system-integrate`
 
-Create, audit, reorganize, or refresh the project context set.
+The flagship first run and major recompile.
 
 Use it when:
 
-- starting or inheriting a project
-- product or market direction materially changed
-- agents keep misunderstanding what the project is
-- context has become stale, contradictory, or scattered
-- the repo contains several competing instruction files
-- a moving startup needs its current truth and momentum compressed again
+- installing the Kernel into an existing environment
+- global and project instructions have become layered or contradictory
+- skills have multiplied without clear routing
+- the model, tool set, or capability frontier changed materially
+- the startup pivoted or no longer feels like one coherent product
+- missing capability may require building a skill, script, adapter, or tool connection
 
-Do not use it for routine code changes.
+### `$project-context`
+
+Refresh the project model after product, market, responsibility, evidence, economics, or current direction moves. It reads `SYSTEM.md` but does not recompile the whole machine.
 
 ### `$project-research`
 
-Resolve one uncertainty that could change the project model.
-
-Use it for current capability shifts, customer or market questions, GTM structure, regulation, technical feasibility, economics, responsibility boundaries, or other external facts that could change a real decision.
-
-It is not a generic research-report generator. Its job is to change a decision, weaken a belief, or confirm that no project change is warranted.
+Resolve one uncertainty that could change the project model. It researches to change a decision, weaken a belief, expose contradiction, or confirm that no update is warranted.
 
 ## Installation
 
@@ -98,65 +135,49 @@ Start a new Codex session after installation.
 
 ### Portable Agent Skills
 
-Clone or download this repository, then install into the shared Agent Skills location:
+Clone or download the repository, then install into the shared Agent Skills location:
 
 ```sh
 python3 scripts/install.py --user
 ```
 
-Or install the skills inside one repository:
+Or install inside one project:
 
 ```sh
 python3 scripts/install.py --project /path/to/project
 ```
 
-The installer copies only the skills. It does not edit the target project's instructions or create project context. The skill handles that after inspecting the project.
+The installer copies skills only. It does not edit instructions or project files before the integrator has inspected them.
 
 Use `--client claude`, `--client copilot`, or `--target PATH` when a client expects another skills directory.
 
-## Daily use
+## Operating loop
 
-Initialize once:
+First integration:
 
 ```text
-$project-context Initialize this project and integrate it minimally.
+$system-integrate Integrate this project and apply safe project-local changes.
 ```
 
-Refresh after a material company or project change:
+Project-only refresh:
 
 ```text
 $project-context Refresh the project context against the repository, recent work, and available evidence. Rewrite stale truth; do not append history.
 ```
 
-Audit without writing:
+Bounded research:
 
 ```text
-$project-context Audit the current context for product incoherence, stale beliefs, missing momentum, conflicting instructions, and a wedge that no longer connects to the larger trajectory. Do not edit files.
+$project-research Determine whether [uncertainty] changes [decision or project belief]. Use current evidence, look for contradiction, and update project context only if reality changed.
 ```
 
-Resolve a consequential unknown:
+Major environment recompile:
 
 ```text
-$project-research Determine whether recent browser-agent reliability changes let this project own the workflow instead of merely assisting it. Update project context only if the evidence materially changes the model.
+$system-integrate Recompile after the model, skills, tools, and product direction changed. Preserve global files unless I explicitly authorize changes.
 ```
 
-## Design
-
-```text
-thin persistent steering
-        +
-progressively loaded skills
-        +
-current repository and connected evidence
-        +
-adaptive project context
-        +
-reality
-```
-
-The model supplies broad intelligence. Company Kernel supplies distinctive taste, evidence obligations, context shape, and a repeatable way to keep a moving project legible.
-
-Read [Architecture](docs/ARCHITECTURE.md), [Portability](docs/PORTABILITY.md), and [Evaluation](docs/EVALUATION.md) for the machinery hidden behind the simple first run.
+Read [First run](docs/FIRST-RUN.md), [Integration](docs/INTEGRATION.md), [Architecture](docs/ARCHITECTURE.md), [Portability](docs/PORTABILITY.md), and [Evaluation](docs/EVALUATION.md) for the machinery hidden behind the simple experience.
 
 ## Validate
 

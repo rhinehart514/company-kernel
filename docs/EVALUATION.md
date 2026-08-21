@@ -1,51 +1,77 @@
 # Evaluation
 
-Thin steering is a bet. The repo therefore evaluates behavior rather than celebrating the existence of Markdown.
+Company Kernel is intentionally thin. Evals determine whether the thin steering changes behavior enough to earn persistence.
 
-## Trigger evals
+## Three surfaces
 
-Each skill contains positive and negative trigger cases.
+### Trigger behavior
 
-A good description should load the skill for project initialization, context drift, or consequential research. It should stay out of bug fixes, ordinary code review, copy edits, and trivia.
+Does the correct skill activate?
 
-Run trigger cases several times in the target client. Model routing is nondeterministic.
+Important negative cases matter:
 
-## Behavior evals
+- routine implementation should not invoke project compilation
+- ordinary project refresh should not invoke full system integration
+- one bounded research question should not invoke environment cleanup
 
-Behavior cases test whether the model demonstrates the intended judgment:
+### Environment behavior
 
-- preserves existing instructions
-- creates an adaptive context set instead of every possible file
-- separates durable project truth from fast-moving state
-- keeps the current product easy to explain
-- preserves both the entry wedge and the larger trajectory
-- treats implementation capacity as cheap without making scope incoherent
-- distinguishes evidence, inference, direction, and bets
-- rewrites stale context instead of appending contradiction
-- researches when current reality can change a decision
-- stops research when more evidence is unlikely to alter the decision
-- avoids imposing venture language on non-startup projects
+Does `$system-integrate`:
 
-## What not to optimize
+- inspect before editing
+- preserve stronger instructions
+- keep global mutation behind explicit authority
+- distinguish a skill gap from an access or script gap
+- reuse capabilities before creating new ones
+- allow several capabilities around one concern
+- compile system context before project context
+- keep each new system file to one through ten steering lines
 
-Do not grade outputs by:
+### Project judgment
 
-- number of files created
-- number of sections completed
-- length of research
-- source count without source quality
-- use of startup vocabulary
-- confidence theater
-- how forcefully the model says the project will dominate a market
+Does the result:
 
-The desired outcome is better project judgment and clearer execution.
+- keep the product clear as capability expands
+- preserve entry wedge and destination trajectory separately
+- expose contradiction and truth debt
+- connect product, GTM, onboarding, delivery, and proof
+- adapt ambition to non-startup projects
+- avoid invented evidence
 
-## Running the repository validator
+## Included fixtures
 
-```sh
-python3 scripts/validate.py
+Each skill contains:
+
+```text
+evals/triggers.json
+evals/behavior.json
 ```
 
-The validator checks manifests, skill frontmatter, referenced resources, eval shapes, Python syntax, installer behavior, and links in the bundled examples.
+Trigger cases test positive and negative routing.
 
-It does not claim to measure product taste. The JSON behavior cases are fixtures for running real model evals in the clients you care about.
+Behavior cases state required and forbidden properties without prescribing exact prose.
+
+## Evaluate state, not performance theater
+
+The final answer is not enough.
+
+Inspect:
+
+- which files were read
+- which files were changed
+- whether active instructions were preserved
+- whether global changes were withheld
+- whether system files meet the line limit
+- whether links resolve
+- whether a created skill has clear boundaries
+- whether project truth changed only when evidence supported it
+
+## Lightweight loop
+
+1. Add a case from an observed failure.
+2. Run the same task with and without the changed context.
+3. Compare files, tool use, decisions, and final state.
+4. Keep the instruction only if behavior materially improves.
+5. Delete scaffolding when newer models perform equally well without it.
+
+The evaluation system should remain smaller than the behavior it evaluates. This has historically been a difficult sentence for software teams.

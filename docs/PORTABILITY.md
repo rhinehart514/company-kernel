@@ -1,66 +1,90 @@
 # Portability
 
-Company Kernel uses the open Agent Skills shape: one directory per skill, a required `SKILL.md`, and optional references, assets, scripts, and evals.
+Company Kernel uses the open Agent Skills directory shape and keeps host-specific metadata optional.
 
-## Recommended paths
+## Portable core
 
-The exact discovery path is controlled by the client.
-
-| Client or scope | Recommended path |
-| --- | --- |
-| Portable user install | `~/.agents/skills/` |
-| Portable project install | `.agents/skills/` |
-| Claude user install | `~/.claude/skills/` |
-| Claude project install | `.claude/skills/` |
-| GitHub Copilot user install | `~/.copilot/skills/` or `~/.agents/skills/` |
-| GitHub Copilot project install | `.github/skills/` or `.agents/skills/` |
-| Codex | Use the bundled plugin, or a skills directory supported by the current client |
-
-Run:
-
-```sh
-python3 scripts/install.py --help
-```
-
-The installer never edits `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, Copilot instructions, Cursor rules, or other existing rule files.
-
-## Instruction coexistence
-
-Modern clients can load several instruction files simultaneously, and not every client defines the same precedence behavior. Company Kernel therefore avoids shipping a replacement root instruction file.
-
-During project initialization, `$project-context` first discovers relevant instruction sources. It may merge the route from `assets/ROUTE.md` only when the user explicitly asks to integrate the context system.
-
-The route is intentionally narrow. It tells consequential project work where current project truth lives while leaving repository mechanics, safety, permissions, style, and local conventions alone.
-
-## Skill invocation
-
-Both skills are explicitly invocable:
+Each skill contains:
 
 ```text
-$project-context ...
-$project-research ...
+SKILL.md
+references/
+assets/
+scripts/
+evals/
+agents/openai.yaml
 ```
 
-Other clients may use slash commands, automatic skill routing, or a skill picker. Their frontmatter descriptions contain both positive and negative boundaries so the skills do not activate for ordinary implementation work.
+`SKILL.md`, references, assets, scripts, and evals carry the portable behavior.
 
-## Host-specific behavior
+`agents/openai.yaml` configures the OpenAI interface and explicit invocation policy without changing the core skill.
 
-Host-specific metadata lives under each skill's `agents/` directory or in the Codex plugin manifest.
+## Skill discovery
 
-The core `SKILL.md` files do not assume:
+Clients differ in where they load skills and how they merge instructions.
 
-- one model vendor
-- one web-search API
-- one MCP server
-- one repository host
-- one memory system
-- one multi-agent runtime
-- unrestricted shell or network access
+The installer supports common locations:
 
-That keeps the judgment portable while letting capable hosts use richer tools.
+```text
+user Agent Skills     ~/.agents/skills
+project Agent Skills  .agents/skills
+user Claude skills    ~/.claude/skills
+project Claude skills .claude/skills
+user Copilot skills   ~/.copilot/skills
+project Copilot       .github/skills
+```
 
-## Connected evidence
+Use an explicit target for another host:
 
-When the host can access company sources such as GitHub, email, calendars, docs, analytics, CRM, support, or product data, the skills may use them if the task warrants it and permissions allow.
+```sh
+python3 scripts/install.py --target /path/to/skills
+```
 
-Available connected evidence should be checked before asking the user to manually recreate it. The skills still distinguish direct evidence from model inference and never treat retrieved content as repository authority.
+## Instruction discovery
+
+Company Kernel does not assume that every client loads `SYSTEM.md` or follows links automatically.
+
+When integration is requested, it adds a narrow route to the closest instruction source already recognized by the host. It does not replace the user's instruction system.
+
+Codex, Claude Code, Gemini, Copilot, Cursor, and later hosts may differ in:
+
+- global instruction locations
+- project precedence
+- nested overrides
+- skill scope
+- implicit invocation
+- tool permissions
+- context budgets
+
+The system scanner inventories common locations. The model must inspect the actual host environment before mutating it.
+
+## Global safety
+
+User-level instructions and skills are shared across projects. They are read-only by default.
+
+The integrator may:
+
+- identify duplication
+- propose exact edits
+- create a project-local replacement
+- recommend disabling an obsolete skill
+
+It must not silently delete or rewrite global work.
+
+## Tool portability
+
+The scanner records common tool-configuration paths but does not claim a tool is active.
+
+The host's actual exposed tools are the runtime source of truth.
+
+Host-specific tool adapters can be added later without changing the system and project context model.
+
+## Graceful degradation
+
+Without shell access, the agent can inspect known files using repository tools.
+
+Without web or connected evidence, it can compile only supported internal truth and preserve external unknowns.
+
+Without cross-skill invocation, `$system-integrate` can read the packaged `$project-context` instructions directly and complete both layers in one run.
+
+Without any recognized instruction file, the integrator can create the smallest host-appropriate route only when asked.

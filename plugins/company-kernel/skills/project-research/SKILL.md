@@ -1,10 +1,10 @@
 ---
 name: project-research
-description: Use this skill to investigate a current internal or external uncertainty that could materially change a project's product, market, strategy, GTM, technical boundary, economics, responsibility, or trajectory. Ground conclusions in current evidence, look for contradiction, and update project context only when reality changed. Do not use for trivia, routine lookup, generic trend reports, or research that cannot affect a decision.
+description: Use this skill to investigate a current internal or external uncertainty that could materially change a project's product, market, strategy, GTM, technical boundary, economics, responsibility, system context, or trajectory. Ground conclusions in current evidence, look for contradiction, and update project context only when reality changed. Do not use for trivia, routine lookup, generic trend reports, or research that cannot affect a decision.
 license: MIT
 metadata:
   author: Jacob Rhinehart
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Project Research
@@ -15,11 +15,11 @@ The output is not a literature pile. It is a better decision, a changed belief, 
 
 ## Begin with the project
 
-Read `PROJECT.md` and the linked context relevant to the question.
+Read `SYSTEM.md` when present, then the linked `.system/*.md` lenses and project context relevant to the question.
 
 If no project context exists, inspect the repository and current instructions before substituting assumptions.
 
-State the decision, belief, boundary, or bet that the research could change.
+State the decision, belief, boundary, system line, or bet that the research could change.
 
 Narrow the question enough that evidence can separate meaningful alternatives.
 
@@ -46,7 +46,7 @@ Separate:
 - what was observed
 - what was inferred
 - what remains unknown
-- what changed relative to the prior project model
+- what changed relative to the prior system and project model
 - what would falsify the conclusion
 
 Translate technical or market change into project consequence.
@@ -71,12 +71,14 @@ If the task authorizes edits and the evidence materially changes project truth:
 - include dates or provenance where freshness matters
 - do not create a new file merely to store the research
 
+If the evidence invalidates a line in `SYSTEM.md` or an active `.system` lens, report that explicitly. Rewrite the system layer only when the user authorized it or when `$system-integrate` is active.
+
 If the evidence does not change the project model, say so.
 
 ## Return
 
 1. the decision-impacting conclusion
 2. strongest evidence and counterevidence
-3. what changed or did not change in project context
+3. what changed or did not change in system or project context
 4. remaining uncertainty
 5. the next action or proof with the highest decision value

@@ -1,28 +1,32 @@
 ---
 name: project-context
-description: Use this skill to create, audit, reorganize, or refresh durable context for a startup or project, especially when a repository is moving quickly, product or market direction changed, multiple instruction files exist, or agents lack a coherent current model. Inspect existing rules and evidence, preserve stronger local instructions, and create the smallest adaptive set of PROJECT.md plus linked project context files. Do not use for routine implementation, bug fixes, or ordinary documentation.
+description: Use this skill to create, audit, reorganize, or refresh durable context for a startup or project after the agent environment is already integrated, especially when the repository is moving quickly, product or market direction changed, or agents lack a coherent current model. Read SYSTEM.md when present, preserve stronger local instructions, and create the smallest adaptive set of PROJECT.md plus linked project context files. Use $system-integrate instead when rules, skills, tools, or the project-level system context also need recompilation. Do not use for routine implementation, bug fixes, or ordinary documentation.
 license: MIT
 metadata:
   author: Jacob Rhinehart
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Project Context
 
-Build the project model that a capable agent needs now.
+Keep the project model that a capable agent needs now.
 
-This skill owns context compilation. It does not own the project, replace local rules, or turn every uncertainty into a research program.
+This skill owns project compilation. It does not own the entire agent environment, replace local rules, or turn every uncertainty into a research program.
 
 ## Modes
 
 Infer the mode from the request:
 
-- **initialize:** create the first coherent context set
+- **initialize:** create the first coherent project context when full environment integration is unnecessary
 - **refresh:** reconcile existing context against current reality and rewrite stale truth
 - **audit:** diagnose context quality without editing unless asked
 - **restructure:** split, merge, rename, or remove context files when their current shape is hurting use
 
-## Load the right lenses
+## Read upstream context
+
+Read `SYSTEM.md` when it exists, then only the linked `.system/*.md` lenses relevant to the task. Treat them as the project's thin judgment layer and do not duplicate their lines in project facts.
+
+If `SYSTEM.md` is absent and the task also involves instruction layers, installed skills, tools, or full first-run integration, use `$system-integrate` instead.
 
 Read [references/frontier.md](references/frontier.md) on every run.
 
@@ -36,9 +40,9 @@ Read [references/project-types.md](references/project-types.md) when the project
 
 Read [references/evidence.md](references/evidence.md) when claims are uncertain, current external facts matter, or research may be required.
 
-## Begin with the environment
+## Begin with the project
 
-Inspect before asking the user to inventory the project.
+Inspect before asking the user to inventory it.
 
 If shell access is available, run:
 
@@ -48,9 +52,9 @@ python3 scripts/scan_context.py --root .
 
 Resolve the path relative to this skill directory, or use equivalent repository inspection when the script is unavailable.
 
-Find and respect existing instruction sources, including relevant `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, Copilot instructions, Cursor rules, skills, and project documentation.
+Find and respect existing instruction sources and project context.
 
-Read the repository, recent changes, product surfaces, tests, examples, and any available first-party project evidence that can materially improve the model.
+Read the repository, recent changes, product surfaces, tests, examples, and available first-party evidence that can materially improve the model.
 
 Do not mistake code for complete company truth. Do not ignore code when prose disagrees with what the product actually does.
 
@@ -79,14 +83,18 @@ For another project type, pursue the largest coherent consequence supported by i
 
 Always optimize for use, not completeness.
 
-A moving project normally needs:
+A moving integrated project normally has:
 
 ```text
+SYSTEM.md
+.system/          optional thin lenses
 PROJECT.md
 .project/NOW.md
 ```
 
-Create additional linked Markdown files only when cadence, authority, audience, or real size justifies the split.
+This skill normally writes `PROJECT.md` and `.project/*`. It may flag `SYSTEM.md` as stale, but should not rewrite the system layer unless the user explicitly includes it or invokes `$system-integrate`.
+
+Create additional linked Markdown files only when cadence, authority, audience, ownership, risk, or real size justifies the split.
 
 There is no required one-file-per-domain set. Several files may cover one important concern. Entire conventional functions may need no file.
 
@@ -118,17 +126,16 @@ Delete context that no longer improves decisions.
 
 Do not overwrite an existing instruction system.
 
-Only modify an instruction file when the request explicitly asks to integrate or route the project context.
+Only modify an instruction file when the request explicitly asks to integrate or route project context.
 
-Use the narrow route in [assets/ROUTE.md](assets/ROUTE.md), adapted to the host and existing file. Merge it without weakening stronger rules.
-
-If no instruction file exists and integration was requested, create the smallest appropriate one.
+Use the narrow route in [assets/ROUTE.md](assets/ROUTE.md), adapted to the host and existing file. If no `SYSTEM.md` exists, omit that clause rather than create a broken route.
 
 ## Finish
 
 Verify that:
 
 - a new capable agent can understand the project quickly
+- `SYSTEM.md`, linked `.system` lenses, and project truth do not contradict each other
 - the user-facing product remains simpler than the internal machinery
 - GTM, product, onboarding, delivery, and proof describe the same promise
 - the current objective is actually current
@@ -143,5 +150,5 @@ Report:
 1. what was created, changed, merged, or removed
 2. the current project truth in one sentence
 3. the most consequential remaining unknowns
-4. any instruction conflict the user should resolve
+4. any stale system line or instruction conflict the user should resolve
 5. the next natural prompt for operating the project

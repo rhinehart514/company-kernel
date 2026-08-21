@@ -29,6 +29,7 @@ EXCLUDED_DIRS = {
 
 EXACT_NAMES = {
     "AGENTS.md",
+    "SYSTEM.md",
     "CLAUDE.md",
     "GEMINI.md",
     "PROJECT.md",
@@ -52,6 +53,7 @@ SPECIAL_PATH_PARTS = {
     ".cursor",
     ".github",
     ".project",
+    ".system",
     "skills",
 }
 
@@ -75,6 +77,7 @@ def iter_candidates(root: Path, max_depth: int) -> Iterable[Path]:
                 or name.endswith(".agent.md")
                 or name == "SKILL.md"
                 or any(part in SPECIAL_PATH_PARTS for part in rel.parts)
+                or ".system" in rel.parts
             ):
                 yield path
 

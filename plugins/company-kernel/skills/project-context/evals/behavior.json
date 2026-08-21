@@ -1,5 +1,18 @@
 [
   {
+    "name": "system-context-first",
+    "prompt": "Refresh a project that already has SYSTEM.md and several thin .system lenses.",
+    "must": [
+      "read SYSTEM.md and only relevant system lenses before changing project context",
+      "treat system context as steering rather than project evidence",
+      "keep project truth consistent with active system judgment"
+    ],
+    "must_not": [
+      "copy system beliefs into PROJECT.md",
+      "rewrite the whole agent environment"
+    ]
+  },
+  {
     "name": "adaptive-pack",
     "prompt": "Initialize context for a fast-moving B2B startup with existing AGENTS.md and strong engineering rules.",
     "must": [
