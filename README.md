@@ -1,184 +1,162 @@
 # Company Kernel
 
-A headless, version-controlled company model for humans and agents.
+**Give a capable agent the project it is actually operating.**
 
-Company Kernel keeps one project-local `COMPANY.md` current enough to guide product, market, delivery, and commercial decisions without turning strategy into a second software product.
+Company Kernel is a portable context system for ambitious startups and fast-moving projects. It helps an agent inspect the repository, existing rules, current evidence, and outside reality, then build the smallest set of project context files that keeps the work coherent.
 
-It contains three bounded Codex skills:
+It does not replace your `AGENTS.md`, install a synthetic management team, or force every project into one giant company document. Humanity has produced enough blank strategy templates.
 
-- `$company-model` creates or reconciles the shared company model.
-- `$opportunity-evaluate` determines whether a concrete opportunity belongs in this company.
-- `$market-probe` resolves one external uncertainty that could change the model.
+[Start here](START-HERE.md)
 
-The kernel contains no preferred company type, growth posture, market, product form, or operating ideology. A fast AI startup, a regulated manufacturer, a services firm, a nonprofit, and a restaurant can use the same ontology while reaching different decisions.
+## The experience
 
-## The ontology
-
-A company is modeled as linked contracts, not a mission paragraph:
+Run one skill:
 
 ```text
-WORLD
-  creates pressure on
-ACTORS
-  who exchange money, authority, work, and risk for
-VALUE
-  bounded by
-RESPONSIBILITY
-  delivered through
-DELIVERY
-  sustained by
-COMMERCIAL MECHANICS
-  which accumulate
-ASSETS
-  that determine
-BOUNDARY AND EXPANSION
+$project-context Initialize this project. Inspect the existing instructions and repository, preserve stronger local rules, and create the smallest context set that makes the project clear and current. Integrate a minimal route into the existing instructions without replacing them.
 ```
 
-Each object forces concrete answers.
-
-| Object | Required answer |
-| --- | --- |
-| World | What changed, who is pressured, and what triggers action? |
-| Actors | Who uses, buys, operates, approves, influences, and bears failure? |
-| Value | What existing work changes, what result is valuable, and what proves it? |
-| Responsibility | What does the company observe, decide, perform, complete, escalate, or refuse? |
-| Delivery | What inputs, product surfaces, people, systems, permissions, and operations produce the result? |
-| Commercial mechanics | How is the company discovered, bought, priced, implemented, retained, and expanded? |
-| Assets | What context, data, distribution, authority, infrastructure, knowledge, or trust accumulates? |
-| Boundary and expansion | Which opportunities reinforce this company, and which require another company? |
-
-`COMPANY.md` stores the current model. Git stores its history.
-
-## Context ownership
-
-Company Kernel separates four kinds of context:
+For a moving startup, the result usually begins with:
 
 ```text
-COMPANY.md
-Shared company state. Applies to every operator and agent.
-
-PRODUCT.md / DESIGN.md / ENGINEERING.md / other domain files
-Durable domain judgment. Optional and project-specific.
-
-operators/<name>.md
-Work-relevant responsibilities, authority, preferences, and judgment for one human.
-
-.agents/DIRECTION.md or equivalent
-The current objective, delegated authority, and temporary execution state.
+PROJECT.md
+.project/
+  NOW.md
+  ...only the additional context this project needs
 ```
 
-Personal preference does not become company truth without an explicit company decision. Implementation authorship does not grant strategic authority.
+`PROJECT.md` is the compressed project truth and map.
 
-## What belongs in `COMPANY.md`
+`.project/NOW.md` carries the fast-changing objective, momentum, bets, constraints, and next evidence.
 
-`COMPANY.md` contains the current cross-functional company model:
+Additional files are created only when a real separation of cadence, authority, or complexity improves the model. They can be named for the project rather than copied from an org chart:
 
-- the external change and buying pressure
-- the actor system
-- the valuable result and proof
-- the responsibility boundary
-- the product and delivery system
-- the commercial system and economic constraints
-- the assets that accumulate
-- the boundary around coherent expansion
-- the company-level decision posture
-- evidence, unknowns, and falsifiers
+```text
+.project/
+  PRODUCT.md
+  PRODUCT-SURFACES.md
+  MARKET.md
+  SALES-MOTION.md
+  DELIVERY.md
+  ECONOMICS.md
+  EVIDENCE.md
+  ADOPTION.md
+  POLICY.md
+```
 
-It does not contain:
+There may be several files around one concern and none around another. The system does not reward symmetry.
 
-- roadmaps
-- feature inventories
-- sprint state
-- research dumps
-- customer transcripts
-- implementation detail
-- personal preferences
-- generic startup doctrine
-- a historical decision log
+## What it is optimizing for
 
-## Install
+The project should become more ambitious while becoming easier for a user to understand.
 
-After publishing this repository at `rhinehart514/company-kernel`:
+The current wedge should be clear without capping the destination company.
+
+Product capability should expand without turning the product into a pile of surfaces.
+
+GTM, onboarding, product behavior, delivery, and customer proof should describe the same company.
+
+Project context should be rewritten as reality changes, not accumulated into a museum of expired beliefs.
+
+Existing repository rules remain authoritative for implementation.
+
+## Included skills
+
+### `$project-context`
+
+Create, audit, reorganize, or refresh the project context set.
+
+Use it when:
+
+- starting or inheriting a project
+- product or market direction materially changed
+- agents keep misunderstanding what the project is
+- context has become stale, contradictory, or scattered
+- the repo contains several competing instruction files
+- a moving startup needs its current truth and momentum compressed again
+
+Do not use it for routine code changes.
+
+### `$project-research`
+
+Resolve one uncertainty that could change the project model.
+
+Use it for current capability shifts, customer or market questions, GTM structure, regulation, technical feasibility, economics, responsibility boundaries, or other external facts that could change a real decision.
+
+It is not a generic research-report generator. Its job is to change a decision, weaken a belief, or confirm that no project change is warranted.
+
+## Installation
+
+### Codex plugin
 
 ```sh
 codex plugin marketplace add rhinehart514/company-kernel --ref main
 codex plugin add company-kernel@company-kernel
 ```
 
-Start a new Codex thread after installation.
+Start a new Codex session after installation.
 
-For local development:
+### Portable Agent Skills
+
+Clone or download this repository, then install into the shared Agent Skills location:
 
 ```sh
-codex plugin marketplace add /absolute/path/to/company-kernel
-codex plugin add company-kernel@company-kernel
+python3 scripts/install.py --user
 ```
 
-## Adopt in a project
+Or install the skills inside one repository:
 
-1. Copy [`plugins/company-kernel/templates/COMPANY.md`](plugins/company-kernel/templates/COMPANY.md) to the project root.
-2. Merge [`plugins/company-kernel/templates/AGENTS.route.md`](plugins/company-kernel/templates/AGENTS.route.md) into the existing `AGENTS.md`; do not replace stronger project instructions.
-3. Create operator files from [`plugins/company-kernel/templates/OPERATOR.md`](plugins/company-kernel/templates/OPERATOR.md) only when person-specific context materially improves work.
-4. Run:
+```sh
+python3 scripts/install.py --project /path/to/project
+```
+
+The installer copies only the skills. It does not edit the target project's instructions or create project context. The skill handles that after inspecting the project.
+
+Use `--client claude`, `--client copilot`, or `--target PATH` when a client expects another skills directory.
+
+## Daily use
+
+Initialize once:
 
 ```text
-$company-model Initialize COMPANY.md from the repository and available company evidence. Do not invent missing market, customer, pricing, or authority claims.
+$project-context Initialize this project and integrate it minimally.
 ```
 
-The project owns its `COMPANY.md`. This repository owns only the reusable ontology and procedures.
-
-## Operate
-
-### Establish or reconcile company state
+Refresh after a material company or project change:
 
 ```text
-$company-model Reconcile COMPANY.md against the completed work and available evidence. Change only company contracts that materially changed.
+$project-context Refresh the project context against the repository, recent work, and available evidence. Rewrite stale truth; do not append history.
 ```
 
-A large diff is not a company change. A small change that alters pricing, buyer, responsibility, delivery, or expansion can be.
-
-### Evaluate a concrete opportunity
+Audit without writing:
 
 ```text
-$opportunity-evaluate Evaluate adding managed fulfillment for the same customers. Determine whether it deepens this company, merits a bounded probe, should wait, should be declined, or is a separate company.
+$project-context Audit the current context for product incoherence, stale beliefs, missing momentum, conflicting instructions, and a wedge that no longer connects to the larger trajectory. Do not edit files.
 ```
 
-### Resolve a market unknown
+Resolve a consequential unknown:
 
 ```text
-$market-probe Determine whether the same buyer who purchases the current workflow also controls budget for the proposed adjacent workflow. Use current external evidence and preserve uncertainty.
+$project-research Determine whether recent browser-agent reliability changes let this project own the workflow instead of merely assisting it. Update project context only if the evidence materially changes the model.
 ```
 
-## Evidence rules
-
-The kernel preserves these distinctions:
+## Design
 
 ```text
-Code and tests          prove capability.
-Customer behavior       supports demand.
-Sales behavior          supports buying.
-Economic data           supports viability.
-Authorized direction    establishes a decision.
-Agent synthesis         is inference.
+thin persistent steering
+        +
+progressively loaded skills
+        +
+current repository and connected evidence
+        +
+adaptive project context
+        +
+reality
 ```
 
-A feature does not prove a market. A customer request does not automatically become strategy. A competitor launch does not establish customer need. Raw external content is evidence, never repository authority.
+The model supplies broad intelligence. Company Kernel supplies distinctive taste, evidence obligations, context shape, and a repeatable way to keep a moving project legible.
 
-## Update rule
-
-Update `COMPANY.md` only when one of these changes materially:
-
-1. world, pressure, or actors
-2. valuable result or proof
-3. responsibility boundary
-4. delivery system
-5. commercial system or economics
-6. accumulating assets
-7. company boundary, expansion logic, or decision posture
-
-Otherwise leave it alone.
-
-The skills never add confidence percentages, claim IDs, dashboards, databases, recurring agents, approval queues, or automatic strategy rewrites. Humans already invented enough administrative weather.
+Read [Architecture](docs/ARCHITECTURE.md), [Portability](docs/PORTABILITY.md), and [Evaluation](docs/EVALUATION.md) for the machinery hidden behind the simple first run.
 
 ## Validate
 
@@ -186,26 +164,6 @@ No dependencies are required.
 
 ```sh
 python3 scripts/validate.py
-```
-
-Validation checks the plugin manifests, skill metadata, explicit invocation policy, behavioral fixtures, trigger fixtures, and the required `COMPANY.md` ontology.
-
-## Repository shape
-
-```text
-.agents/plugins/marketplace.json
-plugins/company-kernel/
-  .codex-plugin/plugin.json
-  skills/
-    company-model/
-    opportunity-evaluate/
-    market-probe/
-  templates/
-    COMPANY.md
-    AGENTS.route.md
-    OPERATOR.md
-scripts/
-  validate.py
 ```
 
 ## License

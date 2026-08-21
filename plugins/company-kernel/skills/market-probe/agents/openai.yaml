@@ -1,6 +1,0 @@
-interface:
-  display_name: "Market Probe"
-  short_description: "Resolve one company-shaping market unknown"
-  default_prompt: "Use $market-probe to resolve this falsifiable market uncertainty with current evidence and state the exact company implication."
-policy:
-  allow_implicit_invocation: false

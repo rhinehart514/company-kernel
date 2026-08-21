@@ -1,0 +1,34 @@
+[
+  {
+    "prompt": "Research whether current browser-agent reliability lets us own onboarding instead of selling a copilot.",
+    "should_trigger": true
+  },
+  {
+    "prompt": "Determine whether new regulation changes who can approve this product and update context if it does.",
+    "should_trigger": true
+  },
+  {
+    "prompt": "Resolve whether the buyer for our current wedge also controls the adjacent workflow budget.",
+    "should_trigger": true
+  },
+  {
+    "prompt": "Research competitor pricing because it may change packaging and sales motion.",
+    "should_trigger": true
+  },
+  {
+    "prompt": "What is the capital of France?",
+    "should_trigger": false
+  },
+  {
+    "prompt": "Summarize this article I pasted.",
+    "should_trigger": false
+  },
+  {
+    "prompt": "Fix the CSS grid.",
+    "should_trigger": false
+  },
+  {
+    "prompt": "Find a funny name for this server.",
+    "should_trigger": false
+  }
+]

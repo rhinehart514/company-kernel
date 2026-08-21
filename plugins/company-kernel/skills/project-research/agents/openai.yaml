@@ -1,0 +1,6 @@
+interface:
+  display_name: "Project Research"
+  short_description: "Resolve a project-shaping uncertainty"
+  default_prompt: "Use $project-research to resolve one uncertainty that could materially change the project model or decision."
+policy:
+  allow_implicit_invocation: false

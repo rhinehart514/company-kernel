@@ -1,228 +1,192 @@
 #!/usr/bin/env python3
+"""Validate Company Kernel manifests, skills, resources, evals, scripts, and examples."""
 
 from __future__ import annotations
 
 import json
+import py_compile
 import re
+import subprocess
 import sys
-from urllib.parse import urlparse
+import tempfile
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parents[1]
+PLUGIN = ROOT / "plugins" / "company-kernel"
+SKILLS = PLUGIN / "skills"
+NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+LINK_RE = re.compile(r"\]\(([^)#]+)(?:#[^)]+)?\)")
 
-REQUIRED_FILES = [
-    ROOT / "README.md",
-    ROOT / "LICENSE",
-    ROOT / ".agents/plugins/marketplace.json",
-    ROOT / "plugins/company-kernel/.codex-plugin/plugin.json",
-    ROOT / "plugins/company-kernel/templates/COMPANY.md",
-    ROOT / "plugins/company-kernel/templates/AGENTS.route.md",
-    ROOT / "plugins/company-kernel/templates/OPERATOR.md",
-]
 
-REQUIRED_COMPANY_HEADINGS = [
-    "## Current model",
-    "## 1. World and pressure",
-    "## 2. Actor system",
-    "## 3. Value contract",
-    "## 4. Responsibility contract",
-    "## 5. Delivery system",
-    "## 6. Commercial system",
-    "## 7. Accumulating assets",
-    "## 8. Boundary and expansion",
-    "## 9. Decision posture",
-    "## 10. Current company decisions",
-    "## 11. Evidence and unknowns",
-    "## Change contract",
-]
-
-SEMVER_RE = re.compile(
-    r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)"
-    r"(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$"
-)
-
-failures: list[str] = []
-counts = {
-    "skills": 0,
-    "behavioral_evals": 0,
-    "trigger_cases": 0,
-    "assertions": 0,
-}
+class ValidationError(Exception):
+    pass
 
 
 def fail(message: str) -> None:
-    failures.append(message)
+    raise ValidationError(message)
 
 
-def frontmatter(text: str, path: Path) -> dict[str, str]:
-    match = re.match(r"\A---\n(.*?)\n---\n", text, re.DOTALL)
-    if not match:
+def parse_frontmatter(path: Path) -> tuple[dict[str, str], str]:
+    text = path.read_text(encoding="utf-8")
+    if not text.startswith("---\n"):
         fail(f"{path}: missing YAML frontmatter")
-        return {}
-
+    try:
+        _, raw, body = text.split("---\n", 2)
+    except ValueError:
+        fail(f"{path}: malformed frontmatter")
     data: dict[str, str] = {}
-    for line in match.group(1).splitlines():
-        if ":" not in line:
+    in_metadata = False
+    for line in raw.splitlines():
+        if not line.strip() or line.lstrip().startswith("#"):
             continue
+        if line.startswith("metadata:"):
+            in_metadata = True
+            continue
+        if line.startswith((" ", "\t")):
+            continue
+        in_metadata = False
+        if ":" not in line:
+            fail(f"{path}: unsupported frontmatter line: {line!r}")
         key, value = line.split(":", 1)
-        data[key.strip()] = value.strip().strip("\"'")
-    return data
+        data[key.strip()] = value.strip().strip('"').strip("'")
+    return data, body
 
 
-for path in REQUIRED_FILES:
-    if not path.is_file():
-        fail(f"missing required file: {path.relative_to(ROOT)}")
+def validate_json(path: Path) -> object:
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        fail(f"{path}: invalid JSON: {exc}")
 
-try:
-    plugin = json.loads((ROOT / "plugins/company-kernel/.codex-plugin/plugin.json").read_text())
-    if plugin.get("name") != "company-kernel":
-        fail("plugin name must be company-kernel")
-    if not SEMVER_RE.fullmatch(str(plugin.get("version", ""))):
-        fail("plugin version must be strict semver")
-    if not str(plugin.get("description", "")).strip():
-        fail("plugin description is required")
-    if plugin.get("skills") != "./skills/":
-        fail("plugin skills path must be ./skills/")
-    if plugin.get("license") != "MIT":
-        fail("plugin license must match repository license")
-    author = plugin.get("author")
-    if not isinstance(author, dict) or not str(author.get("name", "")).strip():
-        fail("plugin author.name is required")
-    elif author.get("url"):
-        parsed = urlparse(str(author["url"]))
-        if parsed.scheme != "https" or not parsed.netloc:
-            fail("plugin author.url must be an absolute https URL")
-    interface = plugin.get("interface")
-    if not isinstance(interface, dict):
-        fail("plugin interface is required")
-    else:
-        for field in ("displayName", "shortDescription", "longDescription", "developerName", "category"):
-            if not str(interface.get(field, "")).strip():
-                fail(f"plugin interface.{field} is required")
-        capabilities = interface.get("capabilities")
-        if not isinstance(capabilities, list) or not all(isinstance(item, str) and item.strip() for item in capabilities):
-            fail("plugin interface.capabilities must be a non-empty string array")
-        prompts = interface.get("defaultPrompt")
-        if not isinstance(prompts, list) or not 1 <= len(prompts) <= 3:
-            fail("plugin interface.defaultPrompt must contain one to three prompts")
-        else:
-            for prompt in prompts:
-                if not isinstance(prompt, str) or not prompt.strip() or len(prompt) > 128:
-                    fail("each plugin default prompt must be a non-empty string of at most 128 characters")
-except Exception as error:
-    fail(f"invalid plugin.json: {error}")
 
-try:
-    marketplace = json.loads((ROOT / ".agents/plugins/marketplace.json").read_text())
-    plugins = marketplace.get("plugins", [])
-    entries = [item for item in plugins if item.get("name") == "company-kernel"]
-    if len(entries) != 1:
-        fail("marketplace must expose company-kernel exactly once")
-    else:
-        entry = entries[0]
-        if entry.get("source") != {"source": "local", "path": "./plugins/company-kernel"}:
-            fail("marketplace must point to ./plugins/company-kernel")
-        if entry.get("policy") != {"installation": "AVAILABLE", "authentication": "ON_INSTALL"}:
-            fail("marketplace policy must be explicit and supported")
-        if not str(entry.get("category", "")).strip():
-            fail("marketplace category is required")
-except Exception as error:
-    fail(f"invalid marketplace.json: {error}")
+def validate_skill(skill: Path) -> None:
+    skill_file = skill / "SKILL.md"
+    data, body = parse_frontmatter(skill_file)
+    name = data.get("name", "")
+    description = data.get("description", "")
+    if name != skill.name:
+        fail(f"{skill_file}: name {name!r} must match directory {skill.name!r}")
+    if not NAME_RE.fullmatch(name):
+        fail(f"{skill_file}: invalid skill name {name!r}")
+    if not description or len(description) > 1024:
+        fail(f"{skill_file}: description must contain 1-1024 characters")
+    if len(body.splitlines()) > 500:
+        fail(f"{skill_file}: body exceeds 500-line progressive-disclosure limit")
 
-company_template = (ROOT / "plugins/company-kernel/templates/COMPANY.md").read_text() if (ROOT / "plugins/company-kernel/templates/COMPANY.md").is_file() else ""
-for heading in REQUIRED_COMPANY_HEADINGS:
-    if heading not in company_template:
-        fail(f"COMPANY.md template missing heading: {heading}")
+    for link in LINK_RE.findall(body):
+        if "://" in link or link.startswith(("mailto:", "#")):
+            continue
+        target = (skill / link).resolve()
+        if not target.exists():
+            fail(f"{skill_file}: broken referenced resource {link}")
 
-skill_dirs = sorted(path for path in (ROOT / "plugins/company-kernel/skills").iterdir() if path.is_dir())
-if [path.name for path in skill_dirs] != ["company-model", "market-probe", "opportunity-evaluate"]:
-    fail("skills must be exactly company-model, market-probe, and opportunity-evaluate")
-
-for skill_dir in skill_dirs:
-    name = skill_dir.name
-    counts["skills"] += 1
-
-    skill_file = skill_dir / "SKILL.md"
-    metadata_file = skill_dir / "agents/openai.yaml"
-    evals_file = skill_dir / "evals/evals.json"
-    triggers_file = skill_dir / "evals/trigger-evals.json"
-
-    for path in [skill_file, metadata_file, evals_file, triggers_file]:
+    eval_dir = skill / "evals"
+    for name in ("triggers.json", "behavior.json"):
+        path = eval_dir / name
         if not path.is_file():
-            fail(f"{name}: missing {path.relative_to(skill_dir)}")
+            fail(f"{skill}: missing {path.relative_to(skill)}")
+        data_obj = validate_json(path)
+        if not isinstance(data_obj, list) or not data_obj:
+            fail(f"{path}: expected a non-empty list")
+    triggers = validate_json(eval_dir / "triggers.json")
+    for index, case in enumerate(triggers):
+        if set(case) != {"prompt", "should_trigger"}:
+            fail(f"{eval_dir / 'triggers.json'}[{index}]: invalid keys")
+        if not isinstance(case["should_trigger"], bool):
+            fail(f"{eval_dir / 'triggers.json'}[{index}]: should_trigger must be boolean")
 
-    if not skill_file.is_file():
-        continue
+    agent_file = skill / "agents" / "openai.yaml"
+    if not agent_file.is_file():
+        fail(f"{skill}: missing agents/openai.yaml")
 
-    text = skill_file.read_text()
-    meta = frontmatter(text, skill_file.relative_to(ROOT))
-    if meta.get("name") != name:
-        fail(f"{name}: frontmatter name must match directory")
-    if not meta.get("description"):
-        fail(f"{name}: frontmatter description is required")
 
-    if re.search(r"\b(TODO|TBD|PLACEHOLDER)\b", text, re.IGNORECASE):
-        fail(f"{name}: unfinished placeholder found")
+def validate_examples() -> None:
+    for project in sorted((ROOT / "examples").iterdir()):
+        project_file = project / "PROJECT.md"
+        if not project_file.is_file():
+            fail(f"{project}: missing PROJECT.md")
+        text = project_file.read_text(encoding="utf-8")
+        for link in LINK_RE.findall(text):
+            if "://" in link:
+                continue
+            target = (project / link).resolve()
+            if not target.exists():
+                fail(f"{project_file}: broken link {link}")
 
-    if metadata_file.is_file():
-        metadata = metadata_file.read_text()
-        if f"${name}" not in metadata:
-            fail(f"{name}: default prompt must explicitly name the skill")
-        if "allow_implicit_invocation: false" not in metadata:
-            fail(f"{name}: skill must be explicit-only")
 
-    if evals_file.is_file():
-        try:
-            data = json.loads(evals_file.read_text())
-            if data.get("skill_name") != name:
-                fail(f"{name}: behavioral eval skill_name mismatch")
-            evals = data.get("evals", [])
-            if len(evals) < 4:
-                fail(f"{name}: at least four behavioral evals required")
-            ids = [item.get("id") for item in evals]
-            if len(ids) != len(set(ids)):
-                fail(f"{name}: behavioral eval IDs must be unique")
-            for item in evals:
-                counts["behavioral_evals"] += 1
-                assertions = item.get("assertions", [])
-                counts["assertions"] += len(assertions)
-                if f"${name}" not in item.get("prompt", ""):
-                    fail(f"{name}/{item.get('id')}: prompt must explicitly invoke skill")
-                if not item.get("expected_output", "").strip():
-                    fail(f"{name}/{item.get('id')}: expected_output is required")
-                if len(assertions) < 5:
-                    fail(f"{name}/{item.get('id')}: at least five assertions required")
-        except Exception as error:
-            fail(f"{name}: invalid behavioral evals: {error}")
+def validate_scripts() -> None:
+    scripts = [
+        ROOT / "scripts" / "install.py",
+        ROOT / "scripts" / "validate.py",
+        SKILLS / "project-context" / "scripts" / "scan_context.py",
+    ]
+    with tempfile.TemporaryDirectory() as cache:
+        for script in scripts:
+            py_compile.compile(
+                str(script),
+                cfile=str(Path(cache) / f"{script.stem}.pyc"),
+                doraise=True,
+            )
 
-    if triggers_file.is_file():
-        try:
-            data = json.loads(triggers_file.read_text())
-            if data.get("skill_name") != name:
-                fail(f"{name}: trigger eval skill_name mismatch")
-            if data.get("policy") != "explicit-only":
-                fail(f"{name}: trigger policy must be explicit-only")
-            cases = data.get("cases", [])
-            counts["trigger_cases"] += len(cases)
-            positive = [item for item in cases if item.get("should_activate") is True]
-            negative = [item for item in cases if item.get("should_activate") is False]
-            if len(positive) < 2:
-                fail(f"{name}: at least two positive trigger cases required")
-            if len(negative) < 4:
-                fail(f"{name}: at least four negative trigger cases required")
-            for item in positive:
-                prompt = item.get("prompt", "").lower()
-                if f"${name}" not in prompt and name not in prompt:
-                    fail(f"{name}: positive trigger must name the skill")
-        except Exception as error:
-            fail(f"{name}: invalid trigger evals: {error}")
+    with tempfile.TemporaryDirectory() as target:
+        result = subprocess.run(
+            [
+                sys.executable,
+                str(ROOT / "scripts" / "install.py"),
+                "--target",
+                target,
+            ],
+            capture_output=True,
+            text=True,
+        )
+        if result.returncode != 0:
+            fail(f"installer smoke test failed:\n{result.stdout}\n{result.stderr}")
+        for skill in ("project-context", "project-research"):
+            if not (Path(target) / skill / "SKILL.md").is_file():
+                fail(f"installer did not copy {skill}")
 
-print(" ".join(f"{key}={value}" for key, value in counts.items()))
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(SKILLS / "project-context" / "scripts" / "scan_context.py"),
+            "--root",
+            str(ROOT / "examples" / "startup"),
+            "--json",
+        ],
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        fail(f"context scanner smoke test failed:\n{result.stdout}\n{result.stderr}")
+    scan = json.loads(result.stdout)
+    paths = {record["path"] for record in scan["files"]}
+    if "PROJECT.md" not in paths or ".project/NOW.md" not in paths:
+        fail("context scanner did not find example context files")
 
-if failures:
-    for failure in failures:
-        print(f"FAIL {failure}", file=sys.stderr)
-    print(f"validation=failed failures={len(failures)}")
-    raise SystemExit(1)
 
-print("validation=passed")
+def main() -> int:
+    try:
+        for path in (
+            ROOT / ".agents" / "plugins" / "marketplace.json",
+            PLUGIN / ".codex-plugin" / "plugin.json",
+        ):
+            validate_json(path)
+
+        skills = sorted(path for path in SKILLS.iterdir() if path.is_dir())
+        if {path.name for path in skills} != {"project-context", "project-research"}:
+            fail("unexpected skill set")
+        for skill in skills:
+            validate_skill(skill)
+
+        validate_examples()
+        validate_scripts()
+    except (ValidationError, py_compile.PyCompileError) as exc:
+        print(f"FAIL: {exc}", file=sys.stderr)
+        return 1
+
+    print("OK: manifests, skills, references, evals, scripts, installer, and examples")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

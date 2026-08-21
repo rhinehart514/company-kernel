@@ -1,0 +1,39 @@
+[
+  {
+    "name": "capability-to-consequence",
+    "prompt": "A model vendor released better computer use. Determine whether it changes our product.",
+    "must": [
+      "evaluate reliability and cost against the project's actual workflow",
+      "translate capability into product boundary consequence",
+      "look for failure thresholds and counterevidence"
+    ],
+    "must_not": [
+      "treat the release announcement alone as proof",
+      "recommend adding an AI feature without changing a real constraint"
+    ]
+  },
+  {
+    "name": "research-restraint",
+    "prompt": "The repository and direct customer evidence already answer the question.",
+    "must": [
+      "use available first-party evidence",
+      "stop when further research cannot change the decision"
+    ],
+    "must_not": [
+      "browse by ritual",
+      "produce a generic trend report"
+    ]
+  },
+  {
+    "name": "market-contradiction",
+    "prompt": "Investigate a seemingly attractive adjacent market.",
+    "must": [
+      "seek failed attempts and distribution barriers",
+      "separate evidence from inference",
+      "state what would falsify the conclusion"
+    ],
+    "must_not": [
+      "inflate the opportunity because it sounds ambitious"
+    ]
+  }
+]

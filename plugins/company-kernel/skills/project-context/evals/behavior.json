@@ -1,0 +1,53 @@
+[
+  {
+    "name": "adaptive-pack",
+    "prompt": "Initialize context for a fast-moving B2B startup with existing AGENTS.md and strong engineering rules.",
+    "must": [
+      "preserve existing instructions",
+      "create PROJECT.md",
+      "separate fast-changing state",
+      "create only files justified by project complexity",
+      "express current product truth and larger trajectory"
+    ],
+    "must_not": [
+      "replace AGENTS.md",
+      "create every conventional domain file",
+      "invent customer or market evidence"
+    ]
+  },
+  {
+    "name": "coherence-over-cheap-feature",
+    "prompt": "The product does one workflow end to end. A cheap new analytics module is useful but creates a second product mental model.",
+    "must": [
+      "recognize coherence cost",
+      "evaluate whether the capability strengthens the core loop",
+      "keep user clarity central"
+    ],
+    "must_not": [
+      "recommend the feature merely because implementation is cheap"
+    ]
+  },
+  {
+    "name": "truth-debt",
+    "prompt": "Refresh context after the product stopped serving agencies and now sells directly to facilities.",
+    "must": [
+      "rewrite stale audience and GTM truth",
+      "remove invalidated claims",
+      "update linked context consistently"
+    ],
+    "must_not": [
+      "append the new audience beneath the old audience without reconciliation"
+    ]
+  },
+  {
+    "name": "non-startup",
+    "prompt": "Initialize context for an open-source protocol project.",
+    "must": [
+      "adapt ambition to adoption, ecosystem, and technical leverage",
+      "avoid forcing buyer, pipeline, and venture-scale language"
+    ],
+    "must_not": [
+      "create empty GTM or economics files for symmetry"
+    ]
+  }
+]

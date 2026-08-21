@@ -1,0 +1,34 @@
+[
+  {
+    "prompt": "Initialize this repository so agents understand the product, market, current direction, and what matters now.",
+    "should_trigger": true
+  },
+  {
+    "prompt": "Our pricing, onboarding, and target customer changed this week. Refresh the project context.",
+    "should_trigger": true
+  },
+  {
+    "prompt": "Audit whether PROJECT.md still matches the product we are actually shipping. Do not edit anything.",
+    "should_trigger": true
+  },
+  {
+    "prompt": "We have AGENTS.md, CLAUDE.md, and scattered strategy docs. Reorganize the durable project context without replacing existing rules.",
+    "should_trigger": true
+  },
+  {
+    "prompt": "Fix the failing authentication unit test.",
+    "should_trigger": false
+  },
+  {
+    "prompt": "Add a loading spinner to the dashboard.",
+    "should_trigger": false
+  },
+  {
+    "prompt": "Rewrite this README paragraph.",
+    "should_trigger": false
+  },
+  {
+    "prompt": "Explain what an AGENTS.md file is.",
+    "should_trigger": false
+  }
+]

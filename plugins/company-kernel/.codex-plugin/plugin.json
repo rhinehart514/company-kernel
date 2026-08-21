@@ -1,7 +1,7 @@
 {
   "name": "company-kernel",
-  "version": "0.1.0",
-  "description": "A headless company-state kernel for humans and agents.",
+  "version": "0.2.0",
+  "description": "Adaptive project context for ambitious startups and fast-moving projects.",
   "author": {
     "name": "Jacob Rhinehart",
     "url": "https://github.com/rhinehart514"
@@ -10,19 +10,19 @@
   "repository": "https://github.com/rhinehart514/company-kernel",
   "license": "MIT",
   "keywords": [
-    "company",
-    "strategy",
-    "market",
+    "context-engineering",
+    "agent-skills",
+    "startup",
     "product",
-    "agents",
-    "context",
-    "operating-system"
+    "gtm",
+    "research",
+    "project-context"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Company Kernel",
-    "shortDescription": "Keep company context explicit and current",
-    "longDescription": "Create and reconcile a project-local company model, evaluate concrete opportunities, and resolve market unknowns without installing strategy bureaucracy.",
+    "shortDescription": "Compile clear, current project context",
+    "longDescription": "Inspect existing rules, repository state, evidence, and current reality; then create or refresh the smallest adaptive set of project context files that keeps an ambitious project coherent.",
     "developerName": "Jacob Rhinehart",
     "category": "Productivity",
     "capabilities": [
@@ -32,9 +32,8 @@
     ],
     "websiteURL": "https://github.com/rhinehart514/company-kernel",
     "defaultPrompt": [
-      "Use $company-model to create or reconcile the shared company model.",
-      "Use $opportunity-evaluate to decide whether this opportunity belongs in the company.",
-      "Use $market-probe to resolve this company-shaping market unknown."
+      "Use $project-context to initialize, audit, or refresh the current project context.",
+      "Use $project-research to resolve a project-shaping uncertainty with current evidence."
     ]
   }
 }

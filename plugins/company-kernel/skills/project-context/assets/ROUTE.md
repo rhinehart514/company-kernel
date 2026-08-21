@@ -1,0 +1,1 @@
+For consequential work on project direction, product shape, market motion, positioning, operating responsibility, or current priorities, read `PROJECT.md` and the linked `.project/*.md` files relevant to the task. Treat them as current project context, not as a replacement for repository instructions or direct evidence; use `$project-context` when that context materially changes.
