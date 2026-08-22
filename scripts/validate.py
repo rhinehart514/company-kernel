@@ -214,7 +214,7 @@ def validate_voice() -> None:
         if name not in readme:
             fail(f"README missing {name}")
 
-    if "npx skills add" not in readme:
+    if "npx skills@latest add" not in readme:
         fail("README missing simple skill installation")
 
 
