@@ -1,6 +1,6 @@
 interface:
   display_name: "Kernel Setup"
-  short_description: "Install or reconcile the shared kernel"
-  default_prompt: "Use $kernel-setup to inspect this environment, install or reconcile Company Kernel 0.6, preserve stronger rules, add thin routes, and initialize only the project models this repository needs."
+  short_description: "Install or reconcile system to project context"
+  default_prompt: "Use $kernel-setup to inspect this environment, install or reconcile Company Kernel 0.7, preserve stronger rules, add one thin route, and initialize only the company and project context this repository has earned."
 policy:
   allow_implicit_invocation: false
