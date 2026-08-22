@@ -1,6 +1,0 @@
-interface:
-  display_name: "Kernel Setup"
-  short_description: "Install or reconcile the shared kernel"
-  default_prompt: "Use $kernel-setup to inspect this environment, install or reconcile Company Kernel 0.6, preserve stronger rules, add thin routes, and initialize only the project models this repository needs."
-policy:
-  allow_implicit_invocation: false
