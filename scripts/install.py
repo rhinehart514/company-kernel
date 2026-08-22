@@ -13,6 +13,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS = ROOT / "skills"
 KERNEL = ROOT / "kernel"
+TEMPLATES = ROOT / "templates"
 SCAN = ROOT / "scripts" / "scan.py"
 CLIENT_PATHS = {
     "agents": (Path.home() / ".agents" / "skills", ".agents/skills"),
@@ -118,6 +119,8 @@ def main() -> int:
             else:
                 state = copy_file(item, kernel_home / item.name, args.force, args.dry_run)
             print(f"- {item.name}: {state}")
+        state = copy_tree(TEMPLATES, kernel_home / "templates", args.force, args.dry_run)
+        print(f"- templates: {state}")
         state = copy_file(SCAN, kernel_home / "bin" / "scan.py", args.force, args.dry_run)
         print(f"- bin/scan.py: {state}")
 

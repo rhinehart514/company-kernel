@@ -203,6 +203,8 @@ def smoke_install() -> None:
                 fail(f"installer missed {name}")
         if not (kernel / "KERNEL.md").is_file() or not (kernel / "bin" / "scan.py").is_file():
             fail("installer missed the shared kernel")
+        if not (kernel / "templates" / "PROJECT.md").is_file():
+            fail("installer missed project templates")
         if "$kernel-setup" not in result.stdout:
             fail("installer next step is stale")
 

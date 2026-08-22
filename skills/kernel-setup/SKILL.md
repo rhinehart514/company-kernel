@@ -38,7 +38,7 @@ Do not ask the user to inventory what the environment can show. Do not read or p
 
 Use `COMPANY_KERNEL_HOME` when set. Otherwise use `~/.company-kernel`.
 
-The canonical source is the repository `kernel/` directory.
+Use the repository `kernel/` and `templates/` directories when running from the plugin or source checkout. Portable installation places both under the shared kernel home.
 
 Install or reconcile:
 
@@ -47,6 +47,7 @@ KERNEL.md
 CAPABILITIES.md
 standards/*
 review/*
+templates/*
 bin/scan.py
 ```
 
@@ -86,7 +87,7 @@ PROJECT.md
 
 Create `.kernel/CODING.md`, `.kernel/PRODUCT.md`, or `.kernel/GTM.md` only when the project has durable truth worth preserving in that domain.
 
-Use `templates/` as shapes, not forms. Do not invent company truth from code. Do not create files for symmetry.
+Use the installed `<kernel-home>/templates/` or repository `templates/` as shapes, not forms. Do not invent company truth from code. Do not create files for symmetry.
 
 ## Finish
 

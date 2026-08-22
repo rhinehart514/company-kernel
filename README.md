@@ -76,6 +76,10 @@ Shared system:
     CODING.md
     PRODUCT.md
     GTM.md
+  templates/
+    PROJECT.md
+    .kernel/*
+  bin/scan.py
 ```
 
 One project:
