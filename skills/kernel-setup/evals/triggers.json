@@ -1,10 +1,10 @@
 [
   {
-    "prompt": "Set up Company Kernel 0.6 on this machine and initialize this repo.",
+    "prompt": "Set up Company Kernel 0.7 on this machine and initialize this repo.",
     "should_trigger": true
   },
   {
-    "prompt": "Migrate my Company Kernel 0.5 setup to 0.6.",
+    "prompt": "Migrate my Company Kernel 0.6 setup to the system, company, and project model.",
     "should_trigger": true
   },
   {
@@ -12,7 +12,7 @@
     "should_trigger": true
   },
   {
-    "prompt": "Refresh the product model after a customer call.",
+    "prompt": "Move what we learned from this launch into company context.",
     "should_trigger": false
   },
   {
