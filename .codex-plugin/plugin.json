@@ -1,7 +1,7 @@
 {
   "name": "company-kernel",
-  "version": "0.6.0",
-  "description": "Prime frontier models with a 2026 startup operating system, then ground them in current project truth.",
+  "version": "0.7.0",
+  "description": "Prime frontier models with a 2026 system, then ground them in current company and project truth.",
   "author": {
     "name": "Jacob Rhinehart",
     "url": "https://github.com/rhinehart514"
@@ -13,17 +13,21 @@
     "context-engineering",
     "agent-skills",
     "startup",
-    "coding",
+    "strategy",
     "product",
+    "software",
+    "design",
     "gtm",
+    "customer",
+    "research",
     "project-context",
     "2026"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Company Kernel",
-    "shortDescription": "A 2026 startup operating system for frontier models",
-    "longDescription": "Install an opinionated shared kernel, load only relevant Coding, Product, and GTM judgment, keep current project models inside repositories, and review the system only when evidence earns it.",
+    "shortDescription": "A 2026 company operating system for frontier models",
+    "longDescription": "Install a shared system layer, inherit current company and project truth, load only relevant domain judgment, and let evidence update the narrowest durable level.",
     "developerName": "Jacob Rhinehart",
     "category": "Productivity",
     "capabilities": [
@@ -33,9 +37,9 @@
     ],
     "websiteURL": "https://github.com/rhinehart514/company-kernel",
     "defaultPrompt": [
-      "Use $kernel-setup for installation, migration, shared-kernel reconciliation, or a full environment audit.",
-      "Use $project-update when durable technical, product, market, or current-state truth changes.",
-      "Use $kernel-review when qualified evidence may require changing a system standard or project model."
+      "Use $kernel-setup for installation, migration, route reconciliation, capability audit, or first project initialization.",
+      "Use $project-update when durable company, project, domain, evidence, or current-state truth changes.",
+      "Use $kernel-review when qualified evidence may require changing system, company, or project context."
     ]
   }
 }
