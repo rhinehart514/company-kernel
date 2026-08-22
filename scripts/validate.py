@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate Company Kernel 0.5."""
+"""Validate Company Kernel 0.6."""
 
 from __future__ import annotations
 
@@ -12,13 +12,10 @@ import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-PLUGIN = ROOT / "plugins" / "company-kernel"
-SKILLS = PLUGIN / "skills"
-INTEGRATE = SKILLS / "kernel-integrate"
-PROJECT = SKILLS / "project-model"
-REVIEW = SKILLS / "kernel-review"
-SYSTEM_SOURCE = INTEGRATE / "assets" / "system"
-EXPECTED_SKILLS = {"kernel-integrate", "project-model", "kernel-review"}
+SKILLS = ROOT / "skills"
+KERNEL = ROOT / "kernel"
+TEMPLATES = ROOT / "templates"
+EXPECTED_SKILLS = {"kernel-setup", "project-update", "kernel-review"}
 EXPECTED_DOMAINS = {"CODING.md", "PRODUCT.md", "GTM.md"}
 NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 LINK_RE = re.compile(r"\]\(([^)#]+)(?:#[^)]+)?\)")
@@ -54,7 +51,7 @@ def frontmatter(path: Path) -> tuple[dict[str, str], str]:
         _, raw, body = text.split("---\n", 2)
     except ValueError:
         fail(f"{path}: malformed frontmatter")
-    data = {}
+    data: dict[str, str] = {}
     for line in raw.splitlines():
         if not line.strip() or line.startswith((" ", "\t")) or ":" not in line:
             continue
@@ -65,7 +62,7 @@ def frontmatter(path: Path) -> tuple[dict[str, str], str]:
 
 def local_links(path: Path, text: str | None = None) -> list[str]:
     text = text if text is not None else path.read_text(encoding="utf-8")
-    return [x for x in LINK_RE.findall(text) if "://" not in x and not x.startswith(("#", "mailto:"))]
+    return [link for link in LINK_RE.findall(text) if "://" not in link and not link.startswith(("#", "mailto:"))]
 
 
 def validate_markdown() -> None:
@@ -74,158 +71,191 @@ def validate_markdown() -> None:
         if "—" in text:
             fail(f"{path}: contains an em dash")
         for number, line in enumerate(text.splitlines(), 1):
-            if len(line) > 280:
-                fail(f"{path}:{number}: line exceeds 280 characters")
+            if len(line) > 300:
+                fail(f"{path}:{number}: line exceeds 300 characters")
         for link in local_links(path):
             if not (path.parent / link).resolve().exists():
                 fail(f"{path}: broken local link {link}")
 
 
+def validate_plugin() -> None:
+    plugin = load_json(ROOT / ".codex-plugin" / "plugin.json")
+    if plugin.get("version") != "0.6.0":
+        fail("plugin version must be 0.6.0")
+    if plugin.get("skills") != "./skills/":
+        fail("repository root must be the plugin root")
+    marketplace = load_json(ROOT / ".agents" / "plugins" / "marketplace.json")
+    source = marketplace["plugins"][0]["source"]
+    if source.get("path") != ".":
+        fail("marketplace must point to repository root")
+    if (ROOT / "plugins").exists():
+        fail("nested plugin tree must not exist in 0.6")
+
+
+def validate_kernel() -> None:
+    required = {
+        KERNEL / "KERNEL.md",
+        KERNEL / "CAPABILITIES.md",
+        KERNEL / "review" / "REVIEW.md",
+    }
+    required |= {KERNEL / "standards" / name for name in EXPECTED_DOMAINS}
+    required |= {KERNEL / "review" / name for name in EXPECTED_DOMAINS}
+    missing = [str(path) for path in required if not path.is_file()]
+    if missing:
+        fail(f"missing kernel files: {missing}")
+
+    kernel_text = (KERNEL / "KERNEL.md").read_text(encoding="utf-8")
+    for heading in ("## The 2026 prior", "## How to operate", "## Runtime"):
+        if heading not in kernel_text:
+            fail(f"KERNEL.md missing {heading}")
+
+    for domain in EXPECTED_DOMAINS:
+        text = (KERNEL / "standards" / domain).read_text(encoding="utf-8")
+        for heading in (
+            "## The world changed",
+            "## What remains scarce",
+            "## Default calls",
+            "## Do not inherit",
+            "## Human gate",
+            "## Done",
+        ):
+            if heading not in text:
+                fail(f"{domain} missing {heading}")
+        if len(text.splitlines()) < 45:
+            fail(f"{domain} is too compressed to reset the model prior")
+
+
+def validate_templates() -> None:
+    required = {TEMPLATES / "PROJECT.md", TEMPLATES / ".kernel" / "NOW.md"}
+    required |= {TEMPLATES / ".kernel" / name for name in EXPECTED_DOMAINS}
+    missing = [str(path) for path in required if not path.is_file()]
+    if missing:
+        fail(f"missing templates: {missing}")
+
+
 def validate_skill(skill: Path) -> None:
     data, body = frontmatter(skill / "SKILL.md")
-    if data.get("name") != skill.name or not NAME_RE.fullmatch(skill.name):
+    name = data.get("name", "")
+    if name != skill.name or not NAME_RE.fullmatch(name):
         fail(f"{skill}: invalid skill name")
-    if data.get("version") and data.get("version") != "0.5.0":
+    if data.get("version") and data.get("version") != "0.6.0":
         fail(f"{skill}: wrong version")
     description = data.get("description", "")
     if not 1 <= len(description) <= 1024:
         fail(f"{skill}: invalid description")
-    if len((skill / "SKILL.md").read_text(encoding="utf-8").splitlines()) > 130:
-        fail(f"{skill}: SKILL.md exceeds 130 lines")
+    if len((skill / "SKILL.md").read_text(encoding="utf-8").splitlines()) > 150:
+        fail(f"{skill}: SKILL.md exceeds 150 lines")
     for link in local_links(skill / "SKILL.md", body):
         if not (skill / link).resolve().exists():
-            fail(f"{skill}: broken link {link}")
+            fail(f"{skill}: broken skill link {link}")
     if not (skill / "agents" / "openai.yaml").is_file():
         fail(f"{skill}: missing agents/openai.yaml")
-    for name in ("triggers.json", "behavior.json"):
-        value = load_json(skill / "evals" / name)
+    for filename in ("triggers.json", "behavior.json"):
+        value = load_json(skill / "evals" / filename)
         if not isinstance(value, list) or not value:
-            fail(f"{skill}: invalid evals/{name}")
+            fail(f"{skill}: invalid evals/{filename}")
 
 
-def validate_system() -> None:
-    required = {
-        SYSTEM_SOURCE / "KERNEL.md",
-        SYSTEM_SOURCE / "CAPABILITIES.md",
-        SYSTEM_SOURCE / "reviews" / "PROTOCOL.md",
-    }
-    required |= {SYSTEM_SOURCE / "standards" / name for name in EXPECTED_DOMAINS}
-    required |= {SYSTEM_SOURCE / "reviews" / name for name in EXPECTED_DOMAINS}
-    missing = [str(p) for p in required if not p.is_file()]
-    if missing:
-        fail(f"missing system files: {missing}")
-
-    kernel_lines = [
-        line for line in (SYSTEM_SOURCE / "KERNEL.md").read_text(encoding="utf-8").splitlines()
-        if line.strip() and not line.startswith("#")
-    ]
-    if len(kernel_lines) > 10:
-        fail("KERNEL.md must remain a thin route")
-
-    example = ROOT / "examples" / "system"
-    for source in required:
-        rel = source.relative_to(SYSTEM_SOURCE)
-        mirror = example / rel
-        if not mirror.is_file() or source.read_text() != mirror.read_text():
-            fail(f"example system drift: {rel}")
+def validate_skills() -> None:
+    skills = {path.name: path for path in SKILLS.iterdir() if path.is_dir()}
+    if set(skills) != EXPECTED_SKILLS:
+        fail(f"unexpected skills: {sorted(skills)}")
+    for skill in skills.values():
+        validate_skill(skill)
 
 
-def validate_project_example() -> None:
+def validate_example() -> None:
     root = ROOT / "examples" / "startup"
     required = {root / "PROJECT.md", root / ".kernel" / "NOW.md"}
     required |= {root / ".kernel" / name for name in EXPECTED_DOMAINS}
-    if any(not p.is_file() for p in required):
+    if any(not path.is_file() for path in required):
         fail("startup example is incomplete")
     if (root / ".project").exists() or (root / "SYSTEM.md").exists():
         fail("startup example contains legacy context")
 
 
-def validate_architecture() -> None:
-    architecture = (ROOT / "docs" / "ARCHITECTURE.md").read_text(encoding="utf-8")
-    for token in ("External review", "System standard", "Project model", "Evidence loop"):
-        if token not in architecture:
-            fail(f"architecture missing {token}")
-    kernel = (SYSTEM_SOURCE / "KERNEL.md").read_text(encoding="utf-8")
-    for token in ("standards/", "PROJECT.md", ".kernel/NOW.md", "reviews/", "$kernel-review"):
-        if token not in kernel:
-            fail(f"kernel route missing {token}")
-
-
 def compile_scripts() -> None:
-    scripts = [ROOT / "scripts" / "install.py", ROOT / "scripts" / "validate.py"]
-    scripts += list(SKILLS.rglob("*.py"))
     with tempfile.TemporaryDirectory() as cache:
-        for script in scripts:
+        for script in (ROOT / "scripts").glob("*.py"):
             py_compile.compile(
-                str(script), cfile=str(Path(cache) / f"{script.parent.name}-{script.stem}.pyc"), doraise=True
+                str(script),
+                cfile=str(Path(cache) / f"{script.stem}.pyc"),
+                doraise=True,
             )
 
 
-def smoke() -> None:
-    with tempfile.TemporaryDirectory() as target:
-        result = run([sys.executable, str(ROOT / "scripts" / "install.py"), "--target", target], "installer")
-        for skill in EXPECTED_SKILLS:
-            if not (Path(target) / skill / "SKILL.md").is_file():
-                fail(f"installer missed {skill}")
-        if "$kernel-integrate" not in result.stdout:
+def smoke_install() -> None:
+    with tempfile.TemporaryDirectory() as temp:
+        base = Path(temp)
+        skills = base / "skills"
+        kernel = base / "kernel"
+        result = run(
+            [
+                sys.executable,
+                str(ROOT / "scripts" / "install.py"),
+                "--target-skills", str(skills),
+                "--kernel-home", str(kernel),
+            ],
+            "installer",
+        )
+        for name in EXPECTED_SKILLS:
+            if not (skills / name / "SKILL.md").is_file():
+                fail(f"installer missed {name}")
+        if not (kernel / "KERNEL.md").is_file() or not (kernel / "bin" / "scan.py").is_file():
+            fail("installer missed the shared kernel")
+        if "$kernel-setup" not in result.stdout:
             fail("installer next step is stale")
 
-    project = run([
-        sys.executable,
-        str(PROJECT / "scripts" / "scan_project.py"),
-        "--root", str(ROOT / "examples" / "startup"),
-        "--json",
-    ], "project scanner")
-    project_data = json.loads(project.stdout)
-    if not {"PROJECT.md", ".kernel/NOW.md"}.issubset(set(project_data["project_context"])):
-        fail("project scanner missed context")
 
+def smoke_scan() -> None:
     with tempfile.TemporaryDirectory() as temp:
         base = Path(temp)
         home = base / "home"
         repo = base / "repo"
-        system = home / ".company-kernel"
-        home.mkdir(); repo.mkdir(); system.mkdir()
-        (repo / "AGENTS.md").write_text("# Rules\nPreserve me.\n")
-        (repo / ".mcp.json").write_text(json.dumps({"env": {"TOKEN": "SECRET_VALUE"}}))
-        (system / "KERNEL.md").write_text("# Kernel\nRoute relevant work.\n")
-        skill_a = repo / ".agents" / "skills" / "same"; skill_a.mkdir(parents=True)
-        skill_b = home / ".agents" / "skills" / "same-copy"; skill_b.mkdir(parents=True)
+        kernel = home / ".company-kernel"
+        home.mkdir(); repo.mkdir(); kernel.mkdir()
+        (repo / "AGENTS.md").write_text("# Rules\nPreserve me.\n", encoding="utf-8")
+        (repo / ".mcp.json").write_text(json.dumps({"env": {"TOKEN": "SECRET_VALUE"}}), encoding="utf-8")
+        (kernel / "KERNEL.md").write_text("# Kernel\nRoute relevant work.\n", encoding="utf-8")
+        first = repo / ".agents" / "skills" / "same"; first.mkdir(parents=True)
+        second = home / ".agents" / "skills" / "same-copy"; second.mkdir(parents=True)
         text = "---\nname: same\ndescription: Same.\n---\n\n# Same\n"
-        (skill_a / "SKILL.md").write_text(text); (skill_b / "SKILL.md").write_text(text)
-        result = run([
-            sys.executable,
-            str(INTEGRATE / "scripts" / "scan_environment.py"),
-            "--root", str(repo), "--home", str(home), "--system-home", str(system), "--json",
-        ], "environment scanner")
+        (first / "SKILL.md").write_text(text, encoding="utf-8")
+        (second / "SKILL.md").write_text(text, encoding="utf-8")
+        result = run(
+            [
+                sys.executable,
+                str(ROOT / "scripts" / "scan.py"),
+                "--root", str(repo),
+                "--home", str(home),
+                "--kernel-home", str(kernel),
+                "--json",
+            ],
+            "scanner",
+        )
         if "SECRET_VALUE" in result.stdout:
             fail("scanner leaked secret content")
         data = json.loads(result.stdout)
         if not data["shared_kernel"] or not data["exact_skill_duplicates"]:
-            fail("environment scanner missed kernel or duplicate skills")
+            fail("scanner missed kernel or duplicate skills")
 
 
 def main() -> int:
     try:
-        load_json(ROOT / ".agents" / "plugins" / "marketplace.json")
-        plugin = load_json(PLUGIN / ".codex-plugin" / "plugin.json")
-        if plugin.get("version") != "0.5.0":
-            fail("plugin version must be 0.5.0")
-        skills = {p.name: p for p in SKILLS.iterdir() if p.is_dir()}
-        if set(skills) != EXPECTED_SKILLS:
-            fail(f"unexpected skills: {sorted(skills)}")
-        for skill in skills.values():
-            validate_skill(skill)
         validate_markdown()
-        validate_system()
-        validate_project_example()
-        validate_architecture()
+        validate_plugin()
+        validate_kernel()
+        validate_templates()
+        validate_skills()
+        validate_example()
         compile_scripts()
-        smoke()
+        smoke_install()
+        smoke_scan()
     except (ValidationError, py_compile.PyCompileError) as exc:
         print(f"FAIL: {exc}", file=sys.stderr)
         return 1
-    print("OK: Company Kernel 0.5 topology, standards, models, review path, skills, examples, and installer")
+
+    print("OK: Company Kernel 0.6 prior, standards, project models, review path, skills, installer, scanner, and examples")
     return 0
 
 

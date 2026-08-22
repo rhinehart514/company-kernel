@@ -1,0 +1,22 @@
+[
+  {
+    "prompt": "Set up Company Kernel 0.6 on this machine and initialize this repo.",
+    "should_trigger": true
+  },
+  {
+    "prompt": "Migrate my Company Kernel 0.5 setup to 0.6.",
+    "should_trigger": true
+  },
+  {
+    "prompt": "Audit kernel routing and installed skills after a model upgrade.",
+    "should_trigger": true
+  },
+  {
+    "prompt": "Refresh the product model after a customer call.",
+    "should_trigger": false
+  },
+  {
+    "prompt": "Fix the login bug.",
+    "should_trigger": false
+  }
+]

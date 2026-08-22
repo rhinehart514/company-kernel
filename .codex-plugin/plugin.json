@@ -1,0 +1,41 @@
+{
+  "name": "company-kernel",
+  "version": "0.6.0",
+  "description": "Prime frontier models with a 2026 startup operating system, then ground them in current project truth.",
+  "author": {
+    "name": "Jacob Rhinehart",
+    "url": "https://github.com/rhinehart514"
+  },
+  "homepage": "https://github.com/rhinehart514/company-kernel",
+  "repository": "https://github.com/rhinehart514/company-kernel",
+  "license": "MIT",
+  "keywords": [
+    "context-engineering",
+    "agent-skills",
+    "startup",
+    "coding",
+    "product",
+    "gtm",
+    "project-context",
+    "2026"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Company Kernel",
+    "shortDescription": "A 2026 startup operating system for frontier models",
+    "longDescription": "Install an opinionated shared kernel, load only relevant Coding, Product, and GTM judgment, keep current project models inside repositories, and review the system only when evidence earns it.",
+    "developerName": "Jacob Rhinehart",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/rhinehart514/company-kernel",
+    "defaultPrompt": [
+      "Use $kernel-setup for installation, migration, shared-kernel reconciliation, or a full environment audit.",
+      "Use $project-update when durable technical, product, market, or current-state truth changes.",
+      "Use $kernel-review when qualified evidence may require changing a system standard or project model."
+    ]
+  }
+}

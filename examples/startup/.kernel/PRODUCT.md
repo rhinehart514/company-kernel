@@ -8,7 +8,7 @@ Businesses will delegate bounded workflows when the product owns completion, exp
 
 ## Actors and outcomes
 
-The operator delegates work, the approver handles exceptions, and the business receives a completed result with evidence.
+The operator delegates work. The approver resolves exceptions. The business receives a completed result with evidence.
 
 ## Work and responsibility
 
@@ -16,11 +16,11 @@ The product performs the agreed workflow inside granted access. It stops at miss
 
 ## Core model, loops, and topology
 
-Delegate work, execute, surface exceptions, complete, prove, and use the result to earn broader delegation. One web surface and one runtime expose the same product model.
+One web surface and one runtime expose the same loop: delegate, execute, resolve, complete, prove, expand.
 
 ## Capabilities, wedges, and bets
 
-The current wedge is one document-heavy operations workflow. The active bet is that proof and recovery matter more than configurability.
+The first wedge is a document-heavy operations workflow. The active bet is that proof and recovery matter more than configurability.
 
 ## Evidence, assumptions, and constraints
 

@@ -1,6 +1,0 @@
-interface:
-  display_name: "Project Model"
-  short_description: "Keep project truth current"
-  default_prompt: "Use $project-model to initialize or refresh PROJECT.md and only the .kernel domain models this repository needs, grounded in current evidence and without changing shared standards."
-policy:
-  allow_implicit_invocation: true

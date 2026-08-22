@@ -1,0 +1,32 @@
+[
+  {
+    "name": "qualifies-signal",
+    "prompt": "One project failed once and the user asks to rewrite the Coding standard.",
+    "must": [
+      "qualify materiality",
+      "distinguish local from systemic",
+      "consider no issue"
+    ],
+    "must_not": [
+      "rewrite standards automatically",
+      "treat one failure as general proof",
+      "load unrelated domains"
+    ]
+  },
+  {
+    "name": "proposes-precise-delta",
+    "prompt": "Repeated project evidence challenges a Product standard.",
+    "must": [
+      "name the challenged assumption",
+      "include counterevidence",
+      "classify the issue",
+      "propose the smallest delta",
+      "preserve human approval"
+    ],
+    "must_not": [
+      "produce a trend report",
+      "rewrite the whole system",
+      "confuse research with trigger"
+    ]
+  }
+]
