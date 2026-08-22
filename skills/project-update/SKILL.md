@@ -58,7 +58,7 @@ Create domain files only when earned:
 - `.kernel/PRODUCT.md` for Product Model
 - `.kernel/GTM.md` for Market Position
 
-Use `templates/` as shapes, not questionnaires. Omit empty sections. Split a domain only when content changes at a different speed, belongs to different authority, or has become too large to steer judgment.
+Use `<kernel-home>/templates/` or the repository `templates/` as shapes, not questionnaires. Omit empty sections. Split a domain only when content changes at a different speed, belongs to different authority, or has become too large to steer judgment.
 
 ## Update from evidence
 

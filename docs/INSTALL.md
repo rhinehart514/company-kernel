@@ -19,6 +19,7 @@ This installs:
 
 - the three skills into the selected client skill directory
 - the canonical kernel into `~/.company-kernel`
+- project templates into `~/.company-kernel/templates`
 - `scan.py` into `~/.company-kernel/bin`
 
 Use another kernel home with:

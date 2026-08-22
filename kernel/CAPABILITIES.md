@@ -4,7 +4,7 @@
 - Project-model initialization and refresh: `$project-update`
 - Standards or project-model reconsideration: `$kernel-review`
 - External research: use the strongest available research skill, web access, connected source, experiment, or direct evidence
-- Deterministic inspection: `scripts/scan.py`
-- Repository validation: `scripts/validate.py`
+- Deterministic inspection: `bin/scan.py` after installation, or `scripts/scan.py` in the source repository
+- Repository validation: `scripts/validate.py` in the source repository
 
 Record only useful routing and material gaps. This is not an inventory of every tool installed on a machine.

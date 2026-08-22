@@ -21,7 +21,7 @@ Question the current judgment only when reality earns the interruption.
 
 Choose Coding, Product, GTM, or an explicit cross-domain review.
 
-Read `kernel/review/REVIEW.md` and only the matching domain trigger file. Then read the current system standard, project model, and relevant evidence.
+Locate the shared kernel through the active route, `COMPANY_KERNEL_HOME`, or `~/.company-kernel`. Read `review/REVIEW.md` and only the matching domain trigger file from that kernel. Then read the current system standard, project model, and relevant evidence.
 
 Do not load every domain because the company possesses several nouns.
 
