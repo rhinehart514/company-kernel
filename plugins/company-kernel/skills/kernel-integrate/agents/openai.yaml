@@ -1,0 +1,6 @@
+interface:
+  display_name: "Kernel Integrate"
+  short_description: "Install the 0.5 kernel and initialize a project"
+  default_prompt: "Use $kernel-integrate to install or reconcile Company Kernel 0.5 above my projects, inspect existing rules and capabilities, add thin routes, and initialize this repository without rewriting unrelated global work."
+policy:
+  allow_implicit_invocation: false

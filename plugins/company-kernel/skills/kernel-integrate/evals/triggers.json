@@ -1,0 +1,22 @@
+[
+  {
+    "prompt": "Set up Company Kernel from scratch on this machine and initialize this repo.",
+    "should_trigger": true
+  },
+  {
+    "prompt": "Migrate my old Company Kernel 0.4 setup to the new domain layout.",
+    "should_trigger": true
+  },
+  {
+    "prompt": "Audit my global skills and kernel routing after a model upgrade.",
+    "should_trigger": true
+  },
+  {
+    "prompt": "Implement the login form in this repository.",
+    "should_trigger": false
+  },
+  {
+    "prompt": "Refresh the product model after yesterday's customer call.",
+    "should_trigger": false
+  }
+]

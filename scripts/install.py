@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Install Company Kernel skills without changing system or project context."""
+"""Install Company Kernel 0.5 skills without changing system or project context."""
 
 from __future__ import annotations
 
@@ -34,7 +34,7 @@ def copy_skill(source: Path, destination: Path, force: bool, dry_run: bool) -> s
             return "unchanged"
         if not force:
             raise FileExistsError(
-                f"{destination} already exists with different content; use --force to replace it"
+                f"{destination} exists with different content; use --force to replace it"
             )
     if dry_run:
         return "would install"
@@ -48,55 +48,51 @@ def copy_skill(source: Path, destination: Path, force: bool, dry_run: bool) -> s
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     scope = parser.add_mutually_exclusive_group()
-    scope.add_argument("--user", action="store_true", help="Install for the current user")
-    scope.add_argument("--project", metavar="PATH", help="Install inside one project")
+    scope.add_argument("--user", action="store_true")
+    scope.add_argument("--project", metavar="PATH")
     parser.add_argument("--client", choices=sorted(CLIENT_PATHS), default="agents")
-    parser.add_argument("--target", help="Install into an explicit skills directory")
-    parser.add_argument("--skill", action="append", help="Install only this skill; repeat for several")
-    parser.add_argument("--force", action="store_true", help="Replace changed installed skills")
-    parser.add_argument("--dry-run", action="store_true", help="Show changes without writing")
+    parser.add_argument("--target")
+    parser.add_argument("--skill", action="append")
+    parser.add_argument("--force", action="store_true")
+    parser.add_argument("--dry-run", action="store_true")
     return parser.parse_args()
 
 
-def destination_root(args: argparse.Namespace) -> Path:
-    if args.target:
-        return Path(args.target).expanduser().resolve()
-    user_path, project_rel = CLIENT_PATHS[args.client]
-    if args.project:
-        return (Path(args.project).expanduser().resolve() / project_rel).resolve()
+def destination_root(ns: argparse.Namespace) -> Path:
+    if ns.target:
+        return Path(ns.target).expanduser().resolve()
+    user_path, project_rel = CLIENT_PATHS[ns.client]
+    if ns.project:
+        return (Path(ns.project).expanduser().resolve() / project_rel).resolve()
     return user_path
 
 
 def main() -> int:
-    args = parse_args()
-    if not SOURCE.is_dir():
-        print(f"error: skill source not found: {SOURCE}", file=sys.stderr)
-        return 2
-
-    available = {path.name: path for path in SOURCE.iterdir() if (path / "SKILL.md").is_file()}
-    selected = args.skill or sorted(available)
+    ns = parse_args()
+    available = {p.name: p for p in SOURCE.iterdir() if (p / "SKILL.md").is_file()}
+    selected = ns.skill or sorted(available)
     unknown = [name for name in selected if name not in available]
     if unknown:
         print(f"error: unknown skill(s): {', '.join(unknown)}", file=sys.stderr)
         print(f"available: {', '.join(sorted(available))}", file=sys.stderr)
         return 2
 
-    destination = destination_root(args)
-    print(f"Company Kernel skills -> {destination}")
+    destination = destination_root(ns)
+    print(f"Company Kernel 0.5 skills -> {destination}")
     try:
         for name in selected:
-            state = copy_skill(available[name], destination / name, args.force, args.dry_run)
+            state = copy_skill(available[name], destination / name, ns.force, ns.dry_run)
             print(f"- {name}: {state}")
     except FileExistsError as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 1
 
-    if not args.dry_run:
+    if not ns.dry_run:
         print("\nNext:\n")
         print(
-            "$system-integrate Build or reconcile the shared Company Kernel system "
-            "above my projects, inspect existing rules, skills, and tools, then "
-            "initialize this repository. Do not delete unrelated global work."
+            "$kernel-integrate Install Company Kernel 0.5 above my projects, "
+            "inspect existing rules and capabilities, preserve stronger work, "
+            "and initialize this repository."
         )
     return 0
 

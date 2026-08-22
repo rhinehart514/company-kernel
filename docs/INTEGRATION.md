@@ -1,67 +1,50 @@
 # Integration
 
-`$system-integrate` works across the shared environment and one active project.
+`$kernel-integrate` builds the shared kernel above projects, then initializes the active project.
 
 ## Shared home
 
-The default system home is:
+Use `COMPANY_KERNEL_HOME` when set. Otherwise use:
 
 ```text
 ~/.company-kernel
 ```
 
-Use `COMPANY_KERNEL_HOME` or an explicit path when the environment needs another location.
+## Inspect first
 
-The integrator may create or update files in the shared home when the user asked for system integration. It does not delete unrelated global instructions, skills, tool settings, authentication, or permissions.
+The integrator inspects applicable global and project instructions, installed skills, available tools, tool configuration paths, existing kernel files, project context, repository behavior, Git state, and first-party evidence.
 
-## Inventory
+It reads metadata, not secrets. A configuration path does not prove a tool is active in the current session.
 
-Run the included scanner when shell access exists:
+## Reconcile rather than stack
 
-```sh
-python3 plugins/company-kernel/skills/system-integrate/scripts/scan_environment.py --root . --json
-```
+Preserve stronger user-authored instructions. Remove stale Company Kernel duplication. Do not rewrite unrelated global rules, skills, authentication, permissions, or tool configuration.
 
-The scanner finds instruction files, skills, exact skill duplicates, tool configuration paths, shared system context, project context, and Git state.
+## Install the shared kernel
 
-It reads metadata, not secrets. Tool configuration on disk does not prove that a tool is active in the current session.
-
-## Build the shared system
-
-The integrator starts from the packaged system library, compares it with the user's existing rules, and writes only what remains useful.
-
-Strong system line:
+Create or reconcile:
 
 ```text
-Keep ambition large and the user's product model small.
+KERNEL.md
+CAPABILITIES.md
+standards/*
+reviews/*
 ```
 
-Weak system line:
+System standards are active runtime judgment. Review files are cold-path references.
 
-```text
-First research the market, then create a plan, then ask for approval.
-```
+## Map capabilities
 
-The first is judgment. The second is a procedure and belongs in a skill, if it belongs anywhere.
+For each repeated need, decide whether it is already owned by the model, an instruction, a skill, a tool, a connector, a script, or nothing reliable yet.
 
-## Clean up capabilities
+Do not infer duplication from names. Do not build a new skill for one-time work. Keep project-local changes as the default proving ground.
 
-A capability can be kept, routed, combined, rewritten, retired, built, exposed, or left missing.
+## Add routes
 
-The integrator decides what the gap actually is:
+Add one small route to the global instruction file the active client reads and one project route when needed. Preserve all stronger local rules.
 
-```text
-missing judgment  skill or system lens
-missing truth     project context
-missing data      tool or connector
-repeatable mechanics script
-one-time work     do the work
-```
+## Initialize the project
 
-Project-local changes are the default proving ground. Shared global changes stay proposals unless the user clearly authorized them.
+Create `PROJECT.md`, `.kernel/NOW.md`, and only the domain models supported by the repository and current work.
 
-## Build the project
-
-After the shared system is ready, the integrator creates or refreshes `PROJECT.md` and `.project/NOW.md` inside the active repository.
-
-The shared system shapes judgment. The project files state what is true now. They should not repeat each other.
+Do not create Coding, Product, and GTM files merely for symmetry.

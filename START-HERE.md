@@ -1,51 +1,39 @@
 # Start here
 
-Company Kernel builds one shared system above your projects, then keeps each project current beneath it.
-
-## 1. Install
-
-Codex:
-
-```sh
-codex plugin marketplace add rhinehart514/company-kernel --ref main
-codex plugin add company-kernel@company-kernel
-```
-
-Any Agent Skills-compatible client:
-
-```sh
-python3 scripts/install.py --user
-```
-
-## 2. Run the first integration
-
-Open a real project and run:
+Company Kernel 0.5 separates five things humans routinely mash into one heroic Markdown file:
 
 ```text
-$system-integrate Build or reconcile the shared Company Kernel system above my projects.
-Inspect my existing global rules, installed skills, and available tools.
-Keep stronger rules. Write a readable 1-10 line SYSTEM.md and only useful lenses
-under ~/.company-kernel, create a clear capability map, then initialize this repository
-with PROJECT.md and .project/NOW.md. Do not delete or rewrite unrelated global work.
+review      when current judgment deserves doubt
+standard    how decisions should be made across projects
+model       what is true, intended, constrained, and uncertain here
+work        what the agent does now
+evidence    what reality taught us
 ```
 
-The agent should inspect the machine and repository before asking you to describe what is already visible.
+## Normal work
 
-## 3. Review the result
+The project route points the agent to `~/.company-kernel/KERNEL.md`.
 
-Look at four things:
+For consequential work the agent:
 
-1. **System:** Does `~/.company-kernel/SYSTEM.md` contain distinctive judgment rather than slogans?
-2. **Project:** Can a new teammate explain the project after reading `PROJECT.md`?
-3. **Capabilities:** Is it clearer which skills and tools own which jobs?
-4. **Trajectory:** Does the current entry visibly earn a much larger coherent outcome?
+1. identifies Coding, Product, GTM, or a combination
+2. reads only the matching system standards
+3. reads `PROJECT.md`, `.kernel/NOW.md`, and matching project models
+4. executes against current repository and market reality
+5. updates project truth only when evidence materially changes it
 
-Correct wrong truth immediately. Elegant wrong context only helps the agent fail faster.
+The agent does not load review files during ordinary work.
 
-## 4. Keep moving
+## First integration
 
-Use `$project-context` when the project changes.
+Run `$kernel-integrate` from an active project. It inspects before asking, preserves stronger instructions, writes the shared kernel, maps capabilities, and initializes only the project files that earn a place.
 
-Use `$project-research` when one uncertainty can change a decision.
+## When reality changes
 
-Use `$system-integrate` again only when the shared rules, skills, tools, model capability, or operating beliefs change materially.
+Use `$project-model` after a meaningful change to architecture, product responsibility, market position, evidence, bets, constraints, or direction.
+
+## When the rules may be wrong
+
+Use `$kernel-review` after a qualified contradiction, repeated exception, successful deviation, capability discontinuity, product-model failure, market shift, or explicit human challenge.
+
+Research may support a review. Research is not the trigger itself.

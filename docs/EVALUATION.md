@@ -1,47 +1,26 @@
 # Evaluation
 
-Thin steering only matters when it changes behavior.
+Company Kernel 0.5 is successful when it improves decisions without becoming another workstream.
 
-## Test three things
+## Runtime tests
 
-### Routing
+- A coding task loads Engineering Judgment and Technical Truth, not Product Evolution.
+- A mixed product and GTM decision can load both relevant standards and models.
+- External review is not loaded without a qualified signal or explicit request.
+- Missing project truth is reported or researched, never invented.
+- Observed reality outranks stale project files.
 
-Does the right skill run?
+## System tests
 
-Routine code changes should not trigger system integration. A project refresh should not reorganize the machine. One research question should not rebuild the project.
+- Standards contain transferable judgment rather than project facts or procedures.
+- Project models contain current truth rather than generic doctrine.
+- Review files contain triggers and qualification rather than routine execution rules.
+- Research remains a capability rather than a peer runtime domain.
+- System changes require human approval.
 
-### System behavior
+## Economy tests
 
-Does the integrator:
-
-- keep the system above projects
-- preserve stronger global and project rules
-- keep each active system file to one through ten lines
-- use existing capability before building more
-- distinguish missing access from missing judgment
-- avoid one file or skill per department
-
-### Project judgment
-
-Does the result:
-
-- make the product easier to explain
-- keep the entry and larger trajectory distinct
-- expose contradiction and stale truth
-- align product, GTM, onboarding, delivery, and proof
-- adapt ambition to non-startup projects
-- preserve uncertainty instead of inventing evidence
-
-## Check state, not prose
-
-Inspect the files read, files changed, tool calls, routes, skills, links, and final project state.
-
-A polished report cannot rescue a bad environment.
-
-## Keep the loop small
-
-1. Add a case from a real failure.
-2. Run the task with and without the changed context.
-3. Compare decisions and resulting state.
-4. Keep only what materially helps.
-5. Delete scaffolding when newer models no longer need it.
+- The route is smaller than the context it selects.
+- Files exist because they change judgment, not because the framework has a box.
+- The model can explain why each loaded file was necessary.
+- No dashboard, database, recurring agent, approval queue, or automatic standards rewrite is required.

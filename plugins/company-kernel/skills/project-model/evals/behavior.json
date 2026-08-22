@@ -1,0 +1,31 @@
+[
+  {
+    "name": "creates-only-relevant-models",
+    "prompt": "Initialize a non-code market research project.",
+    "must": [
+      "create PROJECT.md and .kernel/NOW.md",
+      "create only relevant domain models",
+      "ground claims in evidence"
+    ],
+    "must_not": [
+      "create CODING.md for symmetry",
+      "invent buyers",
+      "copy system standards into project files"
+    ]
+  },
+  {
+    "name": "refreshes-durable-truth",
+    "prompt": "Update the project after a material product and GTM change.",
+    "must": [
+      "inspect current reality",
+      "rewrite invalidated truth",
+      "preserve uncertainty",
+      "report next proof"
+    ],
+    "must_not": [
+      "append a changelog",
+      "edit shared standards",
+      "keep dead context"
+    ]
+  }
+]

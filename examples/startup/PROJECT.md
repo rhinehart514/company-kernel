@@ -1,39 +1,29 @@
 # Project
 
-> Relay completes vendor security reviews for mid-market software companies and returns the proof buyers need to approve them.
-
-**As of:** 2026-08-21
+> Operate a bounded business workflow with agents while people retain consequential judgment and proof of every completed result.
 
 ## Outcome
 
-A software company can move from a buyer's security request to an approved, defensible response without assembling a temporary internal project.
+A customer can delegate important repeated work and receive a completed, verifiable result rather than another tool to supervise.
 
 ## Why now
 
-Current models can read evidence, map controls, draft bounded responses, find conflicts, and maintain working context. Authority, verification, source truth, trust, and system access remain the hard parts.
-
-## Actors
-
-Security and revenue teams provide evidence and authority. Relay performs the review. The buyer's security team judges the proof. Human owners resolve exceptions and accept risk.
-
-## Core loop
-
-Request arrives → evidence is gathered → answers and artifacts are produced → exceptions are escalated → approval proof is returned → maintained context improves the next review.
-
-## Responsibility
-
-Relay owns preparation, evidence mapping, consistency, drafting, status, and proof. It does not invent controls, accept legal risk, or make unauthorized commitments.
-
-## Entry and trajectory
-
-The entry is completing individual reviews faster and more reliably. Winning builds a maintained trust context that can become the operating layer for customer assurance, procurement evidence, and external compliance work.
+Frontier models can perform longer-horizon work, but most products still expose machinery instead of accepting bounded responsibility.
 
 ## Boundary
 
-Relay is an operator for customer assurance, not a generic GRC dashboard or chatbot over policy documents.
+The product owns agreed execution and proof inside granted authority. The customer owns source access, policy, exceptions, and consequential judgment outside that authority.
 
-## Context
+## Current direction
 
-- [Now](.project/NOW.md)
-- [Product](.project/PRODUCT.md)
-- [Market](.project/MARKET.md)
+Prove one operated workflow, collapse the interface around its outcome, and use the evidence to earn adjacent responsibility.
+
+## Domain models
+
+- `.kernel/CODING.md` owns technical truth.
+- `.kernel/PRODUCT.md` owns the product model.
+- `.kernel/GTM.md` owns the current market position.
+
+## Non-goals
+
+Do not become a generic agent builder, dashboard, or marketplace of disconnected automations.
