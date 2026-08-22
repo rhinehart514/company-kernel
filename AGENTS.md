@@ -1,25 +1,40 @@
-# Repository rules
+# Company Kernel repository rules
 
-Company Kernel should make a frontier model better before it sees the task.
+Company Kernel 0.9 is a skill pack, not a global operating system.
 
-Write for 2026, not for the historical cost of software, research, content, or outbound. Be explicit about what changed, what remains scarce, and what old defaults should die.
+The product surface is four skills:
 
-Keep the codebase obvious:
+- `venture-judgment` carries shared YC and 2026 company-building judgment.
+- `shape-project` turns a cold repository and founder conversation into useful context.
+- `think-further` expands the company beyond its current local maximum.
+- `product-coherence` adds power without letting the product spread into nonsense.
 
-- `kernel/` is the only canonical shared system.
-- `templates/` is the only canonical project shape.
-- `skills/` contains three operating capabilities.
-- `scripts/` contains deterministic mechanics.
-- `examples/` prove the system can be understood in practice.
+A normal project should receive only:
 
-System standards contain reusable judgment. Project models contain current truth. Review files contain triggers and amendment rules. Never mix them.
+```text
+AGENTS.md
+PROJECT.md
+NOW.md
+```
 
-Assume capable models. Do not teach common knowledge. Do not compress so hard that the model falls back to generic SaaS advice.
+Do not rebuild `kernel/`, `templates/`, global context homes, scanners,
+initializers, review protocols, domain inheritance trees, or one file per
+department. Those structures were deleted because the skills can carry the
+intelligence and write the minimum project context.
 
-Lead with the call. Use exact nouns. Prefer short sections and hard distinctions. Delete corporate filler, setup, repetition, and framework theater.
+Preserve the strongest judgment from earlier versions as progressively
+disclosed references inside `venture-judgment`.
 
-Research is a capability. Evidence is a flow. Authority is a boundary. Work is the output.
+Write for capable models that have broad knowledge and no knowledge of this
+company. Assume intelligence. Never assume context.
 
-Preserve stronger user, repository, safety, permission, and deployment rules. Never rewrite shared global context without explicit authority.
+Preserve YC's contact with reality. Rewrite assumptions based on the old cost
+of software, research, personalization, and execution.
 
-Keep the core portable and dependency-free. Run `python3 scripts/validate.py` before committing.
+Be ambitious as fuck, then make the ambition testable.
+
+Every sentence should either change a decision, sharpen a distinction, expand
+the possible outcome, or disappear.
+
+The repository must stay dependency-free. Run `python3 scripts/validate.py`
+before committing.

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Think Further"
+  short_description: "Find the larger coherent company"
+  default_prompt: "Use $think-further to inspect the current project, find what it is thinking too small about, return a few testable trajectories, and make the call."
+policy:
+  allow_implicit_invocation: false

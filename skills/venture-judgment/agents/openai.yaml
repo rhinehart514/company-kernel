@@ -1,0 +1,6 @@
+interface:
+  display_name: "Venture Judgment"
+  short_description: "Shared YC and 2026 startup judgment"
+  default_prompt: "Use $venture-judgment to load only the company-building references that can materially change this decision."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Shape Project"
+  short_description: "Grill, ideate, and compile project context"
+  default_prompt: "Use $shape-project to inspect this repository, run a design-tree founder session with recommendations, push the idea further, and write only AGENTS.md, PROJECT.md, and NOW.md."
+policy:
+  allow_implicit_invocation: false

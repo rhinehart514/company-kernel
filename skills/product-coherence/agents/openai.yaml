@@ -1,0 +1,6 @@
+interface:
+  display_name: "Product Coherence"
+  short_description: "Add power without product entropy"
+  default_prompt: "Use $product-coherence to map the current product, make the form decision, remove conceptual debt, and keep the result one product."
+policy:
+  allow_implicit_invocation: true

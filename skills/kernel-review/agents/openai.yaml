@@ -1,6 +1,0 @@
-interface:
-  display_name: "Kernel Review"
-  short_description: "Question the system only when evidence earns it"
-  default_prompt: "Use $kernel-review to qualify this signal, inspect the relevant system standard and project model, gather only decision-changing evidence, and propose the smallest justified system or project delta."
-policy:
-  allow_implicit_invocation: true
