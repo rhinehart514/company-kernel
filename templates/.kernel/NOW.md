@@ -1,23 +1,34 @@
 # Now
 
-**Updated:** YYYY-MM-DD
+<!--
+Keep only state that should survive the current session.
+Delete completed or non-decision-changing detail.
+-->
 
-## Objective
+## Current outcome
 
-What one result matters now?
+What must become true next?
 
-## Momentum
+## State
 
-What is already working, compounding, or becoming true?
+What is true now, including the last meaningful result?
 
 ## Active bets
 
-What is uncertain and currently being tested?
+Which assumptions or approaches are being tested? What earns continuation or kills each one?
 
-## Constraints and contradictions
+## Evidence
 
-What limits the valid path or does not yet reconcile?
+What new evidence changed the work?
+
+## Open unknowns
+
+Which unresolved questions can still change the approach?
+
+## Blocks and dependencies
+
+What is waiting on authority, input, another system, or another workstream?
 
 ## Next proof
 
-What observable evidence should change the next decision?
+What observable result should exist next?
