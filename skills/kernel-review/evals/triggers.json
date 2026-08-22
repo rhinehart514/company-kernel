@@ -1,0 +1,22 @@
+[
+  {
+    "prompt": "Three repos keep succeeding by violating the same Coding standard. Review it.",
+    "should_trigger": true
+  },
+  {
+    "prompt": "A new model capability may make our product responsibility boundary obsolete.",
+    "should_trigger": true
+  },
+  {
+    "prompt": "Unexpected inbound from another market keeps converting. Review GTM and Product implications.",
+    "should_trigger": true
+  },
+  {
+    "prompt": "Research the latest database releases.",
+    "should_trigger": false
+  },
+  {
+    "prompt": "Fix this flaky test.",
+    "should_trigger": false
+  }
+]

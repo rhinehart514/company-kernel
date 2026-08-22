@@ -1,28 +1,67 @@
-# Company Kernel 0.5
+# Company Kernel 0.6
 
-**System judgment. Project truth. Work that learns.**
+**Stop re-briefing the model. Give it a company operating system.**
 
-Company Kernel gives frontier models the context they cannot safely invent:
+Frontier models already know how to code, write, research, and sell. That is not the problem.
 
-1. compact, reusable judgment above projects
-2. current technical, product, and market models inside each project
-3. an external review path for questioning those models without bloating normal work
+The problem is that they still default to old software economics, generic startup advice, and whatever they can infer from one repository. Company Kernel fixes that before the task starts.
 
-It is headless, file-based, version-controlled, and designed for 2026 model capability. It does not add an orchestrator, database, dashboard, recurring agent, or permanent reflection loop.
+0.6 gives the model three things:
 
-## Runtime shape
+1. a current startup prior for 2026
+2. strong domain judgment for Coding, Product, and GTM
+3. current project truth it cannot safely invent
+
+Then it gets out of the way.
+
+## The whole system
 
 ```text
-SYSTEM STANDARD ──┐
-                   ├──→ WORK ──→ EVIDENCE
-PROJECT MODEL ─────┘               │
-                                   ├──→ update project truth
-                                   └──→ trigger external review
+KERNEL
+current operating environment + routing
+        ↓
+SYSTEM STANDARD + PROJECT MODEL
+how to decide       what is true here
+        ↓
+WORK
+        ↓
+EVIDENCE
+   ├── update project truth
+   └── qualify external review
 ```
 
-The external review layer is cold-path intelligence. It is not loaded during ordinary work.
+Normal work stays lean. Review stays outside the hot path.
 
-## Installed layout
+## Repository map
+
+```text
+kernel/                 canonical shared system
+  KERNEL.md              2026 startup prior + runtime route
+  standards/             Coding, Product, GTM judgment
+  review/                cold-path review protocol + triggers
+
+templates/              exact project file shapes
+  PROJECT.md
+  .kernel/
+    NOW.md
+    CODING.md
+    PRODUCT.md
+    GTM.md
+
+skills/                 three explicit operating skills
+  kernel-setup/
+  project-update/
+  kernel-review/
+
+scripts/                install, inspect, validate
+examples/startup/       one complete example
+```
+
+Nothing important is buried in a generated plugin subtree. The repository root is the plugin.
+
+## What gets installed
+
+Shared system:
 
 ```text
 ~/.company-kernel/
@@ -32,79 +71,81 @@ The external review layer is cold-path intelligence. It is not loaded during ord
     CODING.md
     PRODUCT.md
     GTM.md
-  reviews/
-    PROTOCOL.md
+  review/
+    REVIEW.md
     CODING.md
     PRODUCT.md
     GTM.md
-
-project/
-  PROJECT.md
-  .kernel/
-    NOW.md
-    CODING.md      # only when relevant
-    PRODUCT.md     # only when relevant
-    GTM.md         # only when relevant
 ```
 
-`KERNEL.md` routes work. System standards define how to decide. Project files define what is true here. Review files define when those beliefs deserve reconsideration.
+One project:
 
-## Domains in 0.5
+```text
+PROJECT.md
+.kernel/
+  NOW.md
+  CODING.md      # only when the project needs durable technical truth
+  PRODUCT.md     # only when the project needs a durable product model
+  GTM.md         # only when the project needs a durable market position
+```
 
-- **Coding:** Engineering Judgment + Technical Truth
-- **Product:** Product Judgment + Product Model
-- **GTM:** Market Judgment + Market Position
+Do not create files because a diagram has boxes. Create them because missing context would change the decision.
 
-Strategy remains reserved until it proves it owns company-level decisions that Product and GTM cannot safely own.
+## The three skills
 
-## Skills
+### `$kernel-setup`
 
-### `$kernel-integrate`
+Install, migrate, reconcile, or audit the shared kernel and its routes. It inspects existing rules and capabilities before touching anything.
 
-Install or reconcile the shared kernel, inspect existing rules and capabilities, add thin routes, and initialize the active project.
+### `$project-update`
 
-### `$project-model`
-
-Create, refresh, split, merge, or remove project models as reality changes.
+Create or refresh the current project model after architecture, product, market, evidence, bets, constraints, or direction materially change.
 
 ### `$kernel-review`
 
-Qualify a meaningful signal, inspect internal and external evidence, and propose the smallest justified system or project delta. System changes require human approval.
-
-## First run
-
-```text
-$kernel-integrate Install Company Kernel 0.5 above my projects. Inspect current rules, skills, tools, and this repository. Preserve stronger instructions, create only needed project models, add thin routes, and report unknowns.
-```
+Question a system standard or project model only after a real signal earns the interruption. It can research and propose. Humans approve shared-standard changes.
 
 ## Install
 
-Codex:
+Codex plugin:
 
 ```sh
 codex plugin marketplace add rhinehart514/company-kernel --ref main
 codex plugin add company-kernel@company-kernel
 ```
 
-Portable skills:
+Portable install:
 
 ```sh
 python3 scripts/install.py --user
 ```
 
-Project-local skills:
+Then run from a real project:
 
-```sh
-python3 scripts/install.py --project /path/to/project
+```text
+$kernel-setup Set up Company Kernel 0.6 on this machine and initialize this repository.
+Inspect existing global rules, skills, tools, and project context first.
+Preserve stronger work. Install the shared kernel, add the smallest routes,
+and create only the project models this repository actually needs.
 ```
+
+## What 0.6 refuses to build
+
+- no dashboard
+- no context database
+- no permanent reflection agent
+- no automatic standards mutation
+- no one-skill-per-department bureaucracy
+- no giant prompt that loads every domain
+- no fake project truth generated from code
+
+The scarce thing is judgment, not Markdown production.
 
 ## Read next
 
-- [Start here](START-HERE.md)
-- [Architecture](docs/ARCHITECTURE.md)
-- [Domain contracts](docs/DOMAIN-CONTRACTS.md)
-- [Integration](docs/INTEGRATION.md)
-- [Migration from 0.4](docs/MIGRATION-0.4.md)
+- [Codebase map](docs/CODEBASE.md)
+- [Install and first run](docs/INSTALL.md)
+- [Migrate from 0.5](docs/MIGRATE-0.5.md)
 
 ## Validate
 

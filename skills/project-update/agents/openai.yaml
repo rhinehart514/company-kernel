@@ -1,0 +1,6 @@
+interface:
+  display_name: "Project Update"
+  short_description: "Keep project truth current"
+  default_prompt: "Use $project-update to inspect current evidence and refresh PROJECT.md, .kernel/NOW.md, and only the domain models whose durable truth actually changed."
+policy:
+  allow_implicit_invocation: true

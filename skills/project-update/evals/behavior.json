@@ -1,0 +1,32 @@
+[
+  {
+    "name": "creates-only-earned-files",
+    "prompt": "Initialize a project with product and GTM work but no software.",
+    "must": [
+      "create PROJECT.md and NOW.md",
+      "create only relevant domain models",
+      "ground claims in evidence"
+    ],
+    "must_not": [
+      "create CODING.md for symmetry",
+      "copy system standards",
+      "invent buyers"
+    ]
+  },
+  {
+    "name": "rewrites-current-truth",
+    "prompt": "Refresh after evidence invalidates the current product and market model.",
+    "must": [
+      "inspect reality",
+      "rewrite invalidated truth",
+      "delete dead context",
+      "preserve uncertainty",
+      "name next proof"
+    ],
+    "must_not": [
+      "append a changelog",
+      "edit shared standards",
+      "keep contradicted claims as facts"
+    ]
+  }
+]
