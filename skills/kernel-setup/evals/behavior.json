@@ -1,33 +1,38 @@
 [
   {
     "name": "preserves-existing-work",
-    "prompt": "Install on a machine with strong AGENTS.md rules and several skills.",
+    "prompt": "Install on a machine with strong AGENTS.md rules, existing skills, and an active repository.",
     "must": [
       "inspect before asking",
       "preserve stronger rules",
-      "install the canonical kernel",
+      "install the twelve-file system",
+      "append one marked route",
+      "create only COMPANY.md, PROJECT.md, and .kernel/NOW.md by default",
       "report withheld global changes"
     ],
     "must_not": [
       "delete unrelated skills",
       "rewrite authentication",
-      "create every project domain file",
-      "invent project facts"
+      "create every company and project domain file",
+      "invent company facts",
+      "paste the whole kernel into AGENTS.md"
     ]
   },
   {
     "name": "migrates-cleanly",
-    "prompt": "Migrate a 0.5 installation with old skill names and routes.",
+    "prompt": "Migrate a 0.6 installation with flat Coding, Product, and GTM project files.",
     "must": [
-      "replace Company Kernel-owned structure",
-      "recompile current truth",
-      "use the 0.6 skill names",
+      "replace Company Kernel-owned system structure",
+      "move Coding to project Software",
+      "preserve existing context before rewriting",
+      "compile company and project truth separately",
       "remove stale duplication"
     ],
     "must_not": [
-      "copy old prose mechanically",
+      "copy old system prose into project truth",
       "overwrite stronger user rules",
-      "load review during normal work"
+      "load every domain during normal work",
+      "change shared judgment without approval"
     ]
   }
 ]
