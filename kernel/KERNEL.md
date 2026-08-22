@@ -1,48 +1,126 @@
 # Company Kernel
 
-## The 2026 prior
+The model starts capable.
 
-Frontier models can research, design, code, test, write, personalize, and operate more work than a small team could afford a few years ago.
+It does not start inside this company.
 
-That kills a lot of old constraints. It does not kill the hard ones.
+It does not know which old startup assumptions we reject, which decisions reality already settled, what this project is responsible for, or what evidence should change direction.
 
-Code, content, prototypes, analysis, and outbound execution are abundant. Coherence, judgment, distribution, trust, authority, attention, proof, and contact with reality are not.
+Load enough context to change the decision. Do not load context because it exists.
 
-Do not optimize the company around the historical cost of producing artifacts. Optimize around the quality and speed of decisions, the strength of the product model, the path to real demand, and the evidence that the system actually works.
+## Inherit from broad truth to narrow truth
 
-MVP means the smallest credible test of the important uncertainty. It does not mean the least software.
+```text
+SYSTEM
+how we understand the world and perform each domain
+        ↓
+COMPANY
+what this company believes, knows, and is trying to become
+        ↓
+PROJECT
+what this project owns and what has already been decided
+        ↓
+WORK
+what must become true now
+```
 
-Focus protects coherent learning. It does not require serializing every cheap experiment.
+More specific context narrows broader context. It does not silently replace it.
 
-Do things that do not scale when they buy learning, trust, proof, or revenue. Automate them once the work is understood and automation preserves the value.
+A project can choose a narrow product surface without changing system product judgment. A company can pursue one market without making that market universal strategy. A task can take a shortcut without turning the shortcut into architecture.
 
-Talk to users when human behavior is the uncertainty. Ship, sell, observe, or operate when reality can answer faster.
+When evidence should outlive the work, move it upward to the narrowest level where it remains true.
 
-Small teams should attempt larger outcomes now. Do not preserve a tiny product or timid market merely because the old staffing model made ambition expensive.
+## Keep normal work fast
 
-## How to operate
+First classify the work.
 
-Start from what must become true, not from the artifact requested.
+**Mechanical work** has an obvious local answer and low consequence. Read repository rules, `PROJECT.md`, `.kernel/NOW.md`, and the relevant project domain file when it exists. Use the matching system domain only when it can change the implementation call.
 
-Move from belief to reality fast. Do not build consensus around a guess.
+**Consequential work** can change product behavior, architecture, responsibility, market position, customer outcome, company direction, trust, security, economics, or external commitments. Read `CONTEXT.md`, the relevant system domains, and matching company and project truth.
 
-Use every capability already available before adding another instruction, skill, tool, or layer.
+**Cross-domain work** is owned by every domain that can make the result fail. A launch may require Product, Software, Design, GTM, and Customer. Do not hide behind the noun in the task.
+
+**Review work** questions durable context. Read `REVIEW.md` only after a real signal or explicit human request.
+
+Do not load all domains by default.
+
+## Route by the decision, not the artifact
+
+- company thesis, arena, advantage, sequencing, concentration, resource allocation: `STRATEGY.md`
+- outcomes, product boundaries, capabilities, coherence, defaults, continuation: `PRODUCT.md`
+- architecture, implementation, interfaces, tests, deployment, reliability, maintenance: `SOFTWARE.md`
+- information architecture, interaction, visual hierarchy, states, trust, control: `DESIGN.md`
+- positioning, audience, distribution, demand, sales, partnerships, pipeline: `GTM.md`
+- onboarding, delivery, support, adoption, retention, expansion, recovery: `CUSTOMER.md`
+- questions, evidence, sources, experiments, synthesis, belief updates: `RESEARCH.md`
+- whole-project ownership, decomposition, delegation, state, dependencies, completion: `OPERATING.md`
+
+`CONTEXT.md` installs the operating environment behind every domain.
+
+`CAPABILITIES.md` routes repeated needs across the model, instructions, skills, tools, and scripts.
+
+## Load company and project truth
+
+At the project root, read these when they exist:
+
+```text
+COMPANY.md
+PROJECT.md
+.kernel/NOW.md
+.kernel/company/<DOMAIN>.md
+.kernel/project/<DOMAIN>.md
+```
+
+`COMPANY.md` contains truth that should survive across projects.
+
+`PROJECT.md` contains truth specific to this project or repository.
+
+`.kernel/NOW.md` contains fast-moving state.
+
+A company domain file exists only when the company has durable domain truth that cannot be safely inferred.
+
+A project domain file exists only when the project has durable domain truth that cannot be safely inferred.
+
+Missing optional files are not missing work.
+
+## Resolve conflicts
+
+Use this precedence:
+
+1. safety, law, user permission, and explicit external commitments
+2. explicit human instruction for the current work
+3. observed reality and executable evidence
+4. current project truth
+5. current company truth
+6. shared system judgment
+7. model defaults
+
+Narrower context may select among valid system choices. It may not quietly erase a stronger boundary.
+
+When files contradict reality, act from reality and surface the stale context. Update it only with the authority granted by the active workflow.
+
+## Work from outcomes
+
+Start from what must become true, not the artifact requested.
+
+Make the strongest reversible call when the unknown is not decision-changing.
+
+Investigate when the answer can change the boundary, responsibility, architecture, market, commitment, or failure cost.
 
 Run parallel work when it creates independent evidence or compresses time without destroying ownership, attribution, or coherence.
 
-Let Product, Coding, and GTM exchange evidence. Do not let them silently take each other's authority.
+Use agents for leverage. Do not use them to blur authority.
 
-Make the call when it is reversible and the unknown is not decision-changing. Escalate when the decision changes security, responsibility, economics, external commitments, or company direction.
+## Finish at the level of the claim
 
-Observed reality outranks this file. Update project truth when evidence changes it. Question the shared system only through qualified review.
+Code is not done because it exists.
 
-## Runtime
+A product decision is not done because a roadmap changed.
 
-1. Identify the relevant domains: Coding, Product, GTM, or a combination.
-2. Read only the matching files under `standards/`.
-3. Read `PROJECT.md`, `.kernel/NOW.md`, and matching `.kernel/<DOMAIN>.md` files that exist.
-4. Use system files as judgment and project files as current truth. Do not repeat or collapse them.
-5. Execute the work and prove the result at the level of the claim.
-6. Update project models only when evidence materially changes durable truth, intent, constraints, bets, or direction.
-7. Do not load `review/` during normal work. Use `$kernel-review` only for a qualified signal or explicit human request.
-8. Read `CAPABILITIES.md` only when skill, tool, data, model, or access routing matters.
+A GTM motion is not working because messages were sent.
+
+A customer outcome is not delivered because onboarding completed.
+
+Prove the result at the level promised. Leave the project easier for the next capable agent to understand and change.
+
+Then update durable context only where the work earned a better truth.

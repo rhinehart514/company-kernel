@@ -11,10 +11,27 @@ import subprocess
 from pathlib import Path
 
 INSTRUCTION_NAMES = {
-    "AGENTS.md", "CLAUDE.md", "GEMINI.md", "COPILOT.md", ".cursorrules", "PROJECT.md"
+    "AGENTS.md",
+    "CLAUDE.md",
+    "GEMINI.md",
+    "COPILOT.md",
+    ".cursorrules",
+    "COMPANY.md",
+    "PROJECT.md",
 }
 TOOL_CONFIG_NAMES = {".mcp.json", "mcp.json", "settings.json", "config.toml"}
 SKILL_ROOTS = [".agents/skills", ".claude/skills", ".github/skills", ".copilot/skills"]
+ROUTE_START = "<!-- company-kernel:route:start -->"
+DOMAINS = {
+    "STRATEGY",
+    "PRODUCT",
+    "SOFTWARE",
+    "DESIGN",
+    "GTM",
+    "CUSTOMER",
+    "RESEARCH",
+    "OPERATING",
+}
 
 
 def parse_args() -> argparse.Namespace:
@@ -46,10 +63,16 @@ def relative(path: Path, root: Path) -> str:
 def find_named(root: Path, names: set[str], depth: int) -> list[str]:
     if not root.exists():
         return []
-    found = []
-    for path in root.rglob("*"):
-        if path.is_file() and path.name in names and len(path.relative_to(root).parts) <= depth:
-            found.append(relative(path, root))
+    found: list[str] = []
+    for current, directories, files in os.walk(root):
+        current_path = Path(current)
+        level = len(current_path.relative_to(root).parts)
+        if level >= depth:
+            directories.clear()
+        directories[:] = [name for name in directories if name not in {".git", "node_modules", ".venv"}]
+        for name in files:
+            if name in names:
+                found.append(relative(current_path / name, root))
     return sorted(set(found))
 
 
@@ -64,19 +87,64 @@ def find_skills(roots: list[Path]) -> list[dict[str, str]]:
     return sorted(found, key=lambda item: item["path"])
 
 
+def file_summary(path: Path, root: Path) -> dict[str, object]:
+    text = path.read_text(encoding="utf-8", errors="replace")
+    return {
+        "path": relative(path, root),
+        "bytes": path.stat().st_size,
+        "lines": len(text.splitlines()),
+    }
+
+
+def project_context(root: Path) -> dict[str, object]:
+    core = [root / "COMPANY.md", root / "PROJECT.md", root / ".kernel" / "NOW.md"]
+    company = sorted((root / ".kernel" / "company").glob("*.md"))
+    project = sorted((root / ".kernel" / "project").glob("*.md"))
+    return {
+        "core": [file_summary(path, root) for path in core if path.is_file()],
+        "company_domains": [file_summary(path, root) for path in company if path.stem in DOMAINS],
+        "project_domains": [file_summary(path, root) for path in project if path.stem in DOMAINS],
+        "unknown_domain_files": [
+            relative(path, root)
+            for path in [*company, *project]
+            if path.stem not in DOMAINS
+        ],
+    }
+
+
+def route_state(root: Path) -> dict[str, object]:
+    path = root / "AGENTS.md"
+    if not path.is_file():
+        return {"path": None, "installed": False, "incomplete": False}
+    text = path.read_text(encoding="utf-8", errors="replace")
+    start = ROUTE_START in text
+    end = "<!-- company-kernel:route:end -->" in text
+    return {
+        "path": "AGENTS.md",
+        "installed": start and end,
+        "incomplete": start != end,
+    }
+
+
 def git_state(root: Path) -> dict[str, object]:
     try:
         branch = subprocess.run(
             ["git", "-C", str(root), "branch", "--show-current"],
-            capture_output=True, text=True, check=False,
+            capture_output=True,
+            text=True,
+            check=False,
         ).stdout.strip()
         status = subprocess.run(
             ["git", "-C", str(root), "status", "--porcelain"],
-            capture_output=True, text=True, check=False,
+            capture_output=True,
+            text=True,
+            check=False,
         ).stdout.splitlines()
         recent = subprocess.run(
             ["git", "-C", str(root), "log", "-5", "--pretty=%h %s"],
-            capture_output=True, text=True, check=False,
+            capture_output=True,
+            text=True,
+            check=False,
         ).stdout.splitlines()
         return {"branch": branch or None, "dirty": bool(status), "changed": status[:50], "recent": recent}
     except OSError:
@@ -104,25 +172,28 @@ def main() -> int:
     for skill in skills:
         by_digest.setdefault(skill["digest"], []).append(skill["path"])
 
-    project_context = []
-    for path in [root / "PROJECT.md", *(root / ".kernel").glob("*.md")]:
-        if path.is_file():
-            project_context.append(relative(path, root))
+    legacy_candidates = [
+        root / "SYSTEM.md",
+        root / ".system",
+        root / ".project",
+        root / ".kernel" / "CODING.md",
+        root / ".kernel" / "PRODUCT.md",
+        root / ".kernel" / "GTM.md",
+    ]
 
     result = {
         "root": str(root),
         "kernel_home": str(kernel_home),
+        "route": route_state(root),
         "instructions": instructions,
         "shared_kernel": sorted(
             relative(path, kernel_home)
             for path in kernel_home.rglob("*")
             if path.is_file()
         ) if kernel_home.exists() else [],
-        "project_context": sorted(project_context),
+        "context": project_context(root),
         "legacy_company_kernel": sorted(
-            relative(path, root)
-            for path in [root / ".project", root / "SYSTEM.md", root / ".system"]
-            if path.exists()
+            relative(path, root) for path in legacy_candidates if path.exists()
         ),
         "skills": skills,
         "exact_skill_duplicates": [paths for paths in by_digest.values() if len(paths) > 1],
@@ -130,7 +201,10 @@ def main() -> int:
         "git": git_state(root),
     }
 
-    print(json.dumps(result, indent=2) if args.json else result)
+    if args.json:
+        print(json.dumps(result, indent=2))
+    else:
+        print(json.dumps(result, indent=2))
     return 0
 
 
