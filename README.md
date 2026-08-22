@@ -92,7 +92,7 @@ from the codebase rather than the customer outcome.
 Install the skill pack:
 
 ```sh
-npx skills add rhinehart514/company-kernel
+npx skills@latest add rhinehart514/company-kernel
 ```
 
 Codex plugin:
