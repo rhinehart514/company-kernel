@@ -1,6 +1,0 @@
-interface:
-  display_name: "Project Research"
-  short_description: "Resolve one decision-changing uncertainty"
-  default_prompt: "Use $project-research to investigate one uncertainty that can materially change the current project model or decision."
-policy:
-  allow_implicit_invocation: false

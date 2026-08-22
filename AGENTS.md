@@ -1,15 +1,15 @@
 # Repository rules
 
-Steer capable models with the least context that materially improves judgment.
+Build Company Kernel as a small headless decision system for frontier models.
 
-The shared system sits above projects. `PROJECT.md` and `.project/*` contain project truth, never system doctrine.
+Keep the hot path explicit: relevant system standard plus current project model produces work. External review stays outside normal runtime context.
 
-Write for fast reading. Lead with the call. Use exact nouns, short sections, and plain sentences. Delete setup and repetition.
+System files contain transferable judgment. Project files contain current truth, intent, constraints, bets, and direction. Do not repeat one inside the other.
 
-Do not create one file or skill per department. Create as many or as few as the actual work earns.
+Assume capable models. Store only context that materially changes judgment or prevents expensive rediscovery.
 
-Keep the core portable. Put client-specific behavior in adapters or metadata.
+Do not create one file, skill, or agent per concept. Research is a capability. Evidence is a flow. Authority is a boundary.
 
-Preserve stronger user and project rules. Never rewrite shared global work without explicit authority.
+Preserve stronger user, repository, safety, permission, and deployment rules. Never rewrite shared global context without explicit authority.
 
-Run `python3 scripts/validate.py` before committing.
+Keep the core portable and dependency-free. Run `python3 scripts/validate.py` before committing.

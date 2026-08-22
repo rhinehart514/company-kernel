@@ -1,35 +1,11 @@
 # Writing
 
-Context must be dense without becoming hard to read.
+Write for a capable model entering midstream.
 
-## Write like this
+Lead with the governing call. Use exact nouns, short sections, and explicit relationships. State what is true, what is believed, what is constrained, what is uncertain, and what evidence would change the model.
 
-- lead with the decision or truth
-- use exact nouns and active verbs
-- keep paragraphs short
-- give one section one job
-- name evidence, inference, bet, contradiction, and unknown plainly
-- use examples when they remove ambiguity
-- delete setup the reader already knows
+Do not explain common domain knowledge. Do not narrate files the model can inspect cheaply. Do not hide uncertainty behind polished prose.
 
-## Do not write like this
+System standards should resolve tradeoffs. Project models should preserve intent and constraints. Review files should define triggers, qualification, and authority.
 
-- framework introductions
-- long lists of categories for completeness
-- repeated explanations of the same belief
-- slogans that do not change a decision
-- abstract nouns where a concrete action or actor exists
-- “this document defines” before every section
-- polished uncertainty disguised as fact
-
-## System files
-
-One belief per line. One to ten lines total. No procedures, current project facts, or motivational filler.
-
-## Project files
-
-Open with the simplest accurate project truth. Keep current facts close to evidence. Rewrite stale claims instead of appending a new era beneath them.
-
-## Agent reports
-
-Lead with what the project is, the calls made, what changed, and what reality must prove next. Put file operations last.
+Delete stale context instead of appending history. Use dates and provenance only where freshness changes judgment.

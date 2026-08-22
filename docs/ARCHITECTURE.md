@@ -1,80 +1,64 @@
 # Architecture
 
-Company Kernel separates what should stay shared from what changes inside one project.
+## Topology
+
+Every active domain has the same topology, not necessarily the same internal categories.
 
 ```text
-SYSTEM
-shared beliefs, taste, judgment, capability routing
+[EXTERNAL REVIEW]   [SYSTEM STANDARD]   [PROJECT MODEL]   [WORK]
+       ◇                    ○                  ○             ▭
+```
+
+### External review
+
+Cold path. Defines when current system judgment or project truth deserves reconsideration. It is loaded only by `$kernel-review` or explicit human request.
+
+### System standard
+
+Reusable decision policy. It reduces variance among capable models when several valid approaches exist.
+
+### Project model
+
+Current truth, hidden intent, constraints, deliberate decisions, active bets, evidence, and direction for one project.
+
+### Work
+
+The normal agent combines relevant system standards and project models, then acts. Work is not another prompt layer.
+
+## Runtime path
+
+```text
+~/.company-kernel/KERNEL.md
+        ↓ routes
+system standard + project model + current task
         ↓
-PROJECT
-current truth for one repository
-        ↓
-TASK
-what must happen now
-        ↓
-REALITY
-what proves us right or wrong
+work
 ```
 
-## System
+Only relevant domains are loaded. Coding work does not automatically load GTM. Mixed decisions may load several domains.
 
-The system sits above projects. The default home is:
+## Evidence loop
 
 ```text
-~/.company-kernel/
-  SYSTEM.md
-  LENSES.md
-  lenses/
-  CAPABILITIES.md
+work
+ ↓
+evidence
+ ├──→ update project model
+ └──→ qualify external review
 ```
 
-`SYSTEM.md` contains one to ten lines that should shape consequential work across projects.
+Evidence is a flow, not a mandatory file. Store it only when it changes durable judgment or would be expensive to recover.
 
-`lenses/*` contains optional one-to-ten-line judgment for product, market, software, research, design, operations, and other recurring work.
+## Authority
 
-`CAPABILITIES.md` explains which skills, tools, and sources own which jobs. It is a map, not a prompt.
+Authority is a boundary inside each domain. It is not another column.
 
-The system may coexist with `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, Cursor rules, Copilot instructions, and other user context. It adds a thin operating worldview. It does not replace safety, permissions, coding conventions, or personal preferences.
+Agents may execute reversible work, gather evidence, challenge assumptions, and propose deltas. Humans retain authority over shared standards and commitments that materially change security, product responsibility, pricing, partnerships, or company direction.
 
-## Project
+## Research
 
-Each repository owns its current truth:
+Research is a cross-domain capability. The review layer may use repository analysis, first-party evidence, connected sources, web research, experiments, or direct market contact. Do not create a peer Research domain merely because research exists.
 
-```text
-PROJECT.md
-.project/NOW.md
-.project/*
-```
+## Strategy
 
-`PROJECT.md` is the short model every consequential task should understand.
-
-`.project/NOW.md` changes faster. It holds the objective, momentum, bets, constraints, contradictions, and next proof.
-
-Additional files exist only when content changes at a different speed, belongs to a different authority, or has become too large to stay useful.
-
-## Skills, tools, and rules
-
-```text
-system lens     durable judgment
-project context current truth
-skill           repeated non-obvious capability
-tool            access or external action
-script          deterministic work
-rule            implementation, safety, or permission boundary
-task            current intent
-```
-
-Do not solve missing data with prose. Do not solve one-time work with a permanent skill. Do not put current project facts into the shared system.
-
-## Order of work
-
-The first integration runs in this order:
-
-1. inspect existing global and project context
-2. build or reconcile the shared system
-3. clean up skill and tool routing
-4. add the smallest routes to existing instructions
-5. build or refresh the current project model
-6. report the calls, changes, unknowns, and next proof
-
-System first. Project second. Reality last and always authoritative.
+Strategy is reserved in 0.5. Add it only if it owns company-level game selection, concentration, allocation, and cross-domain conflict that Product and GTM cannot safely resolve.

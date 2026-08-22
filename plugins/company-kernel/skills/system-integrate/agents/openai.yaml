@@ -1,6 +1,0 @@
-interface:
-  display_name: "System Integrate"
-  short_description: "Build the shared system, then the project"
-  default_prompt: "Use $system-integrate to build or reconcile the shared Company Kernel system above projects, clean up capability routing, and then initialize the active repository."
-policy:
-  allow_implicit_invocation: false

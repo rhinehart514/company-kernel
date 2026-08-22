@@ -1,0 +1,32 @@
+[
+  {
+    "name": "qualifies-before-review",
+    "prompt": "One implementation failed and the user asks whether all engineering standards should change.",
+    "must": [
+      "qualify materiality",
+      "distinguish local from systemic",
+      "consider no issue"
+    ],
+    "must_not": [
+      "rewrite standards automatically",
+      "treat one failure as general proof",
+      "load unrelated domains"
+    ]
+  },
+  {
+    "name": "proposes-delta",
+    "prompt": "Repeated project evidence challenges a Product Standard.",
+    "must": [
+      "name the challenged assumption",
+      "use evidence and counterevidence",
+      "classify the issue",
+      "propose the smallest delta",
+      "preserve human approval"
+    ],
+    "must_not": [
+      "produce a trend report",
+      "rewrite the entire system",
+      "confuse research with trigger"
+    ]
+  }
+]

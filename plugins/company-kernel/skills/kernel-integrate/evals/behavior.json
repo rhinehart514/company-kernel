@@ -1,0 +1,32 @@
+[
+  {
+    "name": "preserves-global-work",
+    "prompt": "Install the kernel on a machine with existing AGENTS.md and skills.",
+    "must": [
+      "inspect before asking",
+      "preserve stronger existing rules",
+      "create the 0.5 topology",
+      "report withheld global changes"
+    ],
+    "must_not": [
+      "delete unrelated skills",
+      "overwrite authentication",
+      "create one file per department",
+      "invent project facts"
+    ]
+  },
+  {
+    "name": "migrates-topology",
+    "prompt": "Migrate a 0.4 system with SYSTEM.md and lenses.",
+    "must": [
+      "recompile into KERNEL.md, standards, and reviews",
+      "separate runtime from cold-path review",
+      "initialize only relevant project models"
+    ],
+    "must_not": [
+      "copy old prose mechanically",
+      "load reviews in normal runtime",
+      "preserve obsolete duplication"
+    ]
+  }
+]

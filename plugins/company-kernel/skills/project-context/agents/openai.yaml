@@ -1,6 +1,0 @@
-interface:
-  display_name: "Project Context"
-  short_description: "Keep one project true and current"
-  default_prompt: "Use $project-context to apply the shared system, inspect this repository and its evidence, then create or refresh the smallest useful project context."
-policy:
-  allow_implicit_invocation: false
