@@ -4,7 +4,7 @@ description: Pressure-test or repair consequential product changes so capability
 license: MIT
 metadata:
   author: Jacob Rhinehart
-  version: "0.9.0"
+  version: "0.10.0"
 ---
 
 # Product Coherence

@@ -1,6 +1,6 @@
 # Company Kernel repository rules
 
-Company Kernel 0.9 is a skill pack, not a global operating system.
+Company Kernel 0.10 is a skill pack, not a global operating system.
 
 The product surface is four skills:
 

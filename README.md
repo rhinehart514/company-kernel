@@ -1,4 +1,4 @@
-# Company Kernel 0.9
+# Company Kernel 0.10
 
 **Give the model the company judgment it did not start with. Then get out of
 its way.**
@@ -17,7 +17,7 @@ It combines durable YC judgment with the economics of 2026:
   earns concentration
 - build more capability while making users understand less
 
-0.9 deletes the global kernel, domain inheritance tree, setup scanner,
+0.10 deletes the global kernel, domain inheritance tree, setup scanner,
 initializer, review machinery, and project file bureaucracy.
 
 The intelligence lives in the skills.

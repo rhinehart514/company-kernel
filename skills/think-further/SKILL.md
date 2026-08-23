@@ -4,7 +4,7 @@ description: Push an existing project beyond its current local maximum using YC 
 license: MIT
 metadata:
   author: Jacob Rhinehart
-  version: "0.9.0"
+  version: "0.10.0"
 ---
 
 # Think Further

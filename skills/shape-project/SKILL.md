@@ -4,7 +4,7 @@ description: Inspect, grill, ideate, and compile an ambitious project into AGENT
 license: MIT
 metadata:
   author: Jacob Rhinehart
-  version: "0.9.0"
+  version: "0.10.0"
 ---
 
 # Shape Project

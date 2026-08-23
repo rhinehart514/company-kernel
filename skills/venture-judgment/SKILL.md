@@ -4,7 +4,7 @@ description: Shared YC and 2026 company-building judgment for consequential stra
 license: MIT
 metadata:
   author: Jacob Rhinehart
-  version: "0.9.0"
+  version: "0.10.0"
 ---
 
 # Venture Judgment

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate Company Kernel 0.9 as a small, composable skill pack."""
+"""Validate Company Kernel 0.10 as a small, composable skill pack."""
 
 from __future__ import annotations
 
@@ -114,8 +114,8 @@ def validate_layout() -> None:
 
 def validate_plugin() -> None:
     plugin = load_json(ROOT / ".codex-plugin" / "plugin.json")
-    if plugin.get("version") != "0.9.0":
-        fail("plugin version must be 0.9.0")
+    if plugin.get("version") != "0.10.0":
+        fail("plugin version must be 0.10.0")
     if plugin.get("skills") != "./skills/":
         fail("plugin must expose ./skills/")
 
@@ -137,8 +137,8 @@ def validate_skills() -> None:
         data, body = frontmatter(skill)
         if data.get("name") != name or not NAME_RE.fullmatch(name):
             fail(f"{name}: invalid skill name")
-        if data.get("metadata.version") != "0.9.0":
-            fail(f"{name}: version must be 0.9.0")
+        if data.get("metadata.version") != "0.10.0":
+            fail(f"{name}: version must be 0.10.0")
         if not data.get("description"):
             fail(f"{name}: missing description")
         if len(skill.read_text(encoding="utf-8").splitlines()) > 210:
@@ -241,7 +241,7 @@ def main() -> int:
         return 1
 
     print(
-        "OK: Company Kernel 0.9 is one shared brain, three user experiences, "
+        "OK: Company Kernel 0.10 is one shared brain, three user experiences, "
         "and only AGENTS.md, PROJECT.md, and NOW.md in a project"
     )
     return 0
